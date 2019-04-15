@@ -17,7 +17,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "core-js": "^2.6.5",
-    "iview": "^3.0.1",
+    "iview": "3.4.0",
     "vue": "^2.6.6",
     "vue-meta": "^1.6.0",
     "vue-router": "^3.0.1",
