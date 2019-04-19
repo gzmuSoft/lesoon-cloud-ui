@@ -7,7 +7,7 @@
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '_c/hello-world'
+import HelloWorld from '_auth/components/hello-world'
 
 export default {
   name: 'home',

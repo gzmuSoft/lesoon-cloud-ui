@@ -8,13 +8,14 @@ module.exports = {
       }
     }
   },
+  pages: getPages(),
   chainWebpack: config => {
     config.resolve.alias
       .set('@', resolve('src/'))
-      .set('_a', resolve('src/assets'))
-      .set('_c', resolve('src/components'))
-      .set('_s', resolve('src/styles'))
-      .set('_t', resolve('src/utils'))
+      .set('_auth', resolve('src/auth'))
+      .set('_common', resolve('src/common'))
+      .set('_home', resolve('src/home'))
+      .set('_management', resolve('src/management'))
   },
 
   // 打包时不生成.map文件，即生产环境下css 分离文件，减少体积，加快速度
@@ -22,24 +23,56 @@ module.exports = {
 
   // 跨域配置
   devServer: {
-  //   proxy: {
-  //     '/api': {
-  //       target: 'http://localhost:8000',
-  //       changeOrigin: true,
-  //       ws: true,
-  //       pathRewrite: {
-  //         '^/api': ''
-  //       }
-  //     }
-  //   },
+    //   proxy: {
+    //     '/api': {
+    //       target: 'http://localhost:8000',
+    //       changeOrigin: true,
+    //       ws: true,
+    //       pathRewrite: {
+    //         '^/api': ''
+    //       }
+    //     }
+    //   },
     disableHostCheck: true
   },
   pluginOptions: {
     'style-resources-loader': {
       preProcessor: 'less',
       patterns: [
-        path.resolve(__dirname, './src/theme/global.less')
+        path.resolve(__dirname, './src/common/styles/theme/global.less')
       ]
     }
+  }
+}
+/**
+ * 多页面配置
+ */
+function getPages () {
+  return {
+    auth: {
+      // entry for the page
+      entry: 'src/auth/main.js',
+      // the source template
+      template: 'public/index.html',
+      // output as dist/index.html
+      filename: 'login.html'
+    }
+    // home: {
+    //   // entry for the page
+    //   entry: 'src/home/main.js',
+    //   // the source template
+    //   template: 'public/index.html',
+    //   // output as dist/index.html
+    //   filename: 'home.html'
+    // },
+    // management: {
+    //   // entry for the page
+    //   entry: 'src/management/main.js',
+    //   // the source template
+    //   template: 'public/index.html',
+    //   // output as dist/index.html
+    //   filename: 'management.html'
+    // }
+
   }
 }
