@@ -56,23 +56,16 @@ function getPages () {
       template: 'public/index.html',
       // output as dist/index.html
       filename: 'login.html'
+    },
+    home: {
+      entry: 'src/home/main.js',
+      template: 'public/index.html',
+      filename: 'index.html'
+    },
+    management: {
+      entry: 'src/management/main.js',
+      template: 'public/index.html',
+      filename: 'management.html'
     }
-    // home: {
-    //   // entry for the page
-    //   entry: 'src/home/main.js',
-    //   // the source template
-    //   template: 'public/index.html',
-    //   // output as dist/index.html
-    //   filename: 'home.html'
-    // },
-    // management: {
-    //   // entry for the page
-    //   entry: 'src/management/main.js',
-    //   // the source template
-    //   template: 'public/index.html',
-    //   // output as dist/index.html
-    //   filename: 'management.html'
-    // }
-
   }
 }

@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './route'
 import store from './store'
 import 'babel-polyfill'
-import '_common/plugins/iview.js.js'
+import '_common/plugins/iview.js'
 
 Vue.config.productionTip = false
 
