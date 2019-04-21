@@ -1,33 +1,23 @@
 <template lang="pug">
   #app
-    router-link(to="/login") login
-    router-link(to="/register") register
-    router-view
-    img(src='./assets/logo.png')
-    div
-      p
-        | If iView is successfully added to this project, you'll see an
-        code(v-text="'<Button>'")
-        |         Login
-      Button(type='primary') Button
-    HelloWorld(msg='Welcome to Your Vue.js App')
-
+    Login
 </template>
 
 <script>
-import HelloWorld from './components/hello-world/HelloWorld.vue'
-
+import Login from './components/login/Login.vue'
+import Register from './components/register/Register'
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    Login,
+    Register
   }
 }
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
