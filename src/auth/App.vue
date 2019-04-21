@@ -1,11 +1,14 @@
 <template lang="pug">
   #app
+    router-link(to="/login") login
+    router-link(to="/register") register
+    router-view
     img(src='./assets/logo.png')
     div
       p
         | If iView is successfully added to this project, you'll see an
         code(v-text="'<Button>'")
-        |         below
+        |         Login
       Button(type='primary') Button
     HelloWorld(msg='Welcome to Your Vue.js App')
 

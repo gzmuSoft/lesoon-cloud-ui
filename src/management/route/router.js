@@ -3,11 +3,21 @@ export default [
   {
     path: '/',
     name: 'home',
-    component: Home
+    component: Home,
+    meta: {
+      title: '管理'
+    },
+    beforeEnter: (to, from, next) => {
+      // 路由独享守卫
+      next()
+    }
   },
   {
-    path: '/about',
-    name: 'about',
+    path: '/login',
+    name: 'login',
+    meta: {
+      title: '测试'
+    },
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.

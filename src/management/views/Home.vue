@@ -13,6 +13,13 @@ export default {
   name: 'home',
   components: {
     HelloWorld
+  },
+  beforeRouteEnter (to, from, next) {
+    // 组件路由钩子
+    // beforeRouteLeave
+    // beforeRouteUpdate
+    console.log('进入组件')
+    next()
   }
 }
 </script>

@@ -5,7 +5,7 @@
       p
         | If iView is successfully added to this project, you'll see an
         code(v-text="'<Button>'")
-        |         below
+        |         Home
       Button(type='primary') Button
     HelloWorld(msg='Welcome to Your Vue.js App')
 

@@ -55,17 +55,20 @@ function getPages () {
       // the source template
       template: 'public/index.html',
       // output as dist/index.html
-      filename: 'login.html'
+      filename: 'auth.html',
+      title: 'auth'
     },
     home: {
       entry: 'src/home/main.js',
       template: 'public/index.html',
-      filename: 'index.html'
+      filename: 'index.html',
+      title: 'home'
     },
     management: {
       entry: 'src/management/main.js',
       template: 'public/index.html',
-      filename: 'management.html'
+      filename: 'management.html',
+      title: 'management'
     }
   }
 }
