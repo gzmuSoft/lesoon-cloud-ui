@@ -23,16 +23,16 @@ module.exports = {
 
   // 跨域配置
   devServer: {
-    //   proxy: {
-    //     '/api': {
-    //       target: 'http://localhost:8000',
-    //       changeOrigin: true,
-    //       ws: true,
-    //       pathRewrite: {
-    //         '^/api': ''
-    //       }
-    //     }
-    //   },
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+        ws: true,
+        pathRewrite: {
+          '^/api': ''
+        }
+      }
+    },
     disableHostCheck: true
   },
   pluginOptions: {

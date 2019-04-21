@@ -28,7 +28,7 @@ class HttpRequest {
    *
    * @param url
    */
-  distory (url) {
+  destroy (url) {
     delete this.queue[url]
     if (!Object.keys(this.queue).length) {
       //
@@ -54,11 +54,11 @@ class HttpRequest {
     })
     // 响应拦截器
     instance.interceptors.response.use(res => {
-      this.distory(url)
+      this.destroy(url)
       const { data, status } = res
       return { data, status }
     }, error => {
-      this.distory(url)
+      this.destroy(url)
       return Promise.reject(error)
     })
   }

@@ -13,7 +13,7 @@
 
 <script>
 import HelloWorld from './components/hello-world/HelloWorld.vue'
-import { getUserInfo } from '_common/api/oauth'
+import { oauthToken } from '_common/api/oauth'
 
 export default {
   name: 'app',
@@ -22,7 +22,7 @@ export default {
   },
   methods: {
     getUser () {
-      getUserInfo({ userId: 21 }).then(res => {
+      oauthToken({ username: 21, password: 123 }).then(res => {
         console.log(res)
       })
     }
