@@ -35,7 +35,12 @@ export default {
       ruleRegister: {
         email: [
           { required: true, message: '请填写邮箱', trigger: 'blur' },
-          { type: 'email', message: '邮箱格式不正确', trigger: 'blur' }
+          { type: 'email', message: '邮箱格式不正确', trigger: 'blur' },
+          {
+            validator: (rule, value, callback) => {
+              callback()
+            }
+          }
         ],
         account: [
           { required: true, message: '请填写账号', trigger: 'blur' }
