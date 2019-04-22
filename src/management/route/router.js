@@ -13,7 +13,7 @@ export default [
     }
   },
   {
-    path: '/login',
+    path: '/the-login',
     name: 'login',
     meta: {
       title: '测试'

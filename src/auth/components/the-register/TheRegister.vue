@@ -1,26 +1,26 @@
 <template lang="pug">
-
-  Card
-    div(slot='title' class='title') 注册
-    Form(ref='formRegister', :model='formRegister', type='email' :rules='ruleRegister' :label-width="70")
-      FormItem(prop='email' label='电子邮箱')
+  Card#lesson-register-main-content
+    #lesson-register-main-title(slot='title') 注册
+    Form(ref='formRegister', :model='formRegister', type='email', :rules='ruleRegister', label-position="top")
+      FormItem.lesson-register-main-item(prop='email', label='电子邮箱')
           AutoComplete(placeholder='请输入邮箱' v-model='formRegister.email' @on-search="handleEmail")
             Option(v-for='item in emailList', :value='item', :key='item' class="optionEmail") {{ item }}
-      FormItem(prop='account' label='账号')
+      FormItem.lesson-register-main-item(prop='account', label='账号')
         Input(prefix='ios-contact', type='text', placeholder='请输入账号' v-model='formRegister.account')
-      FormItem(prop='password' label="密码")
-        Input(prefix='ios-lock-outline' :type="isShow?'text':'password'", v-model='formRegister.password', placeholder='请输入密码' :icon="isShow?'ios-eye':'ios-eye-off'" @on-click='switcher()')
-      FormItem(prop='repeatPassword' label="重复密码")
-        Input(prefix='ios-lock-outline' type="password", placeholder='请再次输入密码' v-model='formRegister.repeatPassword')
-      FormItem
-          Button(type='primary', @click="handleRegister('formRegister')" long) 注册
+      FormItem.lesson-register-main-item(prop='password', label="密码")
+        Input(prefix='ios-lock-outline', :type="isShow?'text':'password'", v-model='formRegister.password', placeholder='请输入密码' :icon="isShow?'ios-eye':'ios-eye-off'" @on-click='switcher()')
+      FormItem.lesson-register-main-item(prop='repeatPassword', label="重复密码")
+        Input(prefix='ios-lock-outline', type="password", placeholder='请再次输入密码', v-model='formRegister.repeatPassword')
+      Button.lesson-register-main-item(type='success', @click="handleRegister('formRegister')" long) 注册
+      Button.lesson-register-main-item(type='primary', @click="handleRegister('formRegister')" long) 已有账号？立即登录
+      .lesson-login-social
+        social-button(:social="social")
 </template>
 <script>
+import SocialButton from '../social-button'
 export default {
-  name: 'Register',
-  props: {
-
-  },
+  name: 'the-register',
+  components: { SocialButton },
   data () {
     return {
       isShow: false,
@@ -62,7 +62,16 @@ export default {
             }
           }
         ]
-      }
+      },
+      social: [
+        {
+          styles: {
+            background: '#55a947',
+            color: 'white'
+          },
+          icon: 'ios-chatbubbles'
+        }
+      ]
     }
   },
   methods: {
@@ -89,13 +98,17 @@ export default {
   }
 }
 </script>
-<style scoped lang="less">
-.title {
-  color: #17233d;
-  font-size: 35px;
-  letter-spacing: 20px;
-}
+<style lang="less" scoped>
 .optionEmail {
   text-align: left;
+}
+#lesson-register-main-content {
+  padding: 0 16px;
+}
+#lesson-register-main-title {
+  font-weight: bolder;
+}
+.lesson-register-main-item {
+  margin-top: 10px;
 }
 </style>

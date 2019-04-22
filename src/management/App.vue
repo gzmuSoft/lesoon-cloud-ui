@@ -40,22 +40,5 @@ export default {
   margin-top: 60px;
 }
 /*组件过度*/
-.router-enter {
-  opacity: 0;
-}
-.router-enter-active {
-  transition: opacity 1s ease;
-}
-.router-enter-to {
-  opacity: 1;
-}
-.router-leave {
-  opacity: 1;
-}
-.router-leave-active {
-  transition: opacity 1s ease;
-}
-.router-leave-to {
-  opacity: 0;
-}
+
 </style>

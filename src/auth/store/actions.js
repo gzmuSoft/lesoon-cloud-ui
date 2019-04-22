@@ -2,7 +2,7 @@
 // import Message from 'vue-m-message'
 
 const actions = {
-  // login ({ commit, dispatch }, user) {
+  // the-login ({ commit, dispatch }, user) {
   //   dispatch('getToken', user).then(token => {
   //     const params = new URLSearchParams()
   //     params.append('token', token)

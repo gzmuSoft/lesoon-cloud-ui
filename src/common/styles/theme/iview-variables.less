@@ -6,4 +6,72 @@ found in https://github.com/iview/iview/blob/2.0/src/styles/custom.less.
 @import '../../../../node_modules/iview/src/styles/index.less';
 
 // Here are the variables to cover, such as:
-@primary-color: #8c0776;
+//@primary-color: #8c0776;
+
+@lesson-normal-height: 64px;
+@lesson-normal-padding-width: 64px;
+@lesson-normal-width: 1024px;
+@lesson-form-width: 400px;
+
+.lesson-no-margin {
+  margin: 0;
+}
+
+.lesson-login-social {
+  margin-top: 30px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+
+.lesson-margin-center() {
+  margin: 0 auto;
+}
+
+.lesson-flex-align-center() {
+  display: flex;
+  align-items: center;
+}
+
+.lesson-flex-center() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lesson-flex-between() {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.lesson-flex-wrap-align-between() {
+  flex-wrap: wrap;
+  align-content: space-between;
+}
+
+.lesson-border_radius (@radius: 5px) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  -ms-border-radius: @radius;
+  -o-border-radius: @radius;
+  border-radius: @radius;
+}
+
+.lesson-opacity-enter {
+  opacity: 0;
+}
+.lesson-opacity-enter-active {
+  transition: opacity 0.5s ease;
+}
+.lesson-opacity-enter-to {
+  opacity: 1;
+}
+.lesson-opacity-leave {
+  opacity: 1;
+}
+.lesson-opacity-leave-active {
+  transition: opacity 0.5s ease;
+}
+.lesson-opacity-leave-to {
+  opacity: 0;
+}

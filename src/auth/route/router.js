@@ -1,8 +1,16 @@
-import Home from '../views/Home.vue'
 export default [
   {
     path: '/',
-    name: 'home',
-    component: Home
+    redirect: { name: 'login' }
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import(/* webpackChunkName: "about" */ '../components/the-login')
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: () => import(/* webpackChunkName: "about" */ '../components/the-register')
   }
 ]
