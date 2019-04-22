@@ -16,6 +16,14 @@ module.exports = {
       .set('_common', resolve('src/common'))
       .set('_home', resolve('src/home'))
       .set('_management', resolve('src/management'))
+    config.module
+      .rule('vue')
+      .test(/\.vue$/)
+      .use('iview-loader')
+      .loader('iview-loader')
+      .options({
+        prefix: false
+      })
   },
 
   // 打包时不生成.map文件，即生产环境下css 分离文件，减少体积，加快速度
@@ -39,7 +47,7 @@ module.exports = {
     'style-resources-loader': {
       preProcessor: 'less',
       patterns: [
-        path.resolve(__dirname, './src/common/styles/theme/global.less')
+        path.resolve(__dirname, './src/common/styles/theme/iview-variables.less')
       ]
     }
   }

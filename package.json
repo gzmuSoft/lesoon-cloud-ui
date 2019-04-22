@@ -37,6 +37,7 @@
     "babel-polyfill": "^6.26.0",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0",
+    "iview-loader": "^1.2.2",
     "less": "^3.0.4",
     "less-loader": "^4.1.0",
     "pug": "^2.0.3",
