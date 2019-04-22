@@ -1,16 +1,20 @@
 <template lang="pug">
-  .home
-    img(alt='Vue logo', src='../assets/logo.png')
-
+  Layout
+    Header
+      p asd
+    Content
+      Register
 </template>
 
 <script>
 // @ is an alias to /src
-
+import Login from '../components/login'
+import Register from '../components/register'
 export default {
   name: 'home',
   components: {
-
+    Login,
+    Register
   }
 }
 </script>

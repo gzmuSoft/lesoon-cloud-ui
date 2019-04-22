@@ -1,16 +1,14 @@
 <template lang="pug">
   #app
-    Login
+    Home
 </template>
 
 <script>
-import Login from './components/login/Login.vue'
-import Register from './components/register/Register'
+import Home from './views/Home'
 export default {
   name: 'app',
   components: {
-    Login,
-    Register
+    Home
   }
 }
 </script>
@@ -22,6 +20,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>

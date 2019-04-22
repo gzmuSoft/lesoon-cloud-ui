@@ -7,7 +7,7 @@
       FormItem(prop='password' label="密码")
         Input(prefix='ios-lock-outline' :type="isShow?'text':'password'", v-model='formUser.password', placeholder='请输入密码' :icon="isShow?'ios-eye':'ios-eye-off'" @on-click='switcher(this)')
       FormItem
-        Button(type='primary', @click="handleLogin('formUser')") 登陆
+        Button(type='primary', @click="handleLogin('formUser')" long) 登陆
       Button(type='info', ) QQ登陆
       Button(type='success', ) 微信登陆
 </template>
@@ -39,8 +39,14 @@ export default {
     switcher () {
       this.isShow = !this.isShow
     },
-    handleLogin (name) {
-      this.$Message.success('Success!')
+    handleLogin (formLogin) {
+      this.$refs[formLogin].validate((valid) => {
+        if (valid) {
+          this.$Message.success('Success!')
+        } else {
+          this.$Message.error('Fail!')
+        }
+      })
     }
 
   }
