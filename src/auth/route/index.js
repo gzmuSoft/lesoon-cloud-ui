@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import routes from './router'
 import iView from 'iview'
-import { toHome } from '_common/api/comm'
+import { routeHome } from '_common/api/comm'
 import store from '_auth/store'
 Vue.use(iView)
 Vue.use(Router)
@@ -17,7 +17,7 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   if (store.getters.isAuth) {
-    toHome()
+    routeHome()
   }
   iView.LoadingBar.start()
   next()

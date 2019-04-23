@@ -1,9 +1,9 @@
-export const toHome = () => {
+export const routeHome = () => {
   window.location.href = 'index'
 }
-export const toAuth = () => {
+export const routeAuth = () => {
   window.location.href = 'auth'
 }
-export const toManagement = () => {
+export const routeManagement = () => {
   window.location.href = 'managemet'
 }

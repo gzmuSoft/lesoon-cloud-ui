@@ -7,28 +7,31 @@
           MenuItem(name="3") 院校
           MenuItem(name="4") 功能
           MenuItem(name="5") 课程
-          Button.lesson-home-route(type="info", @click="toLogin") 登录
-    Button(@click="loginStatue") test
+          Button(v-if='isAuth') 此处显示用户信息
+          Button.lesson-home-route(type="info", @click="toAuth" v-else) 登录
 
 </template>
 
 <script>
 import TheHeader from '_common/components/the-header'
+import { routeAuth } from '_common/api/comm'
 export default {
   name: 'lesson-home',
   components: {
     TheHeader
   },
+  data () {
+    return {
+      isAuth: true
+    }
+  },
+  created () {
+    const _this = this
+    _this.isAuth = _this.$store.getters.isAuth
+  },
   methods: {
-    toLogin () {
-      if (JSON.parse(localStorage.getItem('lesson-cloud'))['lesson-cloud'].token != null) {
-        this.$Message.warning('你已经登录过了！')
-      } else {
-        window.location.href = 'auth'
-      }
-    },
-    loginStatue () {
-      console.log(localStorage)
+    toAuth () {
+      routeAuth()
     }
   }
 }
