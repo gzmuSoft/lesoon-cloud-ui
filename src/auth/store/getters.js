@@ -1,8 +1,8 @@
 
 const getters = {
-  // isAuth: state => {
-  //   return state.token !== null
-  // }
+  isAuth: state => {
+    return state.token !== null
+  }
 }
 
 export default getters

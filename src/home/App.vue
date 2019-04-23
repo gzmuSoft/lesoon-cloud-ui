@@ -24,7 +24,7 @@ export default {
       if (JSON.parse(localStorage.getItem('lesson-cloud'))['lesson-cloud'].token != null) {
         this.$Message.warning('你已经登录过了！')
       } else {
-        window.location.href = 'auth.html'
+        window.location.href = 'auth'
       }
     },
     loginStatue () {
@@ -36,7 +36,7 @@ export default {
 
 <style lang="less">
 #lesson-home {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

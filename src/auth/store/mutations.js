@@ -1,15 +1,17 @@
 const mutations = {
-  OAUTH_PASSWORD (state, params) {
-    console.log(params)
+  SET_TOKEN (state, params) {
     state.token = params
-  }
+  },
+  // to-do set user data
   // SET_USER (state, username) {
   //   state.username = username
   // },
-  // LOGOUT (state) {
-  //   state.token = null
-  //   state.username = null
-  // }
+
+  // logout
+  LOGOUT (state) {
+    state.token = null
+    state.username = null
+  }
 }
 
 export default mutations

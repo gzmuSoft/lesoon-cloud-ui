@@ -2,7 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import routes from './router'
 import iView from 'iview'
-
+import { toHome } from '_common/api/comm'
+import store from '_auth/store'
 Vue.use(iView)
 Vue.use(Router)
 
@@ -15,9 +16,8 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-  const state = JSON.parse(localStorage.getItem('lesson-cloud'))['lesson-cloud']
-  if (state.token != null) {
-    window.location.href = 'index.html'
+  if (store.getters.isAuth) {
+    toHome()
   }
   iView.LoadingBar.start()
   next()
