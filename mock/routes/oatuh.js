@@ -7,7 +7,8 @@ const jwt = require('jsonwebtoken')
  * grant_type 为 refresh_token 时 刷新 token
  */
 router.post('/token', (req, res) => {
-  const body = JSON.stringify(req.body)
+  const body = req.body
+  console.log(body.grant_type === 'password')
   switch (body.grant_type) {
     case 'password':
       password(body, res)
@@ -76,7 +77,7 @@ const password = (body, res) => {
       })
     return
   }
-  if (body.username !== 'admin' && body.password !== '1997') {
+  if (body.username !== 'admin' && body.password !== '123456') {
     res.status(400)
       .json({
         'error': 'invalid_grant',

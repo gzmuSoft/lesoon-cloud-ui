@@ -1,10 +1,9 @@
 <template lang="pug">
   #lesson-auth
     the-header
-      .lesson-auth-routes(slot="right")
-        Button.lesson-auth-route(type="info", to="/login") 登录
-        Button.lesson-auth-route(type="success", to="/register") 注册
-        Button
+      Menu.lesson-auth-routes(slot="right", mode="horizontal", active-name="login")
+        MenuItem(name="login", to="/login") 登录
+        MenuItem(name="register", to="/register") 注册
     Layout#lesson-auth-main
       Content#lesson-auth-content
         Row#lesson-auth-content-main
@@ -16,7 +15,7 @@
 <script>
 import TheHeader from '_common/components/the-header'
 export default {
-  name: 'app',
+  name: 'lesson-auth',
   components: {
     TheHeader
   }

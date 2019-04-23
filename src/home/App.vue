@@ -1,34 +1,48 @@
 <template lang="pug">
-  #app
-    img(src='./assets/logo.png')
-    div
-      p
-        | If iView is successfully added to this project, you'll see an
-        code(v-text="'<Button>'")
-        |         Home
-      Button(type='primary') Button
-    HelloWorld(msg='Welcome to Your Vue.js App')
+  #lesson-home
+    the-header
+      .lesson-auth-routes(slot="right")
+        Menu(mode="horizontal", active-name="1")
+          MenuItem(name="1") 主页
+          MenuItem(name="3") 院校
+          MenuItem(name="4") 功能
+          MenuItem(name="5") 课程
+          Button.lesson-home-route(type="info", @click="toLogin") 登录
+    Button(@click="loginStatue") test
 
 </template>
 
 <script>
-import HelloWorld from './components/hello-world/HelloWorld.vue'
-
+import TheHeader from '_common/components/the-header'
 export default {
-  name: 'app',
+  name: 'lesson-home',
   components: {
-    HelloWorld
+    TheHeader
+  },
+  methods: {
+    toLogin () {
+      if (JSON.parse(localStorage.getItem('lesson-cloud'))['lesson-cloud'].token != null) {
+        this.$Message.warning('你已经登录过了！')
+      } else {
+        window.location.href = 'auth.html'
+      }
+    },
+    loginStatue () {
+      console.log(localStorage)
+    }
   }
 }
 </script>
 
-<style>
-#app {
+<style lang="less">
+#lesson-home {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  .lesson-home-route {
+    margin-left: 10px;
+  }
 }
 </style>

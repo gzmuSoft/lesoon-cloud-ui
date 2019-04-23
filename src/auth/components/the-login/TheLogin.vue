@@ -2,17 +2,18 @@
   Card#lesson-login-main-content
     #lesson-login-main-title(slot='title') 登陆
     Form(ref='formUser', :model='formUser', :rules='ruleUser', label-position="top")
-      FormItem.lesson-login-main-item(prop='account', label='账号')
-        Input(prefix='ios-contact', type='text', placeholder='请输入账号', v-model='formUser.account')
+      FormItem.lesson-login-main-item(prop='username', label='账号')
+        Input(prefix='ios-contact', type='text', placeholder='请输入账号', v-model='formUser.username')
       FormItem.lesson-login-main-item(prop='password', label="密码")
         Input(prefix='ios-lock-outline' :type="isShow?'text':'password'", v-model='formUser.password', placeholder='请输入密码' :icon="isShow?'ios-eye':'ios-eye-off'" @on-click='switcher(this)')
       Button.lesson-login-main-item(type='success', @click="handleLogin('formUser')", long) 登陆
-      Button.lesson-login-main-item(type='primary', long) 忘记密码
+      Button.lesson-login-main-item(type='primary', @click="handleStatus", long) 忘记密码
       .lesson-login-social
         social-button(:social="social")
 </template>
 <script>
 import SocialButton from '../social-button'
+
 export default {
   name: 'the-login',
   components: { SocialButton },
@@ -20,11 +21,11 @@ export default {
     return {
       isShow: false,
       formUser: {
-        account: '',
+        username: '',
         password: ''
       },
       ruleUser: {
-        account: [
+        username: [
           { required: true, message: '请填写账号', trigger: 'blur' }
         ],
         password: [
@@ -48,13 +49,18 @@ export default {
       this.isShow = !this.isShow
     },
     handleLogin (formLogin) {
-      this.$refs[formLogin].validate((valid) => {
+      const _this = this
+      _this.$refs[formLogin].validate((valid) => {
         if (valid) {
-          this.$Message.success('Success!')
-        } else {
-          this.$Message.error('Fail!')
+          _this.$store.dispatch('oauthPassword', _this.formUser)
+          // oauthToken(_this.formUser).then(res => {
+          //   _this.$Message.success('登录成功!')
+          // })
         }
       })
+    },
+    handleStatus () {
+      console.log(this.$store.state.token == null)
     }
   }
 }

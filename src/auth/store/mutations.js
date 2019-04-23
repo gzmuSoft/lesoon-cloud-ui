@@ -1,7 +1,8 @@
 const mutations = {
-  // LOGIN (state, params) {
-  //   state.token = params.access_token
-  // },
+  OAUTH_PASSWORD (state, params) {
+    console.log(params)
+    state.token = params
+  }
   // SET_USER (state, username) {
   //   state.username = username
   // },

@@ -5,8 +5,8 @@
       FormItem.lesson-register-main-item(prop='email', label='电子邮箱')
           AutoComplete(placeholder='请输入邮箱' v-model='formRegister.email' @on-search="handleEmail")
             Option(v-for='item in emailList', :value='item', :key='item' class="optionEmail") {{ item }}
-      FormItem.lesson-register-main-item(prop='account', label='账号')
-        Input(prefix='ios-contact', type='text', placeholder='请输入账号' v-model='formRegister.account')
+      FormItem.lesson-register-main-item(prop='username', label='账号')
+        Input(prefix='ios-contact', type='text', placeholder='请输入账号' v-model='formRegister.username')
       FormItem.lesson-register-main-item(prop='password', label="密码")
         Input(prefix='ios-lock-outline', :type="isShow?'text':'password'", v-model='formRegister.password', placeholder='请输入密码' :icon="isShow?'ios-eye':'ios-eye-off'" @on-click='switcher()')
       FormItem.lesson-register-main-item(prop='repeatPassword', label="重复密码")
@@ -27,7 +27,7 @@ export default {
       emailList: [],
       formRegister: {
         email: '',
-        account: '',
+        username: '',
         password: '',
         repeatPassword: ''
       },
@@ -42,7 +42,7 @@ export default {
             }
           }
         ],
-        account: [
+        username: [
           { required: true, message: '请填写账号', trigger: 'blur' }
         ],
         password: [

@@ -2,7 +2,8 @@
   Affix
     #lesson-header
       #lesson-header-left
-        img(src='../../assets/logo.png')
+        slot.lesson-cursor-pointer(name="logo", @click="toHome")
+          img.lesson-cursor-pointer(src='../../assets/logo.png', @click="toHome")
         slot(name="left")
       #lesson-header-right
         slot(name="right")
@@ -10,7 +11,12 @@
 
 <script>
 export default {
-  name: 'the-header'
+  name: 'the-header',
+  methods: {
+    toHome () {
+      window.location.href = 'index.html'
+    }
+  }
 }
 </script>
 

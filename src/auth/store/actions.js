@@ -1,7 +1,17 @@
-// import Vue from 'vue'
-// import Message from 'vue-m-message'
+import Vue from 'vue'
+import iView from 'iview'
+import { oauthToken } from '_common/api/oauth'
+Vue.use(iView)
 
 const actions = {
+  oauthPassword ({ commit, dispatch }, user) {
+    dispatch('getToken', user).then(token => {
+      commit('OAUTH_PASSWORD', token)
+    })
+  },
+  getToken ({ commit }, user) {
+    return oauthToken(user).then(res => (res.data))
+  }
   // the-login ({ commit, dispatch }, user) {
   //   dispatch('getToken', user).then(token => {
   //     const params = new URLSearchParams()

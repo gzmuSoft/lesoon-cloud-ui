@@ -1,5 +1,9 @@
+import Vue from 'vue'
 import axios from 'axios'
 import { baseURL } from '../config'
+import iView from 'iview'
+
+Vue.use(iView)
 
 class HttpRequest {
   constructor (baseUrl = baseURL) {
@@ -31,7 +35,7 @@ class HttpRequest {
   destroy (url) {
     delete this.queue[url]
     if (!Object.keys(this.queue).length) {
-      //
+      iView.Spin.hide()
     }
   }
 
@@ -45,7 +49,7 @@ class HttpRequest {
     // 请求拦截器
     instance.interceptors.request.use(config => {
       if (Object.keys(this.queue).length) {
-        //
+        iView.Spin.show()
       }
       this.queue[url] = true
       return config
@@ -55,11 +59,12 @@ class HttpRequest {
     // 响应拦截器
     instance.interceptors.response.use(res => {
       this.destroy(url)
-      const { data, status } = res
-      return { data, status }
+      return res
     }, error => {
       this.destroy(url)
-      return Promise.reject(error)
+      if (error.response.status === 401) iView.Message.error('未经授权:访问由于凭据无效被拒绝')
+      if (error.response.status === 400) iView.Message.error(`失败：${error.response.data.error_description}`)
+      return Promise.reject(error.response)
     })
   }
 

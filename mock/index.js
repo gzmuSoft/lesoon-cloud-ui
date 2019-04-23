@@ -23,7 +23,7 @@ app.all('*', (req, res, next) => {
 app.all('/oauth/*', (req, res, next) => {
   const authorization = req.get('Authorization')
   if (!authorization || !authorization.startsWith('Basic ') ||
-    authorization.substr(6) !== 'bGVzc29uLWNsb3VkOmxlc3Nvbi1jbG91ZC1zZWNyZXQ') {
+    authorization.substr(6) !== 'bGVzc29uLWNsb3VkOmxlc3Nvbi1jbG91ZC1zZWNyZXQ=') {
     res.status(401)
       .json({
         error: 'unauthorized',
