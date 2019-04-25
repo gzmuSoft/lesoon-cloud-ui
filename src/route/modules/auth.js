@@ -9,6 +9,7 @@ export default {
   redirect: '/auth/login',
   children: [
     {
+      name: 'login',
       path: 'login',
       component: TheLogin,
       meta: {
@@ -16,6 +17,7 @@ export default {
       }
     },
     {
+      name: 'register',
       path: 'register',
       component: TheRegister,
       meta: {

@@ -1,7 +1,7 @@
 <template lang="pug">
   #lesson-auth
     the-header
-      Menu.lesson-auth-routes(slot="right", mode="horizontal", active-name="login")
+      Menu.lesson-auth-routes(slot="right", mode="horizontal", :active-name="active")
         MenuItem(name="login", to="/auth/login") 登录
         MenuItem(name="register", to="/auth/register") 注册
     Layout#lesson-auth-main
@@ -18,6 +18,15 @@ export default {
   name: 'TheAuth',
   components: {
     TheHeader
+  },
+  data () {
+    return {
+      active: 'login'
+    }
+  },
+  created () {
+    // 保持menu的高亮状态
+    this.active = this.$route.name
   }
 }
 </script>
