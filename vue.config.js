@@ -8,14 +8,18 @@ module.exports = {
       }
     }
   },
-  pages: getPages(),
+  // pages: getPages(),
   chainWebpack: config => {
     config.resolve.alias
       .set('@', resolve('src/'))
-      .set('_auth', resolve('src/auth'))
-      .set('_common', resolve('src/common'))
-      .set('_home', resolve('src/home'))
-      .set('_management', resolve('src/management'))
+      .set('_components', resolve('src/components'))
+      .set('_plugins', resolve('src/plugins'))
+      .set('_api', resolve('src/api'))
+      .set('_store', resolve('src/store'))
+      .set('_route', resolve('src/route'))
+      .set('_lib', resolve('src/lib'))
+      .set('_utils', resolve('src/utils'))
+      .set('_views', resolve('src/views'))
     config.module
       .rule('vue')
       .test(/\.vue$/)
@@ -47,36 +51,36 @@ module.exports = {
     'style-resources-loader': {
       preProcessor: 'less',
       patterns: [
-        path.resolve(__dirname, './src/common/styles/theme/iview-variables.less')
+        path.resolve(__dirname, './src/styles/theme/iview-variables.less')
       ]
     }
   }
 }
 /**
- * 多页面配置
+ * 多页面配置，方案调整，暂时废弃
  */
-function getPages () {
-  return {
-    auth: {
-      // entry for the page
-      entry: 'src/auth/main.js',
-      // the source template
-      template: 'public/index.html',
-      // output as dist/index.html
-      filename: 'auth.html',
-      title: 'auth'
-    },
-    home: {
-      entry: 'src/home/main.js',
-      template: 'public/index.html',
-      filename: 'index.html',
-      title: 'home'
-    },
-    management: {
-      entry: 'src/management/main.js',
-      template: 'public/index.html',
-      filename: 'management.html',
-      title: 'management'
-    }
-  }
-}
+// function getPages () {
+//   return {
+//     auth: {
+//       // entry for the page
+//       entry: 'src/auth/main.js',
+//       // the source template
+//       template: 'public/index.html',
+//       // output as dist/index.html
+//       filename: 'auth.html',
+//       title: 'auth'
+//     },
+//     home: {
+//       entry: 'src/home/main.js',
+//       template: 'public/index.html',
+//       filename: 'index.html',
+//       title: 'home'
+//     },
+//     management: {
+//       entry: 'src/management/main.js',
+//       template: 'public/index.html',
+//       filename: 'management.html',
+//       title: 'management'
+//     }
+//   }
+// }
