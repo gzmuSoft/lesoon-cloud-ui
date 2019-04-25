@@ -1,8 +1,8 @@
 import route from '_route'
 
-export const toHome = () => {
+export const routeHome = () => {
   route.push('/')
 }
-export const toAuth = () => {
+export const routeAuth = () => {
   route.push('/auth')
 }

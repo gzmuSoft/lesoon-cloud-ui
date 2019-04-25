@@ -10,13 +10,13 @@
 </template>
 
 <script>
-import { toHome } from '_api/comm'
+import { routeHome } from '_api/comm'
 
 export default {
   name: 'the-header',
   methods: {
     home () {
-      toHome()
+      routeHome()
     }
   }
 }

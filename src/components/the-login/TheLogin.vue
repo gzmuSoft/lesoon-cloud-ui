@@ -13,7 +13,7 @@
 </template>
 <script>
 import SocialButton from '../social-button'
-import { toHome } from '_api/comm'
+import { routeHome } from '_api/comm'
 
 export default {
   name: 'the-login',
@@ -59,7 +59,7 @@ export default {
           _this.$store.dispatch('auth/oauthLogin', _this.formUser).then(() => {
             _this.$Message.success('登录成功!')
             setTimeout(() => {
-              toHome()
+              routeHome()
             }, 2000)
           }).finally(() => {
             _this.waitLogin = false

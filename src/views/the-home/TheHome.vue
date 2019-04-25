@@ -13,7 +13,7 @@
 
 <script>
 import TheHeader from '_components/the-header'
-import { toAuth } from '_api/comm'
+import { routeAuth } from '_api/comm'
 
 export default {
   name: 'the-home',
@@ -25,7 +25,7 @@ export default {
       if (this.$store.getters['auth/isAuth']) {
         this.$Message.warning('你已经登录过了！')
       } else {
-        toAuth()
+        routeAuth()
       }
     },
     loginStatue () {
