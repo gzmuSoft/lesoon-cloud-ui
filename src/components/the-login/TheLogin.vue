@@ -13,7 +13,7 @@
           .lesson-login-social
             social-button(:social="social")
     Footer.lesson-card-3#lesson-login-find(:style="find")
-      the-find
+      the-find(@find="handleFind")
 
 </template>
 <script>
@@ -113,7 +113,7 @@ export default {
 #lesson-login-find {
   padding: 0;
   position: fixed;
-  .lesson-transition(all 3s);
+  .lesson-transition(all 2s);
   width: 100%;
   height: calc(100% - 70px);
   z-index: 100;

@@ -3,7 +3,7 @@
     vue-particles(
       color="#797981"
       shapeType="star"
-      particleOpacity="0.4"
+      :particleOpacity="0.4"
       :particleSize="4"
       linesColor="#b0b4b9"
       :linesWidth="1"
