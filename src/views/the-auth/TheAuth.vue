@@ -1,9 +1,9 @@
 <template lang="pug">
   #lesson-auth
     the-header
-      Menu.lesson-auth-routes(slot="right", mode="horizontal", :active-name="active")
-        MenuItem(name="login", to="/auth/login") 登录
-        MenuItem(name="register", to="/auth/register") 注册
+      Menu.lesson-auth-routes(slot="right", mode="horizontal", :active-name="$route.name")
+        MenuItem(name="login", :to="{name:'login'}") 登录
+        MenuItem(name="register", :to="{name:'register'}") 注册
     Layout#lesson-auth-main
       Content#lesson-auth-content
         Row#lesson-auth-content-main
@@ -27,6 +27,9 @@ export default {
   created () {
     // 保持menu的高亮状态
     this.active = this.$route.name
+  },
+  mounted () {
+
   }
 }
 </script>

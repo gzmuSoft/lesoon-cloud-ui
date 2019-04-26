@@ -12,7 +12,7 @@
       FormItem.lesson-register-main-item(prop='repeatPassword', label="重复密码")
         Input(prefix='ios-lock-outline', type="password", placeholder='请再次输入密码', v-model='formRegister.repeatPassword')
       Button.lesson-register-main-item(type='success', @click="handleRegister('formRegister')" long) 注册
-      Button.lesson-register-main-item(type='primary', @click="handleRegister('formRegister')" long) 已有账号？立即登录
+      Button.lesson-register-main-item(type='primary', :to="{name:'login'}" long) 已有账号？立即登录
       .lesson-login-social
         social-button(:social="social")
 </template>
