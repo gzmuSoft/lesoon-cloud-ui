@@ -9,12 +9,11 @@
           Step(title="密码修改")
           Step(title="找回结果")
         Card.lesson-find-card.lesson-text-left.lesson-margin-center(
-          :bordered="false",
           v-if="current === 0",
           :style="styles"
         )
           p(slot="title") 信息验证
-          FormItem.lesson-register-main-item(prop='method', label='找回方式')
+          FormItem(prop='method', label='找回方式')
             Select(prefix="ios-bowtie", v-model="info.method", placeholder="请选择找回方式")
               Option(v-for="(item, index) in methods" :value="index" :key="index") {{ item.name }}
           div(v-if="info.method !== null")
@@ -37,7 +36,6 @@
                 placeholder='请输入验证码')
             Button.lesson-find-btn(@click="handleNext", long, type="primary") 下一步
         Card.lesson-find-card.lesson-text-left.lesson-margin-center(
-          :bordered="false",
           v-if="current === 1",
           :style="styles")
           p(slot="title") 密码修改
@@ -56,7 +54,6 @@
           Button.lesson-find-btn(@click="handleFinished", long, type="success") 完成
           Button.lesson-find-btn(@click="handleLast", long, type="info") 上一步
         Card.lesson-find-card.lesson-text-left.lesson-margin-center(
-          :bordered="false",
           v-if="current === 2",
           :style="styles")
           p(slot="title") 完成

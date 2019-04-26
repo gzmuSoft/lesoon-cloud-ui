@@ -20,6 +20,7 @@ module.exports = {
       .set('_lib', resolve('src/lib'))
       .set('_utils', resolve('src/utils'))
       .set('_views', resolve('src/views'))
+      .set('_assets', resolve('src/assets'))
     config.module
       .rule('vue')
       .test(/\.vue$/)
