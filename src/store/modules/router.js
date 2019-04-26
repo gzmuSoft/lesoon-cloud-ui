@@ -1,20 +1,19 @@
-import { routes, routeMap } from '_route/router'
+import { routeMap } from '_route/router'
 
 const state = {
-  routers: routes,
-  hasGetRules: false
+  routers: []
 }
 
 const getters = {
-  //
+  hasGetRules: state => {
+    return state.routers.length !== 0
+  }
 }
 
 const mutations = {
   CONCAT_ROUTES (state, rulesList) {
     // 必须 routes 在后面
-    state.routers = rulesList.concat(routes)
-    // 已经获取了
-    state.hasGetRules = true
+    state.routers = rulesList
   }
 }
 
@@ -31,6 +30,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       try {
         let rulesList = []
+        console.log(rules)
         if (Object.entries(rules).every(item => item[1])) {
           // 如果全都为 true，那么直接赋值过来
           rulesList = routeMap

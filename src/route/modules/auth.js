@@ -5,7 +5,7 @@ export default {
   path: '/auth',
   name: 'auth',
   component: TheAuth,
-  redirect: '/auth/login',
+  redirect: '/login',
   children: [
     {
       name: 'login',
