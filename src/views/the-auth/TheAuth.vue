@@ -1,15 +1,26 @@
 <template lang="pug">
   #lesson-auth
+    vue-particles(
+      color="#797981"
+      shapeType="star"
+      particleOpacity="0.4"
+      :particleSize="4"
+      linesColor="#b0b4b9"
+      :linesWidth="1"
+      :lineLinked="true"
+      :lineOpacity="0.4"
+      :linesDistance="150"
+      :moveSpeed="3"
+      :hoverEffect="true"
+      hoverMode="grab"
+      clickMode="remove")
     the-header
       Menu.lesson-auth-routes(slot="right", mode="horizontal", :active-name="$route.name")
         MenuItem(name="login", :to="{name:'login'}") 登录
         MenuItem(name="register", :to="{name:'register'}") 注册
     Layout#lesson-auth-main
-      Content#lesson-auth-content
-        Row#lesson-auth-content-main
-          Col(span="24")
-            transition(name="lesson-opacity", mode="out-in")
-              router-view
+      transition(name="lesson-opacity", mode="out-in")
+        router-view
 </template>
 
 <script>
@@ -42,16 +53,8 @@ export default {
   }
 }
 #lesson-auth-main {
-  max-width: @lesson-normal-width;
   .lesson-margin-center;
   margin-top: 10px;
-  #lesson-auth-content {
-    background-color: white;
-    #lesson-auth-content-main {
-      width: @lesson-form-width;
-      .lesson-margin-center;
-      margin-top: @lesson-normal-height;
-    }
-  }
+  background-color: white;
 }
 </style>

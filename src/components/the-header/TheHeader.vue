@@ -24,6 +24,7 @@ export default {
 
 <style lang="less" scoped>
 #lesson-header {
+  background-color: white;
   height: @lesson-normal-height;
   box-shadow: 0 1px 3px rgba(26, 26, 26, 0.1);
   .lesson-flex-wrap-align-between;

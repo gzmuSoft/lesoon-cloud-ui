@@ -1,25 +1,36 @@
 <template lang="pug">
-  Card#lesson-login-main-content
-    #lesson-login-main-title(slot='title') 登陆
-    Form(ref='formUser', :model='formUser', :rules='ruleUser', label-position="top")
-      FormItem.lesson-login-main-item(prop='username', label='账号')
-        Input(prefix='ios-contact', type='text', placeholder='请输入账号', v-model='formUser.username')
-      FormItem.lesson-login-main-item(prop='password', label="密码")
-        Input(prefix='ios-lock-outline' :type="isShow?'text':'password'", v-model='formUser.password', placeholder='请输入密码' :icon="isShow?'ios-eye':'ios-eye-off'" @on-click='switcher(this)')
-      Button.lesson-login-main-item(type='success', @click="handleLogin('formUser')", long :loading="waitLogin") 登陆
-      Button.lesson-login-main-item(type='primary',:to="{name:'find'}" long) 忘记密码
-      .lesson-login-social
-        social-button(:social="social")
+  #lesson-auth-con
+    Content#lesson-auth-content
+      Card#lesson-login-main-content
+        #lesson-login-main-title(slot='title') 登陆
+        Form(ref='formUser', :model='formUser', :rules='ruleUser', label-position="top")
+          FormItem.lesson-login-main-item(prop='username', label='账号')
+            Input(prefix='ios-contact', type='text', placeholder='请输入账号', v-model='formUser.username')
+          FormItem.lesson-login-main-item(prop='password', label="密码")
+            Input(prefix='ios-lock-outline' :type="isShow?'text':'password'", v-model='formUser.password', placeholder='请输入密码' :icon="isShow?'ios-eye':'ios-eye-off'" @on-click='switcher(this)')
+          Button.lesson-login-main-item(type='success', @click="handleLogin('formUser')", long, :loading="waitLogin") 登陆
+          Button.lesson-login-main-item(type='primary', @click="handleFind", long) 忘记密码
+          .lesson-login-social
+            social-button(:social="social")
+    Footer.lesson-card-3#lesson-login-find(:style="find")
+      the-find
+
 </template>
 <script>
 import SocialButton from '../social-button'
+import TheFind from '../the-find'
 import { routeHome } from '_api/comm'
 
 export default {
   name: 'the-login',
-  components: { SocialButton },
+  components: {
+    SocialButton, TheFind
+  },
   data () {
     return {
+      find: {
+        top: '100%'
+      },
       waitLogin: false,
       isShow: false,
       formUser: {
@@ -70,6 +81,9 @@ export default {
           })
         }
       })
+    },
+    handleFind () {
+      this.find.top = this.find.top === '100%' ? '64px' : '100%'
     }
   }
 }
@@ -88,5 +102,20 @@ export default {
 
 #lesson-login-card {
   width: @lesson-form-width;
+}
+
+#lesson-auth-content {
+  background-color: white;
+  margin-top: @lesson-normal-height;
+  width: @lesson-form-width;
+  .lesson-margin-center;
+}
+#lesson-login-find {
+  padding: 0;
+  position: fixed;
+  .lesson-transition(all 3s);
+  width: 100%;
+  height: calc(100% - 70px);
+  z-index: 100;
 }
 </style>

@@ -1,7 +1,11 @@
 <template lang="pug">
-    Menu.lesson-auth-routes(:active-name="active" mode="horizontal" @on-select="changeActive")
-      MenuItem(name="email" ) 通过邮箱找回
-      MenuItem(name="phone" ) 通过手机找回
+  Layout#lesson-find
+    Content#lesson-find-content
+      Steps(:current="0")
+        Step(title="找回方式")
+        Step(title="信息验证")
+        Step(title="密码修改")
+        Step(title="找回结果")
 </template>
 <script>
 export default {
@@ -20,11 +24,9 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-#lesson-find-main-content {
-  text-align: left;
-  padding: 0 16px;
-}
-#lesson-find-main-title {
-  font-weight: bolder;
+#lesson-find {
+  #lesson-find-content {
+    max-width: @lesson-normal-width;
+  }
 }
 </style>
