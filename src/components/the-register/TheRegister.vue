@@ -4,7 +4,7 @@
       #lesson-register-main-title(slot='title') 注册
       Form(ref='formRegister', :model='formRegister', type='email', :rules='ruleRegister', label-position="top")
         FormItem.lesson-register-main-item(prop='email', label='电子邮箱')
-            AutoComplete(placeholder='请输入邮箱' v-model='formRegister.email' @on-search="handleEmail")
+            AutoComplete(icon='ios-mail' placeholder='请输入邮箱' v-model='formRegister.email' @on-search="handleEmail")
               Option(v-for='item in emailList', :value='item', :key='item' class="optionEmail") {{ item }}
         FormItem.lesson-register-main-item(prop='username', label='账号')
           Input(prefix='ios-contact', type='text', placeholder='请输入账号' v-model='formRegister.username')
@@ -35,11 +35,17 @@ export default {
       // 验证器
       ruleRegister: {
         email: [
-          { required: true, message: '请填写邮箱', trigger: 'blur' },
-          { type: 'email', message: '邮箱格式不正确', trigger: 'blur' },
           {
             validator: (rule, value, callback) => {
-              callback()
+              let message
+              if (this.info.method === 1) {
+                if (!value) {
+                  message = '请填写邮箱'
+                } else if (!(/^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/.test(value))) {
+                  message = '邮箱格式不正确'
+                }
+              }
+              callback(message)
             }
           }
         ],

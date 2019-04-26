@@ -13,7 +13,7 @@ const getters = {
 const mutations = {
   CONCAT_ROUTES (state, rulesList) {
     // 必须 routes 在后面
-    state.routers = rulesList
+    state.routers = state.routers.concat(rulesList)
   }
 }
 

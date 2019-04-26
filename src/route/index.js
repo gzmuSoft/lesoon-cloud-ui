@@ -21,6 +21,7 @@ router.beforeEach((to, from, next) => {
   iView.LoadingBar.start()
   // 所有的路由必须有name 利用name做路由认证
   if (to.name === null) {
+    console.log(store.getters['auth/isAuth'])
     if (store.getters['auth/isAuth']) {
       if (!store.getters['router/hasGetRules']) {
         store.dispatch('auth/oauthMe').then(me => {

@@ -9,9 +9,9 @@
           FormItem.lesson-login-main-item(prop='password', label="密码")
             Input(prefix='ios-lock-outline' :type="isShow?'text':'password'", v-model='formUser.password', placeholder='请输入密码' :icon="isShow?'ios-eye':'ios-eye-off'" @on-click='switcher(this)')
           Button.lesson-login-main-item(type='success', @click="handleLogin('formUser')", long, :loading="waitLogin") 登陆
-          Button.lesson-login-main-item(type='primary', @click="handleFind", long) 忘记密码
-          .lesson-login-social
-            social-button(:social="social")
+        Button.lesson-login-main-item(type='primary', @click="handleFind", long) 忘记密码
+        .lesson-login-social
+          social-button(:social="social")
     Footer.lesson-card-3#lesson-login-find(:style="find")
       the-find(@find="handleFind")
 
@@ -64,6 +64,8 @@ export default {
     // 登陆的方法
     handleLogin (formLogin) {
       const _this = this
+      console.log(formLogin)
+      console.log(_this.$refs[formLogin])
       _this.$refs[formLogin].validate((valid) => {
         if (valid) {
           _this.waitLogin = true
@@ -113,7 +115,7 @@ export default {
 #lesson-login-find {
   padding: 0;
   position: fixed;
-  .lesson-transition(all 2s);
+  .lesson-transition(all 1s);
   width: 100%;
   height: calc(100% - 70px);
   z-index: 100;

@@ -2,7 +2,7 @@
   Layout#lesson-find
     #lesson-find-header.lesson-cursor-pointer(@click="handleLogin")
       Icon(type="ios-arrow-down")
-    Form(ref='formRegister', :model='info', label-position="top")
+    Form(ref='info', :model='info', :rules='ruleInfo' label-position="top")
       Content#lesson-find-content.lesson-margin-center
         Steps(:current="current")
           Step(title="信息验证")
@@ -15,21 +15,25 @@
         )
           p(slot="title") 信息验证
           FormItem.lesson-register-main-item(prop='method', label='找回方式')
-            Select(prefix="ios-bowtie", v-model="info.method", placeholder="请选择找回方式")
+            Select(prefix="ios-bowtie", v-model="info.method", placeholder="请选择找回方式" :disabled='isSend')
               Option(v-for="(item, index) in methods" :value="index" :key="index") {{ item.name }}
           div(v-if="info.method !== null")
             FormItem(v-show="info.method === 0", prop='phone', label='手机号')
-              Input(prefix="ios-contact",
-                type='text', search,
-                placeholder='请输入手机号',
-                v-model="info.phone",
-                enter-button="获取验证码")
+              Row(:gutter="16")
+                Col(span="18")
+                  Input(prefix="ios-contact",
+                    type='text',
+                    placeholder='请输入手机号',
+                    v-model="info.phone" :disabled='isSend')
+                Col(span="4")
+                  Button(type="info"  @click='handleSend' :loading='isSend') {{sendInfo}}
             FormItem(v-show="info.method === 1", prop='email', label='邮箱')
-              Input(prefix='ios-filing',
-                type='email', search,
-                v-model="info.mail",
-                placeholder='请输入邮箱',
-                enter-button="获取验证码")
+              Row(:gutter="16")
+                Col(span="18")
+                  AutoComplete(icon='ios-mail' placeholder='请输入邮箱' v-model='info.email' @on-search="handleEmail" :disabled='isSend')
+                    Option(v-for='item in emailList', :value='item', :key='item') {{ item }}
+                Col(span="4")
+                  Button(type="info"  @click='handleSend' :loading='isSend') {{sendInfo}}
             FormItem(prop='code', label='验证码')
               Input(prefix='ios-filing',
                 type='text', clearable,
@@ -74,6 +78,10 @@ export default {
     return {
       isShow: false,
       current: 0,
+      sendInfo: '获取验证码',
+      ruleSingle: false,
+      emailList: [],
+      isSend: false,
       methods: [
         {
           name: '使用手机号找回'
@@ -85,26 +93,137 @@ export default {
       info: {
         method: null,
         phone: null,
-        mail: null,
+        email: null,
         code: null,
         password: null,
         repeatPassword: null
+      },
+      ruleInfo: {
+        phone: [
+          {
+            validator: (rule, value, callback) => {
+              let message
+              if (this.info.method === 0) {
+                if (!value) {
+                  message = '请填写手机号码'
+                } else if (!(/^[1][0-9]{10}$/.test(value))) {
+                  message = '请填写正确的手机号码'
+                }
+              }
+
+              callback(message)
+            }
+          }
+        ],
+        email: [
+          {
+            validator: (rule, value, callback) => {
+              let message
+              if (this.info.method === 1) {
+                if (!value) {
+                  message = '请填写邮箱'
+                } else if (!(/^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/.test(value))) {
+                  message = '邮箱格式不正确'
+                }
+              }
+              callback(message)
+            }
+          }
+        ],
+        code: [
+          {
+            validator: (rule, value, callback) => {
+              let message
+              if (!value && !this.ruleSingle) {
+                message = '请输入验证码'
+              } else if (value && value.length < 6) {
+                message = '验证码最少为6位'
+              }
+              callback(message)
+            }
+          }
+        ],
+        password: [
+          { required: true, message: '请填写密码', trigger: 'blur' },
+          { type: 'string', min: 6, message: '密码不能小于6位', trigger: 'blur' }
+        ],
+        repeatPassword: [
+          { type: 'string', min: 6, message: '密码不能小于6位', trigger: 'blur' },
+          { required: true, message: '请再次填写密码', trigger: 'blur' },
+          {
+            validator: (rule, value, callback) => {
+              let message
+              if (value !== this.info.password) {
+                message = '两次密码不一致'
+              }
+              callback(message)
+            }
+          }
+        ]
       },
       styles: {
         opacity: 1
       }
     }
   },
+  watch: {
+    isSend (val) {
+      const _this = this
+      let value = 60
+      _this.sendInfo = value + '秒'
+      if (_this.isSend) {
+        let countDown = setInterval(() => {
+          if (value === 0) {
+            _this.isSend = false
+            _this.sendInfo = '重新发送'
+            clearInterval(countDown)
+          } else {
+            _this.sendInfo = value + '秒'
+            value -= 1
+          }
+        }, 1000)
+      }
+    }
+  },
   methods: {
+    handleSend () {
+      // 验证验证手机号和邮箱
+      let _this = this
+      // 单独验证email和phone的flag 用于发送验证码验证
+      _this.ruleSingle = true
+      // 验证验证码
+      // 下一步
+      _this.$refs['info'].validate((valid) => {
+        if (valid) {
+          _this.ruleSingle = false
+          _this.isSend = true
+        } else {
+          this.$Message.error('Fail!')
+        }
+      })
+    },
+    handleEmail (value) {
+      this.emailList = !value || value.indexOf('@') >= 0 ? [] : [
+        value + '@qq.com',
+        value + '@sina.com',
+        value + '@163.com'
+      ]
+    },
     handleNext () {
       let _this = this
       // 验证验证码
       // 下一步
-      if (_this.current < 2) {
-        _this.transition(() => {
-          _this.current++
-        })
-      }
+      _this.$refs['info'].validate((valid) => {
+        if (valid) {
+          if (_this.current < 2) {
+            _this.transition(() => {
+              _this.current++
+            })
+          }
+        } else {
+          this.$Message.error('Fail!')
+        }
+      })
     },
     handleLast () {
       let _this = this
@@ -166,14 +285,13 @@ export default {
   z-index: 100;
   top: -1px;
   height: 20px;
-  .lesson-keyframes (all,move,{
-    0%{top: -1px;}
-    25%{top: 3px;}
-    50%{top: -1px;}
-    75%{top: 3px;}
-    100%{top: -1px;}
-  });
-  .lesson-animation (move 3s infinite linear)
+  .lesson-keyframes
+    (
+      all,
+      move,
+      {0%{top: -1px;} 25%{top: 3px;} 50%{top: -1px;} 75%{top: 3px;} 100%{top: -1px;}}
+    );
+  .lesson-animation (move 3s infinite linear);
 }
 #lesson-find-tip {
   text-align: center;
