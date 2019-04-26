@@ -1,8 +1,6 @@
 import Vue from 'vue'
 import iView from 'iview'
 import * as oauthAPI from '_api/oauth'
-import { Base64 } from 'js-base64'
-
 Vue.use(iView)
 const state = {
   user: null,
@@ -30,7 +28,6 @@ const mutations = {
 }
 const actions = {
   oauthLogin ({ commit, dispatch }, formUser) {
-    formUser.password = Base64.encode(formUser.password)
     return new Promise((resolve, reject) => {
       oauthAPI.oauthToken(formUser).then(res => {
         let token = res.data
@@ -46,7 +43,7 @@ const actions = {
   oauthMe ({ commit, dispatch }) {
     return new Promise((resolve, reject) => {
       oauthAPI.oauthMe(state.token.access_token).then(res => {
-        resolve(res)
+        resolve(res.data)
       }).catch(error => {
         reject(error)
       })
