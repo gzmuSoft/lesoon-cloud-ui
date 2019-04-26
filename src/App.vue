@@ -1,6 +1,7 @@
 <template lang="pug">
   #app
-    router-view
+    transition(name="lesson-opacity", mode="out-in")
+      router-view
 </template>
 
 <script>

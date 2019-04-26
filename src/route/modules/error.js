@@ -5,6 +5,6 @@ export default {
   name: 'error',
   component: TheError,
   meta: {
-    title: '未找到页面'
+    title: '404'
   }
 }
