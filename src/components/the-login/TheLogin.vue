@@ -56,7 +56,11 @@ export default {
       _this.$refs[formLogin].validate((valid) => {
         if (valid) {
           _this.waitLogin = true
-          _this.$store.dispatch('auth/oauthLogin', _this.formUser).then(() => {
+          let form = {
+            username: _this.formUser.username,
+            password: _this.formUser.password
+          }
+          _this.$store.dispatch('auth/oauthLogin', form).then(() => {
             _this.$Message.success('登录成功!')
             setTimeout(() => {
               routeHome()

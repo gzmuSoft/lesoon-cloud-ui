@@ -43,6 +43,15 @@ const actions = {
       })
     })
   },
+  oauthMe ({ commit, dispatch }) {
+    return new Promise((resolve, reject) => {
+      oauthAPI.oauthMe(state.token.access_token).then(res => {
+        resolve(res)
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
   checkToken ({ commit, dispatch }) {
     return new Promise((resolve, reject) => {
       oauthAPI.checkToken().then(res => {

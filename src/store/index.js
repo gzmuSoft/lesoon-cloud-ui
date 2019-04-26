@@ -5,7 +5,8 @@ import mutations from './mutations'
 import actions from './actions'
 import getters from './getters'
 import auth from './modules/auth'
-import createVuexAlong from 'vuex-along'
+import router from './modules/router'
+// import createVuexAlong from 'vuex-along'
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
@@ -13,13 +14,14 @@ const store = new Vuex.Store({
   mutations,
   actions,
   getters,
-  plugins: [
-    createVuexAlong({
-      name: 'lesson-cloud'
-    })
-  ],
+  // plugins: [
+  //   createVuexAlong({
+  //     name: 'lesson-cloud'
+  //   })
+  // ],
   modules: {
-    auth
+    auth,
+    router
   }
 })
 

@@ -64,7 +64,42 @@ router.post('/check_token', (req, res) => {
     return
   }
   res.status(200)
-    .json(createUser('admin', 'all'))
+    .json({
+      'aud': [
+        'lesson-cloud'
+      ],
+      'user_name': 'admin',
+      'scope': [
+        'all'
+      ],
+      'active': true,
+      'exp': 1556031012,
+      'authorities': [
+        'ROLE_ADMIN'
+      ],
+      'jti': 'f58ad0fd-c43c-472c-9d59-430b9d849624',
+      'client_id': 'lesson-cloud'
+    })
+})
+
+/**
+ * 获取用户信息以及资源
+ */
+router.get('/me', (req, res, next) => {
+  res.status(200)
+    .json({
+      user: {
+        //
+      },
+      rules: {
+        pages: {
+          home: true
+        },
+        component: {
+          //
+        }
+      }
+    })
 })
 
 const password = (body, res) => {
@@ -77,7 +112,7 @@ const password = (body, res) => {
       })
     return
   }
-  if (body.username !== 'admin' && body.password !== '123456') {
+  if (body.username !== 'admin' && body.password !== null) {
     res.status(400)
       .json({
         'error': 'invalid_grant',

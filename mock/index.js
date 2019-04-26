@@ -22,16 +22,18 @@ app.all('*', (req, res, next) => {
 // 对于 oauth 的路径，都要验证请求头中是否携带合适的认证信息。
 app.all('/oauth/*', (req, res, next) => {
   const authorization = req.get('Authorization')
-  if (!authorization || !authorization.startsWith('Basic ') ||
-    authorization.substr(6) !== 'bGVzc29uLWNsb3VkOmxlc3Nvbi1jbG91ZC1zZWNyZXQ=') {
+  console.log(authorization)
+  if (authorization && authorization.startsWith('Basic ')) {
+    next()
+  } else if (authorization && authorization.startsWith('Bearer ')) {
+    next()
+  } else {
     res.status(401)
       .json({
         error: 'unauthorized',
         error_description: 'Full authentication is required to access this resource'
       })
-    return
   }
-  next()
 })
 
 app.use('/oauth', oauth)
