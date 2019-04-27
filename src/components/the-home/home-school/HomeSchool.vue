@@ -2,7 +2,7 @@
   Row.lesson-home-school(type="flex", justify="center", :gutter="gutter")
     template(v-for="item in schools")
       Col.lesson-home-school-col(:xs="xs", :sm="sm")
-        Row.lesson-card-4.lesson-home-school-card()
+        Row.lesson-card-4.lesson-home-school-card
           Col(:xs="24", :sm="24", :md="24", :lg="12")
             img.lesson-home-school-img(:src="item.logo")
           Col.lesson-text-left.lesson-home-school-desc(:xs="24", :sm="24", :md="24", :lg="12")

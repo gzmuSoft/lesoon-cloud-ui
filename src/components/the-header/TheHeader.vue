@@ -16,6 +16,9 @@ export default {
   name: 'the-header',
   methods: {
     home () {
+      if (this.$route.name === 'home') {
+        this.$scrollTo('#lesson-header')
+      }
       routeHome()
     }
   }

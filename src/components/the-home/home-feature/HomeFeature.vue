@@ -2,7 +2,7 @@
   Row.lesson-home-feature(type="flex", justify="center", :gutter="gutter")
     template(v-for="item in features")
       Col.lesson-home-feature-col(:xs="xs", :sm="sm")
-        Card.lesson-card-3(:padding="padding")
+        Card.lesson-card-3(:padding="padding", data-wow-delay="2s")
           div.lesson-home-feature-title {{ item.title }}
           img(:src="item.src")
 
