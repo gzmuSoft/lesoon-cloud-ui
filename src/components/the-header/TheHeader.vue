@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { routeHome } from '_api/comm'
+import { routeHome } from '_utils/util'
 
 export default {
   name: 'the-header',

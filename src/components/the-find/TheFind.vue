@@ -14,7 +14,7 @@
         )
           p(slot="title") 信息验证
           FormItem(prop='method', label='找回方式')
-            Select(prefix="ios-bowtie", v-model="info.method", placeholder="请选择找回方式" :disabled='isSend')
+            Select(prefix="ios-bowtie", v-model="info.method", placeholder="请选择找回方式")
               Option(v-for="(item, index) in methods" :value="index" :key="index") {{ item.name }}
           div(v-if="info.method !== null")
             FormItem(v-show="info.method === 0", prop='phone', label='手机号')
@@ -23,17 +23,17 @@
                   Input(prefix="ios-contact",
                     type='text',
                     placeholder='请输入手机号',
-                    v-model="info.phone" :disabled='isSend')
+                    v-model="info.phone")
                 Col(span="4")
-                  Button(type="info"  @click='handleSend' :loading='isSend') {{sendInfo}}
+                  Button(type="info"  @click='handleSend' :loading='waitSend') {{sendInfo}}
             FormItem(v-show="info.method === 1", prop='email', label='邮箱')
               Row(:gutter="16")
                 Col(span="18")
-                  AutoComplete(icon='ios-mail' placeholder='请输入邮箱' v-model='info.email' @on-search="handleEmail" :disabled='isSend')
+                  AutoComplete(icon='ios-mail' placeholder='请输入邮箱' v-model='info.email' @on-search="handleEmail" )
                     Option(v-for='item in emailList', :value='item', :key='item') {{ item }}
                 Col(span="4")
-                  Button(type="info"  @click='handleSend' :loading='isSend') {{sendInfo}}
-            FormItem(prop='code', label='验证码')
+                  Button(type="info"  @click='handleSend' :loading='waitSend') {{sendInfo}}
+            FormItem(v-show="sendTime>0" prop='code', label='验证码')
               Input(prefix='ios-filing',
                 type='text', clearable,
                 v-model="info.code",
@@ -74,11 +74,11 @@ export default {
   data () {
     return {
       isShow: false,
+      waitSend: false,
       current: 0,
-      sendInfo: '获取验证码',
-      ruleSingle: false,
+      sendInfo: '发送',
       emailList: [],
-      isSend: false,
+      sendTime: 0,
       methods: [
         {
           name: '使用手机号找回'
@@ -100,12 +100,10 @@ export default {
           {
             validator: (rule, value, callback) => {
               let message
-              if (this.info.method === 0) {
-                if (!value) {
-                  message = '请填写手机号码'
-                } else if (!(/^[1][0-9]{10}$/.test(value))) {
-                  message = '请填写正确的手机号码'
-                }
+              if (!value) {
+                message = '请填写手机号码'
+              } else if (!(/^[1][0-9]{10}$/.test(value))) {
+                message = '请填写正确的手机号码'
               }
 
               callback(message)
@@ -116,29 +114,18 @@ export default {
           {
             validator: (rule, value, callback) => {
               let message
-              if (this.info.method === 1) {
-                if (!value) {
-                  message = '请填写邮箱'
-                } else if (!(/^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/.test(value))) {
-                  message = '邮箱格式不正确'
-                }
+              if (!value) {
+                message = '请填写邮箱'
+              } else if (!(/^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/.test(value))) {
+                message = '邮箱格式不正确'
               }
               callback(message)
             }
           }
         ],
         code: [
-          {
-            validator: (rule, value, callback) => {
-              let message
-              if (!value && !this.ruleSingle) {
-                message = '请输入验证码'
-              } else if (value && value.length < 6) {
-                message = '验证码最少为6位'
-              }
-              callback(message)
-            }
-          }
+          { type: 'string', min: 6, message: '验证码不能小于6位', trigger: 'blur' },
+          { required: true, message: '请填写验证码', trigger: 'blur' }
         ],
         password: [
           { required: true, message: '请填写密码', trigger: 'blur' },
@@ -164,38 +151,38 @@ export default {
     }
   },
   watch: {
-    isSend (val) {
+    sendTime (val) {
       const _this = this
-      let value = 60
+      let value = 60 * _this.sendTime
+      _this.waitSend = true
       _this.sendInfo = value + '秒'
-      if (_this.isSend) {
-        let countDown = setInterval(() => {
-          if (value === 0) {
-            _this.isSend = false
-            _this.sendInfo = '重新发送'
-            clearInterval(countDown)
-          } else {
-            _this.sendInfo = value + '秒'
-            value -= 1
-          }
-        }, 1000)
-      }
+      let countDown = setInterval(() => {
+        if (value === 0) {
+          _this.sendInfo = '重新发送'
+          _this.waitSend = false
+          clearInterval(countDown)
+        } else {
+          _this.sendInfo = value + '秒'
+          value -= 1
+        }
+      }, 1000)
     }
   },
   methods: {
     handleSend () {
       // 验证验证手机号和邮箱
       let _this = this
-      // 单独验证email和phone的flag 用于发送验证码验证
-      _this.ruleSingle = true
-      // 验证验证码
-      // 下一步
-      _this.$refs['info'].validate((valid) => {
-        if (valid) {
-          _this.ruleSingle = false
-          _this.isSend = true
+      let ruleProp = null
+      if (_this.info.method === 0) {
+        ruleProp = 'phone'
+      } else if (_this.info.method === 1) {
+        ruleProp = 'email'
+      }
+      _this.$refs['info'].validateField(ruleProp, (message) => {
+        if (message) {
+          _this.$Message.error('Fail!')
         } else {
-          this.$Message.error('Fail!')
+          _this.sendTime += 1
         }
       })
     },

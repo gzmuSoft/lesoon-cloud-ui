@@ -19,7 +19,7 @@
 <script>
 import SocialButton from '../social-button'
 import TheFind from '../the-find'
-import { routeHome } from '_api/comm'
+import { routeHome } from '_utils/util'
 
 export default {
   name: 'the-login',

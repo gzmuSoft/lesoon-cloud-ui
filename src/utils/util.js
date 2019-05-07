@@ -1,3 +1,4 @@
+import route from '_route'
 export const setTitle = (title) => {
   window.document.title = title || 'admin'
 }
@@ -10,4 +11,16 @@ export const setTitle = (title) => {
  */
 export const isExpired = (time) => {
   return Math.round(new Date() / 1000) - time > 0
+}
+/**
+ * 跳转到主页
+ */
+export const routeHome = () => {
+  route.push('/')
+}
+/**
+ * 跳转到登陆
+ */
+export const routeAuth = () => {
+  route.push('/auth')
 }

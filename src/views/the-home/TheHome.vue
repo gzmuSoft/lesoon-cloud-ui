@@ -39,7 +39,7 @@ import HomeTitle from '_components/the-home/home-title'
 import HomeFeature from '_components/the-home/home-feature'
 import HomeSchool from '_components/the-home/home-school'
 import HomeCourse from '_components/the-home/home-course'
-import { routeAuth } from '_api/comm'
+import { routeAuth } from '_utils/util'
 import { WOW } from 'wowjs'
 
 export default {
