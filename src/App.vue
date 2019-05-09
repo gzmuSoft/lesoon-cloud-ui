@@ -1,5 +1,5 @@
 <template lang="pug">
-  #app
+  #app.lesson-full-screen
     transition(name="lesson-opacity", mode="out-in")
       router-view
 </template>
@@ -17,5 +17,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+html, body {
+  .lesson-full-screen
 }
 </style>
