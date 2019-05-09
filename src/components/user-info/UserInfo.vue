@@ -2,25 +2,26 @@
   #lesson-user-info
     Button.lesson-home-route(v-if="!isAuth", type="info", :to="{ name: 'login' }") 登录
     Button.lesson-home-route(v-if="!isAuth", type="success", :to="{ name: 'register' }") 注册
-    Dropdown(v-else, trigger="click")
+    Dropdown(v-else, trigger="click", @on-click="handleEvent")
       Avatar.lesson-cursor-pointer
       DropdownMenu#lesson-user-menu(slot="list")
-        DropdownItem(v-if="isAdmin")
+        DropdownItem(v-if="isAdmin", name="admin")
           Icon.lesson-animation-rotate(type="ios-settings-outline")
-          spam 管理
-        DropdownItem(v-else)
+          span 管理
+        DropdownItem(v-else, name="user")
           Icon(type="ios-person-outline")
-          spam 个人信息
-        DropdownItem
+          span 个人信息
+        DropdownItem(name="notice")
           Icon(type="ios-notifications-outline")
-          spam 通知
-        DropdownItem(divided)
+          span 通知
+        DropdownItem(divided, name="exit")
           Icon(type="ios-paper-plane-outline")
-          spam 退出登录
+          span 退出登录
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import { routeAdmin } from '_utils/util'
 
 export default {
   name: 'user-info',
@@ -29,6 +30,12 @@ export default {
       'isAuth',
       'isAdmin'
     ])
+  },
+  methods: {
+    handleEvent (name) {
+      console.log(name)
+      if (name === 'admin') routeAdmin()
+    }
   }
 }
 </script>
@@ -42,7 +49,7 @@ export default {
 }
 .ivu-dropdown-item {
   font-size: @lesson-normal-font-size !important;
-  padding: 12px;
+  padding: 15px;
   .lesson-text-left;
   .ivu-icon {
     font-size: @lesson-normal-font-size + 5 !important;

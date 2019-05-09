@@ -24,3 +24,9 @@ export const routeHome = () => {
 export const routeAuth = () => {
   route.push('/auth')
 }
+/**
+ * 跳转到管理员界面
+ */
+export const routeAdmin = () => {
+  route.push('/admin')
+}
