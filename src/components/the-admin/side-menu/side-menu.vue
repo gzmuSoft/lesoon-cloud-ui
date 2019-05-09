@@ -1,8 +1,9 @@
 <template lang="pug">
-  #lesson-side-menu
+  #lesson-side-menu.lesson-select-none
     slot(name="top")
-    Menu#lesson-side-normal(v-show="!collapsed", width="auto",
-      theme="dark", @on-select="handleSelect", ref="menu")
+    Menu#lesson-side-normal(v-show="!reCollapsed", width="auto",
+      theme="dark", @on-select="handleSelect", ref="menu",
+      :style="{'opacity' : !collapsed ? '1':'0' }")
       template(v-for="item in list")
         re-submenu(
           v-if="item.children",
@@ -13,7 +14,7 @@
         MenuItem(v-else, :key="`menu_${item.name}`", :name="item.name")
           Icon(:type="item.icon")
           | {{ item.title }}
-    #lesson-side-md(v-show="collapsed")
+    #lesson-side-md(v-show="reCollapsed", :style="{'opacity' : collapsed ? '1':'0' }")
       template(v-for="item in list")
         re-dropdown.lesson-text-center(
           v-if="item.children", :key="`drop_${item.name}`",
@@ -41,6 +42,11 @@ export default {
     ReSubmenu,
     ReDropdown
   },
+  data () {
+    return {
+      reCollapsed: false
+    }
+  },
   props: {
     collapsed: {
       type: Boolean,
@@ -49,6 +55,15 @@ export default {
     list: {
       type: Array,
       default: () => []
+    }
+  },
+  watch: {
+    // 为了更平滑的过渡
+    collapsed () {
+      const _this = this
+      setTimeout(() => {
+        _this.reCollapsed = _this.collapsed
+      }, 300)
     }
   },
   methods: {
