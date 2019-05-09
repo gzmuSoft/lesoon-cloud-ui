@@ -3,23 +3,31 @@ import iView from 'iview'
 import * as oauthAPI from '_api/oauth'
 Vue.use(iView)
 const state = {
+  // 用户信息，来源于 oauthMe
   user: null,
-  token: null
+  // token 信息，来源于 登录 或 刷新令牌
+  token: null,
+  // 授权信息，来源于 checkToken
+  auth: null
 }
 const getters = {
   isAuth: state => {
     return state.token !== null
+  },
+  isAdmin: state => {
+    return state.auth && state.auth.authorities.includes('ROLE_ADMIN')
   }
 }
 const mutations = {
   SET_TOKEN (state, params) {
     state.token = params
   },
-  // to-do set user data
-  // SET_USER (state, username) {
-  //   state.username = username
-  // },
-
+  SET_USER (state, user) {
+    state.user = user
+  },
+  SET_AUTH (state, auth) {
+    state.auth = auth
+  },
   // logout
   LOGOUT (state) {
     state.token = null
@@ -32,6 +40,10 @@ const actions = {
       oauthAPI.oauthToken(formUser).then(res => {
         let token = res.data
         if (token !== null) {
+          // 登录完成后，获取授权信息，里面包括了 token 有效期
+          dispatch('checkToken', token)
+          // 登录完成后，获取用户信息，里面包括了路由权限和用户等信息
+          dispatch('oauthMe', token)
           commit('SET_TOKEN', token)
           resolve()
         }
@@ -40,22 +52,22 @@ const actions = {
       })
     })
   },
-  oauthMe ({ commit, dispatch }) {
+  oauthMe ({ commit, dispatch }, token) {
     return new Promise((resolve, reject) => {
-      oauthAPI.oauthMe(state.token.access_token).then(res => {
-        resolve(res.data)
-      }).catch(error => {
-        reject(error)
+      oauthAPI.oauthMe(token.access_token).then(res => {
+        commit('SET_USER', res.data)
+      }).catch((error) => {
+        iView.Message.error('获取用户信息失败')
+        console.log(error)
       })
     })
   },
-  checkToken ({ commit, dispatch }) {
+  checkToken ({ commit, dispatch }, token) {
     return new Promise((resolve, reject) => {
-      oauthAPI.checkToken().then(res => {
-        console.log(res)
-      }).catch(error => {
-        console.log(error)
-        reject(error)
+      oauthAPI.checkToken(token.access_token).then(res => {
+        commit('SET_AUTH', res.data)
+      }).catch(() => {
+        iView.Message.error('获取授权信息失败')
       })
     })
   },

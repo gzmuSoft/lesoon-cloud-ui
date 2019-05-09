@@ -85,16 +85,17 @@ router.post('/check_token', (req, res) => {
 /**
  * 获取用户信息以及资源
  */
-router.get('/me', (req, res, next) => {
+router.get('/me', (req, res) => {
   res.status(200)
     .json({
-      user: {
-        //
-      },
+      // 用户信息
+      // 路由规则
       rules: {
+        // 页面级权限控制
         pages: {
           home: true
         },
+        // 组件级权限控制
         component: {
           //
         }

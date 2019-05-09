@@ -8,7 +8,7 @@
           MenuItem(name="3", v-scroll-to="{el: '#lesson-home-school', offset: -70}") 院校
           MenuItem(name="4", v-scroll-to="{el: '#lesson-home-course', offset: -70}") 课程
           MenuItem(name="5", v-scroll-to="{el: '#lesson-home-about', offset: -70}") 关于
-          Button.lesson-home-route(type="info", @click="toLogin") 登录
+          UserInfo
     #lesson-home-banner.wow.bounceIn(data-wow-delay="5s")
       Carousel(autoplay, :autoplay-speed="5000", v-model="current", loop)
         CarouselItem(v-for="(item,index) in banners", :key="index")
@@ -39,11 +39,19 @@ import HomeTitle from '_components/the-home/home-title'
 import HomeFeature from '_components/the-home/home-feature'
 import HomeSchool from '_components/the-home/home-school'
 import HomeCourse from '_components/the-home/home-course'
-import { routeAuth } from '_utils/util'
+import UserInfo from '_components/user-info'
 import { WOW } from 'wowjs'
 
 export default {
   name: 'the-home',
+  components: {
+    TheHeader,
+    HomeTitle,
+    HomeFeature,
+    HomeSchool,
+    HomeCourse,
+    UserInfo
+  },
   watch: {
     cases () {
       this.$nextTick(() => { // 在dom渲染完后,再执行动画
@@ -114,24 +122,8 @@ export default {
       ]
     }
   },
-  components: {
-    TheHeader,
-    HomeTitle,
-    HomeFeature,
-    HomeSchool,
-    HomeCourse
-  },
   methods: {
-    toLogin () {
-      if (this.$store.getters['auth/isAuth']) {
-        this.$Message.warning('你已经登录过了！')
-      } else {
-        routeAuth()
-      }
-    },
-    loginStatue () {
-      console.log(localStorage)
-    }
+    //
   }
 }
 </script>
@@ -143,9 +135,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  .lesson-home-route {
-    margin-left: 10px;
-  }
   #lesson-home-banner {
     .lesson-home-banner-img {
       width: 100%;

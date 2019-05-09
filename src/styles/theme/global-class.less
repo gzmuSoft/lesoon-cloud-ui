@@ -7,7 +7,7 @@
   margin: 0 auto;
 }
 
-  // 社交图标
+// 社交图标
 .lesson-login-social {
   margin-top: 30px;
   margin-bottom: 10px;
@@ -18,18 +18,23 @@
 .lesson-opacity-enter {
   opacity: 0;
 }
+
 .lesson-opacity-enter-active {
   transition: opacity 0.5s ease;
 }
+
 .lesson-opacity-enter-to {
   opacity: 1;
 }
+
 .lesson-opacity-leave {
   opacity: 1;
 }
+
 .lesson-opacity-leave-active {
   transition: opacity 0.5s ease;
 }
+
 .lesson-opacity-leave-to {
   opacity: 0;
 }
@@ -43,36 +48,39 @@
 .lesson-text-left {
   text-align: left;
 }
+
 .lesson-text-center {
   text-align: center;
 }
+
 .lesson-text-right {
   text-align: right;
 }
 
 // 阴影
-.lesson-card-1{
-  .lesson-box-shadow(0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24));
-  .lesson-transition(all 0.3s cubic-bezier(.25,.8,.25,1));
+.lesson-card-1 {
+  .lesson-box-shadow(0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24));
+  .lesson-transition(all 0.3s cubic-bezier(.25, .8, .25, 1));
+
   &:hover {
-    .lesson-box-shadow(0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22));
+    .lesson-box-shadow(0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22));
   }
 }
 
 .lesson-card-2 {
-  .lesson-box-shadow(0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23));
+  .lesson-box-shadow(0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23));
 }
 
 .lesson-card-3 {
-  .lesson-box-shadow(0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23));
+  .lesson-box-shadow(0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23));
 }
 
 .lesson-card-4 {
-  .lesson-box-shadow(0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22));
+  .lesson-box-shadow(0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22));
 }
 
 .lesson-card-5 {
-  .lesson-box-shadow(0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22));
+  .lesson-box-shadow(0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22));
 }
 
 
@@ -102,9 +110,11 @@
 .lesson-wow-2 {
   .lesson-animation-duration(2s)
 }
+
 .lesson-wow-delay-1 {
   .lesson-animation-delay(1s)
 }
+
 .lesson-wow-delay-2 {
   .lesson-animation-delay(2s)
 }
@@ -129,3 +139,27 @@
   -ms-user-select: none;
   user-select: none;
 }
+
+.lesson-animation-rotate {
+  .lesson-keyframes(all,rotate,
+    {
+      0% {
+        transform: rotate(0deg)
+      }
+      25% {
+        transform: rotate(90deg)
+      }
+      50% {
+        transform: rotate(180deg)
+      }
+      75% {
+        transform: rotate(270deg)
+      }
+      100% {
+        transform: rotate(360deg)
+      }
+    }
+  );
+  .lesson-animation (rotate 1s infinite linear);
+}
+
