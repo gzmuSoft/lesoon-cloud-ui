@@ -26,46 +26,14 @@ export default {
       collapsed: false,
       menuList: [
         {
-          title: '第一级 1',
-          name: '第一级 1',
-          icon: 'ios-alarm'
-        },
-        {
-          title: '第一级 2',
-          name: '第一级 2',
-          icon: 'ios-alarm'
-        },
-        {
-          title: '第一级 3',
-          name: '第一级 3',
-          icon: 'ios-alarm',
+          title: '系统管理',
+          name: '系统管理',
+          icon: 'md-cube',
           children: [
             {
-              title: '第二级 1',
-              name: '第二级 1',
-              icon: 'ios-alarm'
-            },
-            {
-              title: '第二级 2',
-              name: '第二级 2',
-              icon: 'ios-alarm'
-            },
-            {
-              title: '第二级 3',
-              name: 'v',
-              icon: 'ios-alarm',
-              children: [
-                {
-                  title: '第三级 1',
-                  name: '第三级 1',
-                  icon: 'ios-alarm'
-                },
-                {
-                  title: '第三级 2',
-                  name: '第三级 2',
-                  icon: 'ios-alarm'
-                }
-              ]
+              title: '日志管理',
+              name: 'sysLogs',
+              icon: 'md-color-filter'
             }
           ]
         }

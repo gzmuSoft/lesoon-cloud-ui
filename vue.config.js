@@ -27,7 +27,7 @@ module.exports = {
       .use('iview-loader')
       .loader('iview-loader')
       .options({
-        prefix: false
+        prefix: true
       })
   },
 
