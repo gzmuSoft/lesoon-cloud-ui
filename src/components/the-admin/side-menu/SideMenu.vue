@@ -33,8 +33,8 @@
 </template>
 
 <script>
-import ReSubmenu from './re-submenu'
-import ReDropdown from './re-dropdown'
+import ReSubmenu from './ReSubmenu'
+import ReDropdown from './ReDropdown'
 
 export default {
   name: 'side-menu',
