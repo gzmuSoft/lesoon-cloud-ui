@@ -1,7 +1,7 @@
 <template lang="pug">
   #lesson-logs
     Alert(type="warning") 对于日志来说，我们仅仅提供查看和删除操作，不可对其进行增加和修改。
-    Table(:columns="columns", :data="tableData")
+    Table(:columns="columns", :data="tableData", @on-row-click="handleSelect", ref="selection")
       template(slot-scope="{ row, index }" slot="browser")
         Tag(color="blue") {{ row.browser }}
     Modal(v-model="deleteTip", @on-ok='deleteRow', title="确定删除吗？", :loading="loading")
@@ -112,6 +112,7 @@ export default {
           ip: '1232',
           url: '123',
           status: '1',
+          _checked: false,
           _links: {
             'self': {
               'href': 'http://127.0.0.1:8080/sysLogs/1'
@@ -133,6 +134,9 @@ export default {
         _this.tableData.splice(_this.tableData.indexOf(_this.deleteData), 1)
         _this.deleteTip = false
       }, 2000)
+    },
+    handleSelect (row, index) {
+      this.tableData[index]._checked = !this.tableData[index]._checked
     }
   }
 }

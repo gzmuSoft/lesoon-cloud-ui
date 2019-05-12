@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-router.get('/sms', (req, res, next) => {
+router.get('/sms', (req, res) => {
   let sms = req.get('sms')
   if (!sms) {
     res.status(401)
