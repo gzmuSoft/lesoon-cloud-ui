@@ -7,7 +7,7 @@
       template(slot-scope="{ row, index }" slot="action")
         Button(type="primary", size="small", @click="handleInfo(row, index)") 详情
         Button(type="error", size="small", style="margin-left: 0.8rem", @click="handleDelete(row, index)") 删除
-    Modal(v-model="visible", title="详情", @on-ok="handleOk")
+    Modal(v-model="visible", title="详情", @on-ok="handleOk", fullscreen)
       div(slot="footer")
         Button(v-if="!isEdit", type="success", @click="isEdit=!isEdit") 编辑
         Button(v-else, type="primary", @click="handleOk") 保存
@@ -16,106 +16,106 @@
           Col(span="12")
             span 教师名称：
             span(v-if="!isEdit") {{ showData.name }}
-            Input(v-else, v-model="showData.name", placeholder="请输入教师名称", clearable)
+            Input(v-else, v-model="showData.name", placeholder="请输入教师名称", clearable, style="width: auto")
           Col(span="12")
             span 管理账户：
             span(v-if="!isEdit") {{ showData.userId }}
-            Input(v-else, v-model="showData.userId", placeholder="请输入管理账户", clearable)
+            Input(v-else, v-model="showData.userId", placeholder="请输入管理账户", clearable, style="width: auto")
         Row.lesson-table-expand-row
           Col(span="12")
             span 学校：
             span(v-if="!isEdit") {{ showData.schoolId }}
-            Input(v-else, v-model="showData.schoolId", placeholder="请输入学校", clearable)
+            Input(v-else, v-model="showData.schoolId", placeholder="请输入学校", clearable, style="width: auto")
           Col(span="12")
             span 学院：
             span(v-if="!isEdit") {{ showData.collegeId }}
-            Input(v-else, v-model="showData.collegeId", placeholder="请输入学院", clearable)
+            Input(v-else, v-model="showData.collegeId", placeholder="请输入学院", clearable, style="width: auto")
         Row.lesson-table-expand-row
           Col(span="12")
             span 系部：
             span(v-if="!isEdit") {{ showData.depId }}
-            Input(v-else, v-model="showData.depId", placeholder="请输入系部", clearable)
+            Input(v-else, v-model="showData.depId", placeholder="请输入系部", clearable, style="width: auto")
           Col(span="12")
             span 性别：
             span(v-if="!isEdit") {{ showData.gender }}
-            Input(v-else, v-model="showData.gender", placeholder="请输入性别", clearable)
+            Input(v-else, v-model="showData.gender", placeholder="请输入性别", clearable, style="width: auto")
         Row.lesson-table-expand-row
           Col(span="12")
             span 生日：
             span(v-if="!isEdit") {{ showData.birthday }}
-            Input(v-else, v-model="showData.birthday", placeholder="请输入生日", clearable)
+            Input(v-else, v-model="showData.birthday", placeholder="请输入生日", clearable, style="width: auto")
           Col(span="12")
             span 民族：
             span(v-if="!isEdit") {{ showData.nation }}
-            Input(v-else, v-model="showData.nation", placeholder="请输入民族", clearable)
+            Input(v-else, v-model="showData.nation", placeholder="请输入民族", clearable, style="width: auto")
         Row.lesson-table-expand-row
           Col(span="12")
             span 身份证号码：
             span(v-if="!isEdit") {{ showData.idNumber }}
-            Input(v-else, v-model="showData.idNumber", placeholder="请输入身份证号码", clearable)
+            Input(v-else, v-model="showData.idNumber", placeholder="请输入身份证号码", clearable, style="width: auto")
           Col(span="12")
             span 联系电话：
             span(v-if="!isEdit") {{ showData.phone }}
-            Input(v-else, v-model="showData.phone", placeholder="请输入联系电话", clearable)
+            Input(v-else, v-model="showData.phone", placeholder="请输入联系电话", clearable, style="width: auto")
         Row.lesson-table-expand-row
           Col(span="24")
             span 邮箱：
             span(v-if="!isEdit") {{ showData.email }}
-            Input(v-else, v-model="showData.email", placeholder="请输入邮箱", clearable)
+            Input(v-else, v-model="showData.email", placeholder="请输入邮箱", clearable, style="width: auto")
         Row.lesson-table-expand-row
           Col(span="12")
             span 学位：
             span(v-if="!isEdit") {{ showData.degree }}
-            Input(v-else, v-model="showData.degree", placeholder="请输入学位", clearable)
+            Input(v-else, v-model="showData.degree", placeholder="请输入学位", clearable, style="width: auto")
           Col(span="12")
             span 最后学历：
             span(v-if="!isEdit") {{ showData.academic }}
-            Input(v-else, v-model="showData.academic", placeholder="请输入最后学历", clearable)
+            Input(v-else, v-model="showData.academic", placeholder="请输入最后学历", clearable, style="width: auto")
         Row.lesson-table-expand-row
           Col(span="12")
             span 最后学历毕业时间：
             span(v-if="!isEdit") {{ showData.graduationDate }}
-            Input(v-else, v-model="showData.graduationDate", placeholder="请输入最后学历毕业时间", clearable)
+            Input(v-else, v-model="showData.graduationDate", placeholder="请输入最后学历毕业时间", clearable, style="width: auto")
           Col(span="12")
             span 最后学历所学专业：
             span(v-if="!isEdit") {{ showData.major }}
-            Input(v-else, v-model="showData.major", placeholder="请输入最后学历所学专业", clearable)
+            Input(v-else, v-model="showData.major", placeholder="请输入最后学历所学专业", clearable, style="width: auto")
         Row.lesson-table-expand-row
           Col(span="12")
             span 最后学历毕业院校：
             span(v-if="!isEdit") {{ showData.graduateInstitution }}
-            Input(v-else, v-model="showData.graduateInstitution", placeholder="请输入最后学历毕业院校", clearable)
+            Input(v-else, v-model="showData.graduateInstitution", placeholder="请输入最后学历毕业院校", clearable, style="width: auto")
           Col(span="12")
             span 主要研究方向：
             span(v-if="!isEdit") {{ showData.majorResearch }}
-            Input(v-else, v-model="showData.majorResearch", placeholder="请输入主要研究方向", clearable)
+            Input(v-else, v-model="showData.majorResearch", placeholder="请输入主要研究方向", clearable, style="width: auto")
         Row.lesson-table-expand-row
           Col(span="12")
             span 最后学历毕业时间：
             span(v-if="!isEdit") {{ showData.resume }}
-            Input(v-else, v-model="showData.resume", placeholder="请输入最后学历毕业时间", clearable)
+            Input(v-else, v-model="showData.resume", placeholder="请输入最后学历毕业时间", clearable, style="width: auto")
           Col(span="12")
             span 参加工作时间：
             span(v-if="!isEdit") {{ showData.workDate }}
-            Input(v-else, v-model="showData.workDate", placeholder="请输入参加工作时间", clearable)
+            Input(v-else, v-model="showData.workDate", placeholder="请输入参加工作时间", clearable, style="width: auto")
         Row.lesson-table-expand-row
           Col(span="12")
             span 职称：
             span(v-if="!isEdit") {{ showData.profTitle }}
-            Input(v-else, v-model="showData.profTitle", placeholder="请输入职称", clearable)
+            Input(v-else, v-model="showData.profTitle", placeholder="请输入职称", clearable, style="width: auto")
           Col(span="12")
             span 职称评定时间：
             span(v-if="!isEdit") {{ showData.profTitleAssDate }}
-            Input(v-else, v-model="showData.profTitleAssDate", placeholder="请输入职称评定时间", clearable)
+            Input(v-else, v-model="showData.profTitleAssDate", placeholder="请输入职称评定时间", clearable, style="width: auto")
         Row.lesson-table-expand-row
           Col(span="12")
             span 是否学术学科带头人：
             span(v-if="!isEdit") {{ showData.isAcademicLeader }}
-            Input(v-else, v-model="showData.isAcademicLeader", placeholder="请输入是否学术学科带头人", clearable)
+            Input(v-else, v-model="showData.isAcademicLeader", placeholder="请输入是否学术学科带头人", clearable, style="width: auto")
           Col(span="12")
             span 所属学科门类：
             span(v-if="!isEdit") {{ showData.subjectCategory }}
-            Input(v-else, v-model="showData.subjectCategory", placeholder="请输入所属学科门类", clearable)
+            Input(v-else, v-model="showData.subjectCategory", placeholder="请输入所属学科门类", clearable, style="width: auto")
 </template>
 
 <script>
@@ -164,11 +164,9 @@ export default {
   },
   mounted () {
     teacher.getAll().then(res => {
-      // 将结果打印在浏览器控制台
-      console.log(res)
-      this.tableData = res.data._embedded.teachers
-      this.tableData.forEach(data => {
-        data._checked = false
+      this.tableData = res.data._embedded.teachers.map(item => {
+        item._checked = false
+        return item
       })
     }).catch(error => {
       console.log(error)

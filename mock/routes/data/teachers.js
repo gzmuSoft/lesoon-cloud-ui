@@ -37,7 +37,6 @@ for (let i = 0; i < 10; i++) {
     'idNumber': '1',
     'phone': '13112341234',
     'email': '123@123.com',
-    '_checked': false,
     '_links': {
       'self': {
         'href': 'http://127.0.0.1:8080/teachers/1'
