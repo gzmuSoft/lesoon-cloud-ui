@@ -1,5 +1,10 @@
 <template lang="pug">
   .lesson-table-expand
+    slot
+    Row.lesson-table-expand-row
+      Col(span="24")
+        span 全拼：
+        span {{ row.spell }}
     Row.lesson-table-expand-row
       Col(span="12")
         span 创建用户：
@@ -14,10 +19,7 @@
       Col(span="12")
         span 修改时间：
         span {{ row.modifyTime }}
-    Row.lesson-table-expand-row
-      Col(span="12")
-        span 全拼：
-        span {{ row.spell }}
+
 </template>
 
 <script>

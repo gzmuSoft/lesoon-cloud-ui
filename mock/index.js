@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 
 const oauth = require('./routes/oatuh')
 const code = require('./routes/code')
+const teachers = require('./routes/data/teachers')
 
 app.use(bodyParser.json())
 app.use(logger('dev'))
@@ -38,6 +39,7 @@ app.all('/oauth/*', (req, res, next) => {
 
 app.use('/oauth', oauth)
 app.use('/code', code)
+app.use('/teachers', teachers)
 
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!')

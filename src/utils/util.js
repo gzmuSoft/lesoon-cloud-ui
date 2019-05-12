@@ -12,6 +12,17 @@ export const setTitle = (title) => {
 export const isExpired = (time) => {
   return Math.round(new Date() / 1000) - time > 0
 }
+
+/**
+ * 简单的获取 url 后半部分，暂时用着
+ *
+ * @param link 链接
+ * @returns {string} 结果
+ */
+export const getUrl = (link) => {
+  return link.split('8080')[1]
+}
+
 /**
  * 跳转到主页
  */

@@ -36,6 +36,18 @@ export default {
               icon: 'md-color-filter'
             }
           ]
+        },
+        {
+          title: '教务管理',
+          name: '教务管理',
+          icon: 'logo-buffer',
+          children: [
+            {
+              title: '教师管理',
+              name: 'teacher',
+              icon: 'ios-man'
+            }
+          ]
         }
       ]
     }
