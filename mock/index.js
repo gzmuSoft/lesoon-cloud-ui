@@ -3,10 +3,6 @@ const app = express()
 const logger = require('morgan')
 const bodyParser = require('body-parser')
 
-const oauth = require('./routes/oatuh')
-const code = require('./routes/code')
-const teachers = require('./routes/data/teachers')
-
 app.use(bodyParser.json())
 app.use(logger('dev'))
 app.use(express.json())
@@ -37,9 +33,10 @@ app.all('/oauth/*', (req, res, next) => {
   }
 })
 
-app.use('/oauth', oauth)
-app.use('/code', code)
-app.use('/teachers', teachers)
+app.use('/oauth', require('./routes/oatuh'))
+app.use('/code', require('./routes/code'))
+app.use('/teachers', require('./routes/data/teachers'))
+app.use('/sysLogs', require('./routes/data/sysLogs'))
 
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!')

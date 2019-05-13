@@ -81,7 +81,7 @@ router.get('/', (req, res) => {
 })
 
 router.delete('/:id', (req, res) => {
-  console.log('delete id by ', req.params.id)
+  console.log('delete teacher id by ', req.params.id)
   res.sendStatus(204)
 })
 

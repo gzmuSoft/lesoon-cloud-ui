@@ -18,6 +18,8 @@
  * 你可以自由选择学习
  */
 import TableExpand from '_components/teble-expand'
+import * as sysLog from '_api/sysLog'
+
 export default {
   name: 'the-sys-logs',
   components: {
@@ -95,34 +97,15 @@ export default {
      * 数据初始化
      */
     initData () {
-      for (let i = 0; i < 10; i++) {
-        this.tableData.push({
-          name: '123' + i,
-          spell: '123',
-          sort: 1,
-          createTime: '2019-04-13T23:03:34',
-          createUser: 'admin',
-          modifyTime: '2019-04-13T23:18:52',
-          modifyUser: 'admin',
-          remark: null,
-          isEnable: true,
-          browser: '123',
-          operation: '123',
-          fromUrl: '123',
-          ip: '1232',
-          url: '123',
-          status: '1',
-          _checked: false,
-          _links: {
-            'self': {
-              'href': 'http://127.0.0.1:8080/sysLogs/1'
-            },
-            'sysLog': {
-              'href': 'http://127.0.0.1:8080/sysLogs/1'
-            }
-          }
+      sysLog.getAll().then(res => {
+        this.tableData = res.data._embedded.sysLogs.map(item => {
+          item._checked = false
+          return item
         })
-      }
+      }).catch(error => {
+        console.log(error)
+        this.$Message.error('获取数据是啊比')
+      })
     },
     /**
      * 删除行

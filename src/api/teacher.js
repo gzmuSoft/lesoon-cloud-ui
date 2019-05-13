@@ -28,6 +28,12 @@ export const deleteByLink = (link) => {
   })
 }
 
+/**
+ * 添加一个教师
+ *
+ * @param teacher 教师
+ * @returns {*} 结果
+ */
 export const addOne = (teacher) => {
   return axios.request({
     url: TEACHERS,
@@ -36,6 +42,12 @@ export const addOne = (teacher) => {
   })
 }
 
+/**
+ * 更新一个教师
+ *
+ * @param teacher 教师
+ * @returns {*} 请求结果
+ */
 export const putOne = (teacher) => {
   return axios.request({
     url: TEACHERS,
