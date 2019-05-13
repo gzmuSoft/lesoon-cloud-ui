@@ -1,16 +1,15 @@
 import axios from './index'
 import { getUrl } from '_utils/util'
-const TEACHERS = '/teachers'
 
 /**
  * 请一定写注释！格式和这个类似！
- * 获取所有教师
+ * 获取所有资源
  *
  * @returns 响应
  */
-export const getAll = () => {
+export const getAll = (resource) => {
   return axios.request({
-    url: TEACHERS,
+    url: `/${resource}`,
     method: 'get'
   })
 }
@@ -29,29 +28,31 @@ export const deleteByLink = (link) => {
 }
 
 /**
- * 添加一个教师
+ * 添加一个资源
  *
- * @param teacher 教师
+ * @param resource 资源名称
+ * @param data 添加的数据
  * @returns {*} 结果
  */
-export const addOne = (teacher) => {
+export const addOne = (resource, data) => {
   return axios.request({
-    url: TEACHERS,
+    url: `/${resource}`,
     method: 'post',
-    data: teacher
+    data: data
   })
 }
 
 /**
- * 更新一个教师
+ * 更新一个资源
  *
- * @param teacher 教师
+ * @param resource 资源名称
+ * @param data 更新数据
  * @returns {*} 请求结果
  */
-export const putOne = (teacher) => {
+export const putOne = (resource, data) => {
   return axios.request({
-    url: TEACHERS,
+    url: `/${resource}`,
     method: 'put',
-    data: teacher
+    data: data
   })
 }

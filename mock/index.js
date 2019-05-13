@@ -33,10 +33,12 @@ app.all('/oauth/*', (req, res, next) => {
   }
 })
 
+app.use('/', require('./routes/index'))
 app.use('/oauth', require('./routes/oatuh'))
 app.use('/code', require('./routes/code'))
 app.use('/teachers', require('./routes/data/teachers'))
 app.use('/sysLogs', require('./routes/data/sysLogs'))
+app.use('/courses', require('./routes/data/courses'))
 
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!')

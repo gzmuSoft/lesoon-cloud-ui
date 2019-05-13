@@ -122,7 +122,7 @@
 </template>
 
 <script>
-import * as teacher from '_api/teacher'
+import * as rest from '_api/rest'
 import TableExpand from '_components/teble-expand'
 
 export default {
@@ -166,7 +166,7 @@ export default {
     }
   },
   mounted () {
-    teacher.getAll().then(res => {
+    rest.getAll('teachers').then(res => {
       this.tableData = res.data._embedded.teachers.map(item => {
         item._checked = false
         return item
@@ -189,8 +189,8 @@ export default {
       this.visible = true
       this.isEdit = true
     },
-    handleDelete (row, index) {
-      teacher.deleteByLink(row._links.self.href).then(res => {
+    handleDelete (row) {
+      rest.deleteByLink(row._links.self.href).then(res => {
         this.$Message.success('删除成功')
         // 表格中的数据一并删除
         this.tableData.splice(this.tableData.indexOf(row), 1)
@@ -210,7 +210,7 @@ export default {
       console.log(_this.tableData[_this.showData.index])
       if ('_links' in _this.showData) {
         // 编辑操作
-        teacher.putOne(_this.showData).then(res => {
+        rest.putOne('teachers', _this.showData).then(res => {
           _this.tableData[_this.showData.index] = _this.showData
           _this.$Message.success('修改成功')
           _this.visible = false
@@ -221,9 +221,10 @@ export default {
         })
       } else {
         // 增加操作
-        teacher.addOne(_this.showData).then(res => {
+        rest.addOne('teachers', _this.showData).then(res => {
           _this.$Message.success('增加成功')
-          _this.tableData.push(_this.showData)
+          _this.tableData.push(res.date)
+          _this.showData = {}
           _this.visible = false
           _this.isEdit = false
         }).catch(error => {

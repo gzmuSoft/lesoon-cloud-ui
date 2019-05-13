@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 let teachers = []
+let id = 1
 // 创建十个教师对象
 for (let i = 0; i < 10; i++) {
   teachers.push({
@@ -39,13 +40,14 @@ for (let i = 0; i < 10; i++) {
     'email': '123@123.com',
     '_links': {
       'self': {
-        'href': 'http://127.0.0.1:8080/teachers/1'
+        'href': 'http://127.0.0.1:8080/teachers/' + id
       },
       'teacher': {
-        'href': 'http://127.0.0.1:8080/teachers/1'
+        'href': 'http://127.0.0.1:8080/teachers/' + id
       }
     }
   })
+  id++
 }
 
 // get 请求，路径必须为复数！！！
@@ -81,12 +83,23 @@ router.get('/', (req, res) => {
 })
 
 router.delete('/:id', (req, res) => {
-  console.log('delete teacher id by ', req.params.id)
+  console.log('delete rest id by ', req.params.id)
   res.sendStatus(204)
 })
 
 router.post('/', (req, res) => {
-  res.sendStatus(201)
+  console.log(req.body)
+  req.body._links = {
+    'self': {
+      'href': 'http://127.0.0.1:8080/courses/' + id
+    },
+    'course': {
+      'href': 'http://127.0.0.1:8080/courses/' + id
+    }
+  }
+  id++
+  res.status(201)
+    .json(req.body)
 })
 
 router.put('/', (req, res) => {

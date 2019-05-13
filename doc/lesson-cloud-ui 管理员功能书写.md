@@ -461,21 +461,27 @@ module.exports = router
 
 ### 请求数据
 
-我们需要向我们的 mock 服务器请求数据，那么需要写相应的 api 请求了，我们将他放置在 `src/api` 下，直接创建一个 `teacher.js`，内容如下
+> **请求数据的最新方式请查看最后的更新部分！！！！**
+>
+> **请求数据的最新方式请查看最后的更新部分！！！！**
+>
+> **请求数据的最新方式请查看最后的更新部分！！！！**
+``
+~~我们需要向我们的 mock 服务器请求数据，那么需要写相应的 api 请求了，我们将他放置在 `src/api` 下，直接创建一个 `teacher.js`，内容如下~~
 
 ![api](https://resources.echocow.cn/file/2019/05/12/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE_%E9%80%89%E6%8B%A9%E5%8C%BA%E5%9F%9F_20190512162306.png)
 
 
-然后在组件里面测试一下是否能使用
+~~然后在组件里面测试一下是否能使用~~
 
 ![con](https://resources.echocow.cn/file/2019/05/12/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE_%E9%80%89%E6%8B%A9%E5%8C%BA%E5%9F%9F_20190512162525.png
 )
 
-刷新测试一下
+~~刷新测试一下~~
 
 ![数据请求](https://resources.echocow.cn/file/2019/05/12/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE_%E9%80%89%E6%8B%A9%E5%8C%BA%E5%9F%9F_20190512162744.png)
 
-那么现在我们就需要处理一下数据的逻辑，我们需要他的 `data` 里面的 `_embedded` 里面的 `teachers`，因为那就是表格的数据。一个简单的赋值就完成了，修改 `mounted` 方法如下：
+~~那么现在我们就需要处理一下数据的逻辑，我们需要他的 `data` 里面的 `_embedded` 里面的 `teachers`，因为那就是表格的数据。一个简单的赋值就完成了，修改 `mounted` 方法如下：~~
 ```Javascript
   mounted () {
     teacher.getAll().then(res => {
@@ -488,11 +494,11 @@ module.exports = router
   }
 ```
 
-再去看看效果
+~~再去看看效果~~
 
 ![result](https://resources.echocow.cn/file/2019/05/12/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE_%E9%80%89%E6%8B%A9%E5%8C%BA%E5%9F%9F_20190512163037.png)
 
-表格数据简单初始化完成！
+~~表格数据简单初始化完成！~~
 
 但是现在数据显示不全，因为我们现在还有很多没有显示，怎么办呢？有两种处理方式
 
@@ -610,3 +616,20 @@ isEdit: false,
 
 实在写不动了，新增和编辑大家看看吧，不懂得再问。
 
+## 更新
+
+### 请求数据
+
+我在做第三张的表的时候发现，其实对于这几个请求，都是重复的操作，代码大量重复，所以我将它抽取了出来，见文件 `src/api/rest.js`，如何使用抽取出来的呢？
+
+1. 引用 `import * as rest from '_api/rest'`
+2. 调用 `getAll` `addOne` `putOne` 这三个方法的时候传递一个 `resource` 参数，也就是你当前正在写得表名的复数形式，例如对于 `teacher` 表，调用方式如下：
+
+```javascript
+// teachers 就是资源名称的复数
+rest.getAll('teachers').then(res => {
+  //...
+}).catch(error => {
+  //...
+})
+```
