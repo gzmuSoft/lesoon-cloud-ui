@@ -38,12 +38,15 @@
           Col(span="12")
             span 性别：
             span(v-if="!isEdit") {{ showData.gender }}
-            Input(v-else, v-model="showData.gender", placeholder="请输入性别", clearable, style="width: auto")
+            RadioGroup(v-else, v-model="showData.gender")
+              Radio(label="男", value="男") 男
+              Radio(label="女", value="女") 女
         Row.lesson-table-expand-row
           Col(span="12")
             span 生日：
             span(v-if="!isEdit") {{ showData.birthday }}
-            Input(v-else, v-model="showData.birthday", placeholder="请输入生日", clearable, style="width: auto")
+            DatePicker(v-else, type="date", v-model="showData.birthday", placeholder="请输入生日", style="width: auto",
+              format="yyyy-MM-dd", @on-change="handleDate")
           Col(span="12")
             span 民族：
             span(v-if="!isEdit") {{ showData.nation }}
@@ -176,7 +179,7 @@ export default {
   methods: {
     handleInfo (row, index) {
       // 数据复制
-      this.showData = row
+      this.showData = this.tableData[index]
       this.showData.index = index
       // 显示对话框
       this.visible = true
@@ -199,26 +202,32 @@ export default {
     handleSelect (row, index) {
       this.tableData[index]._checked = !this.tableData[index]._checked
     },
+    handleDate (date) {
+      this.showData.birthday = date
+    },
     handleOk () {
-      if ('_links' in this.showData) {
+      let _this = this
+      console.log(_this.tableData[_this.showData.index])
+      if ('_links' in _this.showData) {
         // 编辑操作
-        teacher.putOne(this.showData).then(res => {
-          this.$Message.success('修改')
-          this.visible = false
-          this.isEdit = false
+        teacher.putOne(_this.showData).then(res => {
+          _this.tableData[_this.showData.index] = _this.showData
+          _this.$Message.success('修改成功')
+          _this.visible = false
+          _this.isEdit = false
         }).catch(error => {
-          this.$Message.success('修改失败')
+          _this.$Message.success('修改失败')
           console.log(error)
         })
       } else {
         // 增加操作
-        teacher.addOne(this.showData).then(res => {
-          this.$Message.success('增加成功')
-          this.tableData.push(this.showData)
-          this.visible = false
-          this.isEdit = false
+        teacher.addOne(_this.showData).then(res => {
+          _this.$Message.success('增加成功')
+          _this.tableData.push(_this.showData)
+          _this.visible = false
+          _this.isEdit = false
         }).catch(error => {
-          this.$Message.success('增加失败')
+          _this.$Message.success('增加失败')
           console.log(error)
         })
       }
