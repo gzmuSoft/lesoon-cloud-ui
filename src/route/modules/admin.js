@@ -1,6 +1,7 @@
 const TheAdmin = () => import('_views/the-admin')
 const TheSysLogs = () => import('_components/the-admin/the-sys-logs')
 const TheTeacher = () => import('_components/the-admin/the-teacher')
+const TheCourse = () => import('_components/the-admin/the-course')
 
 export default {
   path: '/admin',
@@ -22,6 +23,14 @@ export default {
       component: TheTeacher,
       meta: {
         title: '教师管理'
+      }
+    },
+    {
+      path: '/course',
+      name: 'course',
+      component: TheCourse,
+      meta: {
+        title: '课程管理'
       }
     }
   ]

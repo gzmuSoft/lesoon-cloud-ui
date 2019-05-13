@@ -46,6 +46,11 @@ export default {
               title: '教师管理',
               name: 'teacher',
               icon: 'ios-man'
+            },
+            {
+              title: '课程管理',
+              name: 'course',
+              icon: 'ios-briefcase'
             }
           ]
         }

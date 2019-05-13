@@ -1,7 +1,7 @@
 <template lang="pug">
   #lesson-logs
     Alert(type="warning") 对于日志来说，我们仅仅提供查看和删除操作，不可对其进行增加和修改。
-    Table(:columns="columns", :data="tableData", @on-row-click="handleSelect", ref="selection")
+    Table(:columns="columns", :data="tableData", ref="selection")
       template(slot-scope="{ row, index }" slot="browser")
         Tag(color="blue") {{ row.browser }}
     Modal(v-model="deleteTip", @on-ok='deleteRow', title="确定删除吗？", :loading="loading")
@@ -104,7 +104,7 @@ export default {
         })
       }).catch(error => {
         console.log(error)
-        this.$Message.error('获取数据是啊比')
+        this.$Message.error('获取数据失败')
       })
     },
     /**
