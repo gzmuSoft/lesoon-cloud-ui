@@ -228,5 +228,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
-
+.lesson-table-expand-row {
+  .ivu-col {
+    height: 32px;
+  }
+}
 </style>
