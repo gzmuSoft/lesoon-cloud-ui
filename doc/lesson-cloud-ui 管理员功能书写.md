@@ -459,14 +459,16 @@ module.exports = router
 
 现在我们来初始化数据，就是需要请求数据了
 
-### 请求数据
+### 请求数据(请求方式已经废弃)
 
 > **请求数据的最新方式请查看最后的更新部分！！！！**
 >
 > **请求数据的最新方式请查看最后的更新部分！！！！**
 >
 > **请求数据的最新方式请查看最后的更新部分！！！！**
-``
+
+
+
 ~~我们需要向我们的 mock 服务器请求数据，那么需要写相应的 api 请求了，我们将他放置在 `src/api` 下，直接创建一个 `teacher.js`，内容如下~~
 
 ![api](https://resources.echocow.cn/file/2019/05/12/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE_%E9%80%89%E6%8B%A9%E5%8C%BA%E5%9F%9F_20190512162306.png)
@@ -607,6 +609,28 @@ isEdit: false,
 
 
 我修改了一些东西没有截图，不过不多，一眼就能看懂的那种代码。
+
+## 分页
+
+对于分页请参见我写的 course 表，主要两个文件需要修改，一个是他的数据模拟里面的 get，如下
+
+![](https://resources.echocow.cn/file/2019/05/12/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE_%E9%80%89%E6%8B%A9%E5%8C%BA%E5%9F%9F_20190514095032.png)
+
+![](https://resources.echocow.cn/file/2019/05/12/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE_%E9%80%89%E6%8B%A9%E5%8C%BA%E5%9F%9F_20190514095122.png)
+
+![](https://resources.echocow.cn/file/2019/05/12/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE_%E9%80%89%E6%8B%A9%E5%8C%BA%E5%9F%9F_20190514095150.png)
+
+![](https://resources.echocow.cn/file/2019/05/12/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE_%E9%80%89%E6%8B%A9%E5%8C%BA%E5%9F%9F_20190514095220.png)
+
+![](https://resources.echocow.cn/file/2019/05/12/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE_%E9%80%89%E6%8B%A9%E5%8C%BA%E5%9F%9F_20190514095249.png)
+
+![](https://resources.echocow.cn/file/2019/05/12/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE_%E9%80%89%E6%8B%A9%E5%8C%BA%E5%9F%9F_20190514095235.png)
+
+![](https://resources.echocow.cn/file/2019/05/12/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE_%E9%80%89%E6%8B%A9%E5%8C%BA%E5%9F%9F_20190514095311.png)
+
+![](https://resources.echocow.cn/file/2019/05/12/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE_%E9%80%89%E6%8B%A9%E5%8C%BA%E5%9F%9F_20190514095338.png)
+
+![](https://resources.echocow.cn/file/2019/05/12/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE_%E9%80%89%E6%8B%A9%E5%8C%BA%E5%9F%9F_20190514095805.png)
 
 ## 最后
 
