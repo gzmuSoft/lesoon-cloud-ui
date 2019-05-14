@@ -1,4 +1,3 @@
-
 const TheAdmin = () => import('_views/the-admin')
 const TheSysLogs = () => import('_components/the-admin/the-sys-logs')
 const TheTeacher = () => import('_components/the-admin/the-teacher')
@@ -6,6 +5,7 @@ const TheCourse = () => import('_components/the-admin/the-course')
 const TheJudgement = () => import('_components/the-admin/the-judgement')
 const TheEssay = () => import('_components/the-admin/the-essay')
 const ThePaper = () => import('_components/the-admin/the-paper')
+const TheExamRule = () => import('_components/the-admin/the-exam-rule')
 
 export default {
   path: '/admin',
@@ -59,6 +59,14 @@ export default {
       component: ThePaper,
       meta: {
         title: '试卷管理'
+      }
+    },
+    {
+      path: '/examRule',
+      name: 'examRule',
+      component: TheExamRule,
+      meta: {
+        title: '组卷规则管理'
       }
     }
   ]
