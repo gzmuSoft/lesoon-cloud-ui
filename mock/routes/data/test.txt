@@ -1,0 +1,45 @@
+{
+    "_embedded": {
+        "sysRoleReses": [
+            {
+                "name": "角色权限关联1",
+                "spell": "guanlian1",
+                "sort": 1,
+                "createTime": "2019-05-14T21:29:03",
+                "createUser": "admin",
+                "modifyTime": "2019-05-14T21:29:03",
+                "modifyUser": "admin",
+                "remark": "juese-quanxina",
+                "isEnable": true,
+                "roleId": 1,
+                "resId": 1,
+                "_links": {
+                    "self": {
+                        "href": "http://127.0.0.1:8080/sysRoleReses/1"
+                    },
+                    "sysRoleRes": {
+                        "href": "http://127.0.0.1:8080/sysRoleReses/1"
+                    }
+                }
+            }
+        ]
+    },
+    "_links": {
+        "self": {
+            "href": "http://127.0.0.1:8080/sysRoleReses{?page,size,sort}",
+            "templated": true
+        },
+        "profile": {
+            "href": "http://127.0.0.1:8080/profile/sysRoleReses"
+        },
+        "search": {
+            "href": "http://127.0.0.1:8080/sysRoleReses/search"
+        }
+    },
+    "page": {
+        "size": 10,
+        "totalElements": 1,
+        "totalPages": 1,
+        "number": 0
+    }
+}

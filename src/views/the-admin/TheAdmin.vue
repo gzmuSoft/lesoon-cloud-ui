@@ -73,6 +73,11 @@ export default {
               icon: 'ios-chatboxes-outline'
             },
             {
+              title: '组卷规则管理',
+              name: 'examRule',
+              icon: 'ios-browsers-outline'
+            },
+            {
               title: '判断题管理',
               name: 'judgement',
               icon: 'md-checkmark-circle'
