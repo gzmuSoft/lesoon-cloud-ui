@@ -18,7 +18,7 @@
           social-button(:social="social")
 </template>
 <script>
-import SocialButton from '../social-button'
+import SocialButton from '../common/social-button'
 export default {
   name: 'the-register',
   components: { SocialButton },

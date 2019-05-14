@@ -17,8 +17,8 @@
 
 </template>
 <script>
-import SocialButton from '../social-button'
-import TheFind from '../the-find'
+import SocialButton from '../common/social-button'
+import TheFind from './the-find'
 import { routeHome } from '_utils/util'
 
 export default {

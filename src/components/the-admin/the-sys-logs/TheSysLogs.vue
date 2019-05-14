@@ -17,7 +17,7 @@
  * 3. slot-scope —— 最简单 —— browser 列
  * 你可以自由选择学习
  */
-import TableExpand from '_components/teble-expand'
+import TableExpand from '_components/common/teble-expand'
 import * as sysLog from '_api/sysLog'
 
 export default {

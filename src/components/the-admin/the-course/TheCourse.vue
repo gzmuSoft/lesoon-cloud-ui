@@ -35,7 +35,7 @@
 
 <script>
 import * as rest from '_api/rest'
-import TableExpand from '_components/teble-expand'
+import TableExpand from '_components/common/teble-expand'
 
 export default {
   name: 'TheCourse',

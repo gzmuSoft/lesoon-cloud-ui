@@ -3,7 +3,7 @@
     #lesson-header
       #lesson-header-left
         slot.lesson-cursor-pointer(name="logo", @click="home")
-          img.lesson-cursor-pointer(src='../../assets/logo.png', @click="home")
+          img.lesson-cursor-pointer(src='../../../assets/logo.png', @click="home")
         slot(name="left")
       #lesson-header-right
         slot(name="right")

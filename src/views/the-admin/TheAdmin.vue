@@ -17,7 +17,7 @@
 
 <script>
 import SideMenu from '_components/the-admin/side-menu'
-import UserInfo from '_components/user-info'
+import UserInfo from '_components/common/user-info'
 
 export default {
   name: 'TheAdmin',

@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import TheHeader from '_components/the-header'
+import TheHeader from '_components/common/the-header'
 export default {
   name: 'TheAuth',
   components: {

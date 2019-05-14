@@ -34,12 +34,12 @@
 </template>
 
 <script>
-import TheHeader from '_components/the-header'
+import TheHeader from '_components/common/the-header'
 import HomeTitle from '_components/the-home/home-title'
 import HomeFeature from '_components/the-home/home-feature'
 import HomeSchool from '_components/the-home/home-school'
 import HomeCourse from '_components/the-home/home-course'
-import UserInfo from '_components/user-info'
+import UserInfo from '_components/common/user-info'
 import { WOW } from 'wowjs'
 
 export default {
