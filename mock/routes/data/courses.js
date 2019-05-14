@@ -4,7 +4,7 @@ const router = express.Router()
 let courses = []
 let id = 1
 
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 100; i++) {
   courses.push({
     'name': '课程' + i,
     'spell': 'kecheng' + i,
@@ -31,16 +31,19 @@ for (let i = 0; i < 10; i++) {
 }
 
 router.get('/', (req, res) => {
-  let page = 0
+  let page = req.query.page
+  console.log(page)
   if (typeof (req.query.page) !== 'undefined') {
-    if (req.query.page > 9) page = 9
-    else if (res.query.page < 0) page = 0
-    else page = req.query.page
+    if (page > 9) page = 9
+    else if (page < 0) page = 0
+  } else {
+    page = 0
   }
+  let start = 10 * page
   res.status(200)
     .json({
       '_embedded': {
-        'courses': courses
+        'courses': courses.slice(start, start + 10)
       },
       '_links': {
         'self': {
@@ -64,7 +67,6 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  console.log(req.body)
   req.body._links = {
     'self': {
       'href': 'http://127.0.0.1:8080/courses/' + id
@@ -73,6 +75,7 @@ router.post('/', (req, res) => {
       'href': 'http://127.0.0.1:8080/courses/' + id
     }
   }
+  courses.unshift(req.body)
   id++
   res.status(201)
     .json(req.body)

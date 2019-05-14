@@ -29,6 +29,7 @@
         div(v-else)
           Button(type="success", size="small", @click="handleSave(row, index)") 保存
           Button(type="primary", size="small", @click="handleCancel(row, index)", style="margin-left: 0.8rem") 取消
+    Page.lesson-text-center.lesson-margin-top(:total="page.totalElements", @on-change="handleChange")
 
 </template>
 
@@ -48,6 +49,7 @@ export default {
       editData: {},
       edit: false,
       tableData: [],
+      page: {},
       columns: [
         {
           type: 'expand',
@@ -77,6 +79,22 @@ export default {
     }
   },
   methods: {
+    initDate (page) {
+      let _this = this
+      rest.getAll(`courses?page=${page}`).then(res => {
+        _this.tableData = res.data._embedded.courses.map(item => {
+          item._checked = false
+          return item
+        })
+        _this.page = res.data.page
+      }).catch(error => {
+        console.log(error)
+        _this.$Message.error('获取数据失败')
+      })
+    },
+    handleChange (page) {
+      this.initDate(page - 1)
+    },
     handleEdit (row, index) {
       this.editIndex = index
       this.editData = { ...row }
@@ -129,15 +147,7 @@ export default {
     }
   },
   mounted () {
-    rest.getAll('courses').then(res => {
-      this.tableData = res.data._embedded.courses.map(item => {
-        item._checked = false
-        return item
-      })
-    }).catch(error => {
-      console.log(error)
-      this.$Message.error('获取数据失败')
-    })
+    this.initDate(0)
   }
 }
 </script>
