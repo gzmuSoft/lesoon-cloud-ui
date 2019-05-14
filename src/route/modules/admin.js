@@ -3,6 +3,7 @@ const TheSysLogs = () => import('_components/the-admin/the-sys-logs')
 const TheTeacher = () => import('_components/the-admin/the-teacher')
 const TheCourse = () => import('_components/the-admin/the-course')
 const TheJudgement = () => import('_components/the-admin/the-judgement')
+const TheEssay = () => import('_components/the-admin/the-essay')
 
 export default {
   path: '/admin',
@@ -35,11 +36,19 @@ export default {
       }
     },
     {
+      path: '/essay',
+      name: 'essay',
+      component: TheEssay,
+      meta: {
+        title: '问答题管理'
+      }
+    },
+    {
       path: '/judgement',
       name: 'judgement',
       component: TheJudgement,
       meta: {
-        title: '课程管理'
+        title: '判断题管理'
       }
     }
   ]
