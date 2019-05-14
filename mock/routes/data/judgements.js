@@ -4,7 +4,7 @@ const router = express.Router()
 let judgements = []
 let id = 1
 // 增加99个判断题
-for (let i = 0; i < 99; i++) {
+for (let i = 0; i < 100; i++) {
   judgements.push({
     'name': '问题' + i + '：1+1=？',
     'spell': 'panduanti' + i,
@@ -69,8 +69,8 @@ router.get('/', (req, res) => {
 })
 // 提交路径
 router.post('/', (req, res) => {
-  console.log(req.body)
-  req.body._links = {
+  let body = req.body
+  body._links = {
     'self': {
       'href': 'http://127.0.0.1:8080/judgements/' + id
     },
@@ -79,6 +79,7 @@ router.post('/', (req, res) => {
     }
   }
   id++
+  judgements.unshift(body)
   res.status(201)
     .json(req.body)
 })

@@ -83,7 +83,8 @@ router.delete('/:id', (req, res) => {
  * post请求
  */
 router.post('/', (req, res) => {
-  req.body._links = {
+  let body = req.body
+  body._links = {
     'self': {
       'href': 'http://127.0.0.1:8080/essays/' + id
     },
@@ -92,9 +93,9 @@ router.post('/', (req, res) => {
     }
   }
   id++
-  essays.unshift(req.body)
+  essays.unshift(body)
   res.status(201)
-    .json(req.body)
+    .json(body)
 })
 
 /**

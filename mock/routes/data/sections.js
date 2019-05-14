@@ -1,30 +1,30 @@
 const express = require('express')
 const router = express.Router()
 
-let sysData = []
+let sections = []
 let id = 1
 
-// 创建十个问答题对象
 for (let i = 0; i < 100; i++) {
-  sysData.push({
-    'name': '系统基本数据表1' + i,
-    'spell': 'jiben1' + i,
+  sections.push({
+    'name': '章节' + id,
+    'spell': 'zhangjie' + id,
     'sort': 1,
-    'createTime': '2019-05-14T21:12:40',
+    'createTime': '2019-05-14T16:47:41',
     'createUser': 'admin',
-    'modifyTime': '2019-05-14T21:12:40',
+    'modifyTime': '2019-05-14T16:47:41',
     'modifyUser': 'admin',
-    'remark': '贵州民族大学',
+    'remark': '第一章',
     'isEnable': true,
+    'intro': '第一章节',
+    'courseId': 1,
     'parentId': 0,
-    'brief': '贵州民族大学',
-    'type': 0,
+    'type': 1,
     '_links': {
       'self': {
-        'href': 'http://127.0.0.1:8080/sysDatas/' + id
+        'href': 'http://127.0.0.1:8080/sections/' + id
       },
-      'sysData': {
-        'href': 'http://127.0.0.1:8080/sysDatas/' + id
+      'section': {
+        'href': 'http://127.0.0.1:8080/sections/' + id
       }
     }
   })
@@ -46,18 +46,18 @@ router.get('/', (req, res) => {
   res.status(200)
     .json({
       '_embedded': {
-        'sysData': sysData.slice(start, start + 10)
+        'sections': sections.slice(start, start + 10)
       },
       '_links': {
         'self': {
-          'href': 'http://127.0.0.1:8080/sysDatas{?page,size,sort}',
+          'href': 'http://127.0.0.1:8080/sections{?page,size,sort}',
           'templated': true
         },
         'profile': {
-          'href': 'http://127.0.0.1:8080/profile/sysDatas' ,
+          'href': 'http://127.0.0.1:8080/profile/sections'
         },
         'search': {
-          'href': 'http://127.0.0.1:8080/sysDatas/search' ,
+          'href': 'http://127.0.0.1:8080/sections/search'
         }
       },
       'page': {
@@ -70,35 +70,28 @@ router.get('/', (req, res) => {
 })
 
 /**
- * delete请求
- */
-router.delete('/:id', (req, res) => {
-  res.sendStatus(204)
-})
-
-/**
  * post请求
  */
 router.post('/', (req, res) => {
   req.body._links = {
     'self': {
-      'href': 'http://127.0.0.1:8080/sysDatas/' + id
+      'href': 'http://127.0.0.1:8080/sections/' + id
     },
-    'sysData': {
-      'href': 'http://127.0.0.1:8080/sysDatas/' + id
+    'sections': {
+      'href': 'http://127.0.0.1:8080/sections/' + id
     }
   }
   id++
-  sysData.unshift(req.body)
+  sections.unshift(req.body)
   res.status(201)
     .json(req.body)
 })
 
 /**
- * put请求
+ * delete请求
  */
-router.put('/', (req, res) => {
-  res.sendStatus(200)
+router.delete('/:id', (req, res) => {
+  res.sendStatus(204)
 })
 
 module.exports = router

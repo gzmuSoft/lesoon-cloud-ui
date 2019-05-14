@@ -72,8 +72,8 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  console.log(req.body)
-  req.body._links = {
+  let body = req.body
+  body._links = {
     'self': {
       'href': 'http://127.0.0.1:8080/sysReses/' + id
     },
@@ -82,6 +82,7 @@ router.post('/', (req, res) => {
     }
   }
   id++
+  sysReses.unshift(body)
   res.status(201)
     .json(req.body)
 })
