@@ -2,11 +2,13 @@
   Layout#lesson-admin.lesson-full-height.lesson-text-left
     Sider(collapsible, hide-trigger, v-model="collapsed", breakpoint="md")
       side-menu(:collapsed="collapsed", :list="menuList")
+        #lesson-admin-side-header(slot="top") LESSON
     Layout
       Header#lesson-admin-header.lesson-card-2
         Icon.lesson-cursor-pointer(:class="triggerClasses",
           @click.native="handleCollapsed",
           type="md-menu", :size="32")
+        UserInfo.lesson-float-right
       Content#lesson-admin-content
         transition(name="lesson-opacity", mode="out-in")
           router-view
@@ -15,11 +17,12 @@
 
 <script>
 import SideMenu from '_components/the-admin/side-menu'
+import UserInfo from '_components/user-info'
 
 export default {
   name: 'TheAdmin',
   components: {
-    SideMenu
+    SideMenu, UserInfo
   },
   data () {
     return {
@@ -72,9 +75,15 @@ export default {
 
 <style lang="less" scoped>
   #lesson-admin {
+    #lesson-admin-side-header {
+      color: white;
+      .lesson-text-center;
+      .lesson-full-width;
+      font-size: 34px;
+    }
     #lesson-admin-header {
       background: #ffffff;
-      padding: 0 24px;
+      padding: 0 56px 0 24px;
 
       .lesson-cursor-pointer {
         transition: transform .3s ease;

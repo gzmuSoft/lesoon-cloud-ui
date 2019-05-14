@@ -31,6 +31,12 @@ for (let i = 0; i < 10; i++) {
 }
 
 router.get('/', (req, res) => {
+  let page = 0
+  if (typeof (req.query.page) !== 'undefined') {
+    if (req.query.page > 9) page = 9
+    else if (res.query.page < 0) page = 0
+    else page = req.query.page
+  }
   res.status(200)
     .json({
       '_embedded': {
@@ -50,9 +56,9 @@ router.get('/', (req, res) => {
       },
       'page': {
         'size': 10,
-        'totalElements': 1,
-        'totalPages': 1,
-        'number': 0
+        'totalElements': 100,
+        'totalPages': 10,
+        'number': page
       }
     })
 })
