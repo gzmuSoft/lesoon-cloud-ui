@@ -4,7 +4,7 @@ const router = express.Router()
 let sysRoleReses = []
 let id = 1
 // 创建十个教师对象
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 100; i++) {
   sysRoleReses.push({
     'name': '角色权限关联1' + i,
     'spell': 'guanlian1' + i,
@@ -35,10 +35,18 @@ for (let i = 0; i < 10; i++) {
  * @param res 响应
  */
 router.get('/', (req, res) => {
+  let page = req.query.page
+  if (typeof (req.query.page) !== 'undefined') {
+    if (page > 9) page = 9
+    else if (page < 0) page = 0
+  } else {
+    page = 0
+  }
+  let start = 10 * page
   res.status(200)
     .json({
       '_embedded': {
-        'sysRoleReses': sysRoleReses
+        'sysRoleReses': sysRoleReses.slice(start, start + 10)
       },
       '_links': {
         'self': {
@@ -54,9 +62,9 @@ router.get('/', (req, res) => {
       },
       'page': {
         'size': 10,
-        'totalElements': 1,
-        'totalPages': 1,
-        'number': 0
+        'totalElements': 100,
+        'totalPages': 10,
+        'number': page
       }
     })
 })
@@ -67,8 +75,8 @@ router.delete('/:id', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  console.log(req.body)
-  req.body._links = {
+  let body = req.body
+  body._links = {
     'self': {
       'href': 'http://127.0.0.1:8080/sysRoleReses/' + id
     },
@@ -77,8 +85,9 @@ router.post('/', (req, res) => {
     }
   }
   id++
+  sysRoleReses.unshift(body)
   res.status(201)
-    .json(req.body)
+    .json(body)
 })
 
 router.put('/', (req, res) => {

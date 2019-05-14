@@ -34,7 +34,6 @@ for (let i = 0; i < 100; i++) {
   id++
 }
 
-
 /**
  * get请求
  */
@@ -90,7 +89,6 @@ router.post('/', (req, res) => {
   res.status(201)
     .json(req.body)
 })
-
 
 /**
  * delete请求

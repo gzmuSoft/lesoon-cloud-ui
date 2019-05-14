@@ -54,10 +54,10 @@ router.get('/', (req, res) => {
           'templated': true
         },
         'profile': {
-          'href': 'http://127.0.0.1:8080/profile/sysDatas' ,
+          'href': 'http://127.0.0.1:8080/profile/sysDatas'
         },
         'search': {
-          'href': 'http://127.0.0.1:8080/sysDatas/search' ,
+          'href': 'http://127.0.0.1:8080/sysDatas/search'
         }
       },
       'page': {
@@ -80,7 +80,8 @@ router.delete('/:id', (req, res) => {
  * post请求
  */
 router.post('/', (req, res) => {
-  req.body._links = {
+  let body = req.body
+  body._links = {
     'self': {
       'href': 'http://127.0.0.1:8080/sysDatas/' + id
     },
@@ -89,9 +90,9 @@ router.post('/', (req, res) => {
     }
   }
   id++
-  sysData.unshift(req.body)
+  sysData.unshift(body)
   res.status(201)
-    .json(req.body)
+    .json(body)
 })
 
 /**
