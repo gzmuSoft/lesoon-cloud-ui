@@ -1,20 +1,20 @@
 const express = require('express')
 const router = express.Router()
 
-let sysData = []
+let sysDatas = []
 let id = 1
 
 // 创建十个问答题对象
 for (let i = 0; i < 100; i++) {
-  sysData.push({
+  sysDatas.push({
     'name': '系统基本数据表1' + i,
     'spell': 'jiben1' + i,
     'sort': 1,
-    'createTime': '2019-05-14T21:12:40',
+    'createTime': new Date(),
     'createUser': 'admin',
-    'modifyTime': '2019-05-14T21:12:40',
+    'modifyTime': new Date(),
     'modifyUser': 'admin',
-    'remark': '贵州民族大学',
+    'remark': '备注',
     'isEnable': true,
     'parentId': 0,
     'brief': '贵州民族大学',
@@ -23,7 +23,7 @@ for (let i = 0; i < 100; i++) {
       'self': {
         'href': 'http://127.0.0.1:8080/sysDatas/' + id
       },
-      'sysData': {
+      'sysDatas': {
         'href': 'http://127.0.0.1:8080/sysDatas/' + id
       }
     }
@@ -46,7 +46,7 @@ router.get('/', (req, res) => {
   res.status(200)
     .json({
       '_embedded': {
-        'sysData': sysData.slice(start, start + 10)
+        'sysDatas': sysDatas.slice(start, start + 10)
       },
       '_links': {
         'self': {
@@ -84,12 +84,12 @@ router.post('/', (req, res) => {
     'self': {
       'href': 'http://127.0.0.1:8080/sysDatas/' + id
     },
-    'sysData': {
+    'sysDatas': {
       'href': 'http://127.0.0.1:8080/sysDatas/' + id
     }
   }
   id++
-  sysData.unshift(req.body)
+  sysDatas.unshift(req.body)
   res.status(201)
     .json(req.body)
 })

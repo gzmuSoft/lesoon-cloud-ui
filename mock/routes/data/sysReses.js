@@ -7,15 +7,15 @@ let id = 1
 for (let i = 0; i < 100; i++) {
   sysReses.push({
     'name': '手机登录' + i,
-    'spell': null + i,
-    'sort': null,
-    'createTime': '2019-04-21T01:11:01',
-    'createUser': null,
-    'modifyTime': '2019-04-21T01:20:33',
-    'modifyUser': null,
-    'remark': null,
+    'spell': 'resource' + i,
+    'sort': 1,
+    'createTime': new Date(),
+    'createUser': 'yyy',
+    'modifyTime': new Date(),
+    'modifyUser': 'admin',
+    'remark': '备注',
     'isEnable': true,
-    'parentId': null,
+    'parentId': 110,
     'des': 'oauth 手机登录',
     'matchUrl': '/oauth/sms',
     'router': '-',
@@ -23,7 +23,7 @@ for (let i = 0; i < 100; i++) {
     'iconCls': '-',
     'level': 0,
     'method': 'GET',
-    'type': null,
+    'type': '1',
     '_links': {
       'self': {
         'href': 'http://127.0.0.1:8080/sysReses/' + id
