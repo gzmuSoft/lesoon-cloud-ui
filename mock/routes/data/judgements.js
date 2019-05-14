@@ -6,7 +6,7 @@ let id = 1
 
 for (let i = 0; i < 99; i++) {
   judgements.push({
-    'name': '课程' + i,
+    'name': '问题' + i + '：1+1=？',
     'spell': 'panduanti' + i,
     'difficultRate': 0.1,
     'answer': 1,
