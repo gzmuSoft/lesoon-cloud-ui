@@ -5,7 +5,7 @@ let essays = []
 let id = 1
 
 // 创建十个问答题对象
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 100; i++) {
   essays.push({
     'name': '女票和老妈该救谁' + i,
     'spell': 'nvpiaohelaomagaijiushei' + i,
@@ -21,7 +21,15 @@ for (let i = 0; i < 10; i++) {
     'courseId': 1,
     'sectionId': 1,
     'knowledgeId': 1,
-    'difficultRate': '1'
+    'difficultRate': '1',
+    '_links': {
+      'self': {
+        'href': 'http://127.0.0.1:8080/essays/' + id
+      },
+      'course': {
+        'href': 'http://127.0.0.1:8080/essays/' + id
+      }
+    }
   })
   id++
 }
@@ -30,10 +38,18 @@ for (let i = 0; i < 10; i++) {
  * get请求
  */
 router.get('/', (req, res) => {
+  let page = req.query.page
+  if (typeof (req.query.page) !== 'undefined') {
+    if (page > 9) page = 9
+    else if (page < 0) page = 0
+  } else {
+    page = 0
+  }
+  let start = 10 * page
   res.status(200)
     .json({
       '_embedded': {
-        'essays': essays
+        'essays': essays.slice(start, start + 10)
       },
       '_links': {
         'self': {
@@ -49,9 +65,9 @@ router.get('/', (req, res) => {
       },
       'page': {
         'size': 10,
-        'totalElements': 0,
-        'totalPages': 0,
-        'number': 0
+        'totalElements': 100,
+        'totalPages': 10,
+        'number': page
       }
     })
 })
@@ -60,7 +76,6 @@ router.get('/', (req, res) => {
  * delete请求
  */
 router.delete('/:id', (req, res) => {
-  console.log('delete rest id by ', req.params.id)
   res.sendStatus(204)
 })
 
@@ -68,7 +83,6 @@ router.delete('/:id', (req, res) => {
  * post请求
  */
 router.post('/', (req, res) => {
-  console.log(req.body)
   req.body._links = {
     'self': {
       'href': 'http://127.0.0.1:8080/essays/' + id
@@ -78,6 +92,7 @@ router.post('/', (req, res) => {
     }
   }
   id++
+  essays.unshift(req.body)
   res.status(201)
     .json(req.body)
 })
