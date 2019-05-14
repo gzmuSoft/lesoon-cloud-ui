@@ -1,46 +1,45 @@
 <template lang="pug">
   #lesson-essay
-    Button(@click="handleAdd") 增加
-    Table(:columns="columns", :data="tableData", ref="selection", @on-row-click="handleSelect")
+    Button.lesson-table-add(size="large", icon="md-add", shape="circle", type="success", @click="handleAdd")
+
+    Table(:columns="columns", :data="tableData", ref="selection")
+      template(slot-scope="{ row, index }", slot="name")
+        span(v-if="editIndex!==index") {{row.name}}
+        Input(v-else, v-model="editData.name", placeholder="题目名称", clearable)
+      template(slot-scope="{ row, index }", slot="answer")
+        span(v-if='editIndex!==index') {{row.answer}}
+        Input(v-else, v-model="editData.answer", placeholder="题目答案", clearable)
+      template(slot-scope="{ row, index }", slot="explanation")
+        span(v-if='editIndex!==index') {{row.explanation}}
+        Input(v-else, v-model="editData.explanation", placeholder="答案解析", clearable)
+      template(slot-scope="{ row, index }", slot="courseId")
+        span(v-if='editIndex!==index') {{row.courseId}}
+        Input(v-else, v-model="editData.courseId", placeholder="课程", clearable)
+      template(slot-scope="{ row, index }", slot="sectionId")
+        span(v-if='editIndex!==index') {{row.sectionId}}
+        Input(v-else, v-model="editData.sectionId", placeholder="章节", clearable)
+      template(slot-scope="{ row, index }", slot="knowledgeId")
+        span(v-if='editIndex!==index') {{row.knowledgeId}}
+        Input(v-else, v-model="editData.knowledgeId", placeholder="知识点", clearable)
+      template(slot-scope="{ row, index }", slot="difficultRate")
+        span(v-if='editIndex!==index') {{row.difficultRate}}
+        Input(v-else, v-model="editData.difficultRate", placeholder="难度系数", clearable)
+      template(slot-scope="{ row, index }", slot="remark")
+        span(v-if='editIndex!==index') {{row.remark}}
+        Input(v-else, v-model="editData.remark",
+          type="textarea", :autosize="true",
+          placeholder="备注", clearable)
       template(slot-scope="{ row, index }" slot="action")
-        Button(type="primary", size="small", @click="handleInfo(row, index)") 详情
-        Button(type="error", size="small", style="margin-left: 0.8rem", @click="handleDelete(row, index)") 删除
-    Modal(v-model="visible", title="详情", @on-ok="handleOk", fullscreen)
-      div(slot="footer")
-        Button(v-if="!isEdit", type="success", @click="isEdit=!isEdit") 编辑
-        Button(v-else, type="primary", @click="handleOk") 保存
-      table-expand(:row="showData")
-        Row.lesson-table-expand-row
-          Col(span="12")
-            span 题目名称：
-            span(v-if="!isEdit") {{ showData.name }}
-            Input(v-else, v-model="showData.name", placeholder="请输入题目名称", clearable, style="width: auto")
-          Col(span="12")
-            span 题目答案：
-            span(v-if="!isEdit") {{ showData.answer }}
-            Input(v-else, v-model="showData.answer", placeholder="请输入题目答案", clearable, style="width: auto")
-        Row.lesson-table-expand-row
-          Col(span="12")
-            span 答案解析：
-            span(v-if="!isEdit") {{ showData.explanation }}
-            Input(v-else, v-model="showData.explanation", placeholder="请输入答案解析", clearable, style="width: auto")
-          Col(span="12")
-            span 课程：
-            span(v-if="!isEdit") {{ showData.courseId }}
-            Input(v-else, v-model="showData.courseId", placeholder="请输入课程", clearable, style="width: auto")
-        Row.lesson-table-expand-row
-          Col(span="12")
-            span 章节：
-            span(v-if="!isEdit") {{ showData.sectionId }}
-            Input(v-else, v-model="showData.sectionId", placeholder="请输入章节", clearable, style="width: auto")
-          Col(span="12")
-            span 知识点：
-            span(v-if="!isEdit") {{ showData.knowledgeId }}
-            Input(v-else, v-model="showData.knowledgeId", placeholder="请输入知识点", clearable, style="width: auto")
-          Col(span="12")
-            span 难度系数：
-            span(v-if="!isEdit") {{ showData.difficultRate }}
-            Input(v-else, v-model="showData.difficultRate", placeholder="请输入难度系数", clearable, style="width: auto")
+        div(v-if='editIndex !== index')
+          Button(type="primary", size="small", @click="handleEdit(row, index)") 编辑
+          Poptip.lesson-text-left(confirm, title="你确定删除这条数据吗？", @on-ok="handleDelete(row)",
+            ok-text="确定", placement="left-start")
+            Button(type="error", size="small", v-if='editIndex !== index',
+              style="margin-left: 0.8rem") 删除
+        div(v-else)
+          Button(type="success", size="small", @click="handleSave(row, index)") 保存
+          Button(type="primary", size="small", @click="handleCancel(row, index)", style="margin-left: 0.8rem") 取消
+    Page.lesson-text-center.lesson-margin-top(:total="page.totalElements", @on-change="handleChange")
 </template>
 
 <script>
@@ -52,27 +51,37 @@ export default {
   components: {
     TableExpand
   },
+  /**
+     * 数据定义
+     * @returns {{editData: {}, edit: boolean, editIndex: number, columns: *[], tableData: Array, page: {}}}
+     */
   data () {
     return {
-      // modal 是否显示
-      visible: false,
-      // 确定按钮的文字
-      okText: '编辑',
-      // 当前显示的数据
-      showData: {},
-      // 是否正在编辑
-      isEdit: false,
-      // 设置列头
+      editIndex: -1,
+      editData: {},
+      edit: false,
+      tableData: [],
+      page: {},
       columns: [
-        // 多选框
+        {
+          type: 'expand',
+          width: 50,
+          render: (h, params) => {
+            return h(TableExpand, {
+              props: {
+                row: params.row
+              }
+            })
+          }
+        },
         { type: 'selection', width: 50, align: 'center' },
-        { key: 'name', title: '名称' },
-        { key: 'answer', title: '答案' },
-        { key: 'explanation', title: '答案解析' },
-        { key: 'courseId', title: '关联课程' },
-        { key: 'sectionId', title: '关联章节' },
-        { key: 'knowledgeId', title: '关联知识点' },
-        { key: 'difficultRate', title: '难度系数' },
+        { key: 'name', title: '名称', slot: 'name' },
+        { key: 'answer', title: '答案', slot: 'answer' },
+        { key: 'explanation', title: '答案解析', slot: 'explanation' },
+        { key: 'courseId', title: '关联课程', slot: 'courseId' },
+        { key: 'sectionId', title: '关联章节', slot: 'sectionId' },
+        { key: 'knowledgeId', title: '关联知识点', slot: 'knowledgeId' },
+        { key: 'difficultRate', title: '难度系数', slot: 'difficultRate' },
         {
           key: 'action',
           title: 'Action',
@@ -80,86 +89,118 @@ export default {
           align: 'center',
           slot: 'action'
         }
-      ],
-      // 设置数据
-      tableData: []
+      ]
     }
   },
+  /**
+     * 构造函数
+     */
   mounted () {
-    rest.getAll('essays').then(res => {
-      this.tableData = res.data._embedded.essays.map(item => {
-        item._checked = false
-        return item
-      })
-    }).catch(error => {
-      console.log(error)
-      this.$Message.error('获取数据失败')
-    })
+    this.initData(0)
   },
   methods: {
-    // 行内编辑
-    handleInfo (row, index) {
-      this.showData = this.tableData[index]
-      this.showData.index = index
-      this.visible = true
-    },
-    // 添加数据
-    handleAdd () {
-      this.showData = {}
-      this.visible = true
-      this.isEdit = true
-    },
-    // 删除数据
-    handleDelete (row) {
-      rest.deleteByLink(row._links.self.href).then(res => {
-        this.$Message.success('删除成功')
-        this.tableData.splice(this.tableData.indexOf(row), 1)
+    /**
+       * 获取数据
+       * @param page
+       */
+    initData (page) {
+      let _this = this
+      rest.getAll(`essays?page=${page}`).then(res => {
+        _this.tableData = res.data._embedded.essays.map(item => {
+          item._checked = false
+          return item
+        })
+        _this.page = res.data.page
       }).catch(error => {
-        this.$Message.error('删除失败')
         console.log(error)
+        _this.$Message.error('获取数据失败')
       })
     },
-    // 查询数据
-    handleSelect (row, index) {
-      this.tableData[index]._checked = !this.tableData[index]._checked
+    /**
+       * 分页,选择不同页面
+       * @param page
+       */
+    handleChange (page) {
+      this.initData(page - 1)
     },
-    // 保存按钮
-    handleOk () {
+    /**
+       * 弹出添加行
+       */
+    handleAdd () {
+      this.tableData.unshift({})
+      this.editData = {}
+      this.editIndex = 0
+    },
+    /**
+       * 删除
+       * @param row
+       */
+    handleDelete (row) {
       let _this = this
-      console.log(_this.tableData[_this.showData.index])
-      if ('_links' in _this.showData) {
-        // 保存编辑操作
-        rest.putOne('teachers', _this.showData).then(res => {
-          _this.tableData[_this.showData.index] = _this.showData
-          _this.$Message.success('修改成功')
-          _this.visible = false
-          _this.isEdit = false
+      rest.deleteByLink(row._links.self.href).then(res => {
+        _this.tableData.splice(_this.tableData.indexOf(row), 1)
+        _this.$Message.success('删除成功')
+      }).catch(error => {
+        console.log(error)
+        _this.$Message.error('删除失败')
+      })
+    },
+    /**
+       * 变为编辑行
+       * @param row
+       * @param index
+       */
+    handleEdit (row, index) {
+      this.editIndex = index
+      this.editData = { ...row }
+      this.edit = true
+      console.log(this.editIndex)
+    },
+    /**
+       * 保存
+       * @param row
+       * @param index
+       */
+    handleSave (row, index) {
+      let _this = this
+      let now = _this.tableData[index]
+      if (_this.edit) {
+        // 更新保存
+        rest.putOne('essays', _this.editData).then(res => {
+          for (const name in _this.editData) {
+            now[name] = _this.editData[name]
+          }
+          _this.editIndex = -1
+          this.$Message.success('更新成功')
         }).catch(error => {
-          _this.$Message.success('修改失败')
           console.log(error)
+          this.$Message.error('更新失败')
         })
       } else {
-        // 保存增加操作
-        rest.addOne('teachers', _this.showData).then(res => {
-          _this.$Message.success('增加成功')
-          _this.tableData.push(res.date)
-          _this.showData = {}
-          _this.visible = false
-          _this.isEdit = false
+        // 添加保存
+        rest.addOne('essays', _this.tableData[0]).then(res => {
+          _this.tableData[0]._links = res.data._links
+          _this.editIndex = -1
+          this.$Message.success('添加成功')
         }).catch(error => {
-          _this.$Message.success('增加失败')
           console.log(error)
+          this.$Message.error('添加失败')
         })
+      }
+    },
+    /**
+       * 取消
+       * @param row
+       * @param index
+       */
+    handleCancel (row, index) {
+      this.editIndex = -1
+      if (!this.edit) {
+        this.tableData.splice(this.tableData.indexOf(row), 1)
       }
     }
   }
 }
 </script>
 
-<style lang="less" scoped>
-  .lesson-table-expand-row {
-    .ivu-col {
-      height: 32px;
-    }
-  }
-</style>
+<style lang="less" scoped></style>
