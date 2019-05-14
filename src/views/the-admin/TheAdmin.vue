@@ -66,6 +66,11 @@ export default {
               title: '问答题',
               name: 'essay',
               icon: 'ios-chatboxes-outline'
+            },
+            {
+              title: '判断题管理',
+              name: 'judgement',
+              icon: 'md-checkmark-circle'
             }
           ]
         }

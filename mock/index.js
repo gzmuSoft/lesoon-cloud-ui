@@ -39,6 +39,7 @@ app.use('/code', require('./routes/code'))
 app.use('/teachers', require('./routes/data/teachers'))
 app.use('/sysLogs', require('./routes/data/sysLogs'))
 app.use('/courses', require('./routes/data/courses'))
+app.use('/judgements', require('./routes/data/judgements'))
 app.use('/essays', require('./routes/data/essays'))
 
 app.listen(8082, function () {
