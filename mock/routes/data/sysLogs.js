@@ -2,10 +2,11 @@ const express = require('express')
 const router = express.Router()
 
 let sysLogs = []
+let id = 1
 
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 100; i++) {
   sysLogs.push({
-    'name': '123',
+    'name': '日志' + i,
     'spell': '123',
     'sort': 1,
     'createTime': '2019-04-13T23:03:34',
@@ -22,20 +23,29 @@ for (let i = 0; i < 10; i++) {
     'status': '1',
     '_links': {
       'self': {
-        'href': 'http://127.0.0.1:8080/sysLogs/1'
+        'href': 'http://127.0.0.1:8080/sysLogs/' + id
       },
       'sysLog': {
-        'href': 'http://127.0.0.1:8080/sysLogs/1'
+        'href': 'http://127.0.0.1:8080/sysLogs/' + id
       }
     }
   })
+  id++
 }
 
 router.get('/', (req, res) => {
+  let page = req.query.page
+  if (typeof (req.query.page) !== 'undefined') {
+    if (page > 9) page = 9
+    else if (page < 0) page = 0
+  } else {
+    page = 0
+  }
+  let start = 10 * page
   res.status(200)
     .json({
       '_embedded': {
-        'sysLogs': sysLogs
+        'sysLogs': sysLogs.slice(start, start + 10)
       },
       '_links': {
         'first': {
@@ -60,9 +70,9 @@ router.get('/', (req, res) => {
       },
       'page': {
         'size': 10,
-        'totalElements': 33,
-        'totalPages': 2,
-        'number': 0
+        'totalElements': 100,
+        'totalPages': 10,
+        'number': page
       }
     })
 })

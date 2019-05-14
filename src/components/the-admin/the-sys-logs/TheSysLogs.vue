@@ -6,7 +6,7 @@
         Tag(color="blue") {{ row.browser }}
     Modal(v-model="deleteTip", @on-ok='deleteRow', title="确定删除吗？", :loading="loading")
       p 你确定删除这一行吗？
-    Page.lesson-text-center.lesson-margin-top(:total="1000")
+    Page.lesson-text-center.lesson-margin-top(:total="page.totalElements", @on-change="handleChange")
 </template>
 
 <script>
@@ -17,8 +17,8 @@
  * 3. slot-scope —— 最简单 —— browser 列
  * 你可以自由选择学习
  */
+import * as rest from '_api/rest'
 import TableExpand from '_components/common/teble-expand'
-import * as sysLog from '_api/sysLog'
 
 export default {
   name: 'the-sys-logs',
@@ -32,6 +32,7 @@ export default {
       loading: true,
       deleteData: {},
       tableData: [],
+      page: {},
       columns: [
         {
           type: 'expand',
@@ -90,21 +91,23 @@ export default {
     }
   },
   mounted () {
-    this.initData()
+    this.initData(0)
   },
   methods: {
     /**
      * 数据初始化
      */
-    initData () {
-      sysLog.getAll().then(res => {
-        this.tableData = res.data._embedded.sysLogs.map(item => {
+    initData (page) {
+      let _this = this
+      rest.getAll(`sysLogs?page=${page}`).then(res => {
+        _this.tableData = res.data._embedded.sysLogs.map(item => {
           item._checked = false
           return item
         })
+        _this.page = res.data.page
       }).catch(error => {
         console.log(error)
-        this.$Message.error('获取数据失败')
+        _this.$Message.error('获取数据失败')
       })
     },
     /**
@@ -120,6 +123,9 @@ export default {
     },
     handleSelect (row, index) {
       this.tableData[index]._checked = !this.tableData[index]._checked
+    },
+    handleChange (page) {
+      this.initData(page - 1)
     }
   }
 }

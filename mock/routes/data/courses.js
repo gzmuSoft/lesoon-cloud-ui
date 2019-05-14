@@ -32,7 +32,6 @@ for (let i = 0; i < 100; i++) {
 
 router.get('/', (req, res) => {
   let page = req.query.page
-  console.log(page)
   if (typeof (req.query.page) !== 'undefined') {
     if (page > 9) page = 9
     else if (page < 0) page = 0

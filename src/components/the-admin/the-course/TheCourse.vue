@@ -79,7 +79,7 @@ export default {
     }
   },
   methods: {
-    initDate (page) {
+    initData (page) {
       let _this = this
       rest.getAll(`courses?page=${page}`).then(res => {
         _this.tableData = res.data._embedded.courses.map(item => {
@@ -93,7 +93,7 @@ export default {
       })
     },
     handleChange (page) {
-      this.initDate(page - 1)
+      this.initData(page - 1)
     },
     handleEdit (row, index) {
       this.editIndex = index
@@ -147,7 +147,7 @@ export default {
     }
   },
   mounted () {
-    this.initDate(0)
+    this.initData(0)
   }
 }
 </script>
