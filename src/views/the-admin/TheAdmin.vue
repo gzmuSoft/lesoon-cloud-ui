@@ -56,6 +56,18 @@ export default {
               icon: 'ios-briefcase'
             }
           ]
+        },
+        {
+          title: '试卷管理',
+          name: '试卷管理',
+          icon: 'ios-create-outline',
+          children: [
+            {
+              title: '问答题',
+              name: 'essay',
+              icon: 'ios-chatboxes-outline'
+            }
+          ]
         }
       ]
     }
