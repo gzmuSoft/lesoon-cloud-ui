@@ -115,9 +115,14 @@ export default {
           this.$Message.error('更新失败')
         })
       } else {
-        rest.addOne('courses', _this.tableData[0]).then(res => {
-          _this.tableData[0]._links = res.data._links
+        rest.addOne('courses', _this.editData).then(res => {
+          // _this.editData._links = res.data._links
           _this.editIndex = -1
+          // let now = _this.tableData[0]
+          // for (const name in res.data) {
+          //   now[name] = res.data[name]
+          // }
+          _this.initData(0)
           this.$Message.success('添加成功')
         }).catch(error => {
           console.log(error)
@@ -138,6 +143,7 @@ export default {
     handleAdd () {
       this.tableData.unshift({})
       this.editIndex = 0
+      this.editData = {}
     },
     handleCancel (row, index) {
       this.editIndex = -1

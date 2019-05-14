@@ -66,7 +66,8 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  req.body._links = {
+  let body = req.body
+  body._links = {
     'self': {
       'href': 'http://127.0.0.1:8080/courses/' + id
     },
@@ -74,10 +75,11 @@ router.post('/', (req, res) => {
       'href': 'http://127.0.0.1:8080/courses/' + id
     }
   }
-  courses.unshift(req.body)
+  courses.unshift(body)
+  console.log(body)
   id++
   res.status(201)
-    .json(req.body)
+    .json(body)
 })
 
 router.put('/', (req, res) => {
