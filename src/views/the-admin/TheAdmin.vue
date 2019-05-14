@@ -63,9 +63,24 @@ export default {
           icon: 'ios-create-outline',
           children: [
             {
+              title: '试卷管理',
+              name: 'paper',
+              icon: 'logo-buffer'
+            },
+            {
               title: '问答题',
               name: 'essay',
               icon: 'ios-chatboxes-outline'
+            },
+            {
+              title: '组卷规则管理',
+              name: 'examRule',
+              icon: 'ios-browsers-outline'
+            },
+            {
+              title: '判断题管理',
+              name: 'judgement',
+              icon: 'md-checkmark-circle'
             }
           ]
         }
