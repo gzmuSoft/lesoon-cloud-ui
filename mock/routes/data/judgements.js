@@ -3,7 +3,7 @@ const router = express.Router()
 
 let judgements = []
 let id = 1
-
+// 增加99个判断题
 for (let i = 0; i < 99; i++) {
   judgements.push({
     'name': '问题' + i + '：1+1=？',
@@ -32,6 +32,7 @@ for (let i = 0; i < 99; i++) {
   })
   id++
 }
+// 分页
 router.get('/', (req, res) => {
   let page = req.query.page
   if (typeof (req.query.page) !== 'undefined') {
@@ -66,7 +67,7 @@ router.get('/', (req, res) => {
       }
     })
 })
-
+// 提交路径
 router.post('/', (req, res) => {
   console.log(req.body)
   req.body._links = {
@@ -85,9 +86,9 @@ router.post('/', (req, res) => {
 router.put('/', (req, res) => {
   res.sendStatus(200)
 })
-
+//  删除方法
 router.delete('/:id', (req, res) => {
-  console.log('delete course id by ', req.params.id)
+  console.log('delete judgement id by ', req.params.id)
   res.sendStatus(204)
 })
 

@@ -99,7 +99,6 @@ export default {
       rest.getAll(`judgements?page=${page}`).then(res => {
         _this.tableData = res.data._embedded.judgements.map(item => {
           item._checked = false
-          // con
           return item
         })
         _this.page = res.data.page

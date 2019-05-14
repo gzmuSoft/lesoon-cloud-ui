@@ -63,6 +63,11 @@ export default {
           icon: 'ios-create-outline',
           children: [
             {
+              title: '试卷管理',
+              name: 'paper',
+              icon: 'logo-buffer'
+            },
+            {
               title: '问答题',
               name: 'essay',
               icon: 'ios-chatboxes-outline'
