@@ -37,6 +37,11 @@ export default {
               title: '日志管理',
               name: 'sysLogs',
               icon: 'md-color-filter'
+            },
+            {
+              title: '系统基本数据表',
+              name: 'sysDatas',
+              icon: 'ios-albums'
             }
           ]
         },

@@ -6,6 +6,7 @@ const TheJudgement = () => import('_components/the-admin/the-judgement')
 const TheEssay = () => import('_components/the-admin/the-essay')
 const ThePaper = () => import('_components/the-admin/the-paper')
 const TheExamRule = () => import('_components/the-admin/the-exam-rule')
+const TheSysDatas = () => import('_components/the-admin/the-sys-datas')
 
 export default {
   path: '/admin',
@@ -67,6 +68,14 @@ export default {
       component: TheExamRule,
       meta: {
         title: '组卷规则管理'
+      }
+    },
+    {
+      path: '/sysDatas',
+      name: 'sysDatas',
+      component: TheSysDatas,
+      meta: {
+        title: '系统基本数据表'
       }
     }
   ]
