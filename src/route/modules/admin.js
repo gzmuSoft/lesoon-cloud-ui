@@ -4,6 +4,7 @@ const TheTeacher = () => import('_components/the-admin/the-teacher')
 const TheCourse = () => import('_components/the-admin/the-course')
 const TheJudgement = () => import('_components/the-admin/the-judgement')
 const TheEssay = () => import('_components/the-admin/the-essay')
+const TheExam = () => import('_components/the-admin/the-exam')
 const ThePaper = () => import('_components/the-admin/the-paper')
 const TheExamRule = () => import('_components/the-admin/the-exam-rule')
 
@@ -51,6 +52,14 @@ export default {
       component: TheJudgement,
       meta: {
         title: '判断题管理'
+      }
+    },
+    {
+      path: '/exam',
+      name: 'exam',
+      component: TheExam,
+      meta: {
+        title: '考试管理'
       }
     },
     {

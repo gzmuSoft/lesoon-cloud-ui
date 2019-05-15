@@ -3,31 +3,31 @@ const router = express.Router()
 
 let exams = []
 let id = 1
-// 创建十个测试对象
+// 创建100个测试对象
 for (let i = 0; i < 100; i++) {
   exams.push({
-    'name': '测试' + i,
-    'spell': 'exam' + i,
-    'sort': 1,
-    'createTime': '1970-01-10T08:00:00',
+    'name': 'web商用项目实战测试第' + (i + 1) + '次考试',
+    'spell': 'Web  ShangYongXiangMuShiZhanCeShiDi' + (i + 1) + 'CiKaoShi',
+    'sort': (i + 1),
+    'createTime': new Date(),
     'createUser': 'admin',
-    'modifyTime': '1970-01-10T08:00:00',
+    'modifyTime': new Date(),
     'modifyUser': 'admin',
-    'remark': '31',
+    'remark': '测试考试数据',
     'isEnable': true,
-    'startTime': '1970-01-01T08:00:00',
-    'endTime': '1970-01-10T08:00:00',
-    'totalUseTime': 21,
-    'totalScore': 321,
-    'courseId': 231,
-    'classIds': '321',
-    'allowTimes': 213,
+    'startTime': '2019-05-15T08:44:00',
+    'endTime': '2019-06-01T08:00:00',
+    'totalUseTime': 90,
+    'totalScore': 100,
+    'courseId': 1,
+    'classIds': '1;2;3',
+    'allowTimes': 1,
     '_links': {
       'self': {
         'href': 'http://127.0.0.1:8080/exams/' + id
       },
       'exam': {
-        'href': 'http://127.0.0.1:8080/exams/1' + id
+        'href': 'http://127.0.0.1:8080/exams/' + id
       }
     }
   })
