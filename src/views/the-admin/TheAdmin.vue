@@ -81,6 +81,11 @@ export default {
               title: '判断题管理',
               name: 'judgement',
               icon: 'md-checkmark-circle'
+            },
+            {
+              title: '考试管理',
+              name: 'exam',
+              icon: 'ios-list-box-outline'
             }
           ]
         }
