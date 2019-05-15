@@ -148,7 +148,7 @@ export default {
     handleCancel (row, index) {
       this.editIndex = -1
       if (!this.edit) {
-        this.tableData.splice(this.tableData.indexOf(row), 1)
+        this.tableData.splice(index, 1)
       }
     }
   },
