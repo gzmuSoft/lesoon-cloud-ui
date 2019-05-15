@@ -55,5 +55,5 @@ app.use('/sysUsers', require('./routes/data/sysUsers'))
 app.use('/teachers', require('./routes/data/teachers'))
 
 app.listen(8082, function () {
-  console.log('Example app listening on port 8082!')
+  console.log('lesson-cloud-ui mock listening on port 8082!')
 })
