@@ -54,10 +54,10 @@ router.get('/', (req, res) => {
           'templated': true
         },
         'profile': {
-          'href': 'http://127.0.0.1:8080/profile/sysDatas' ,
+          'href': 'http://127.0.0.1:8080/profile/sysDatas'
         },
         'search': {
-          'href': 'http://127.0.0.1:8080/sysDatas/search' ,
+          'href': 'http://127.0.0.1:8080/sysDatas/search'
         }
       },
       'page': {

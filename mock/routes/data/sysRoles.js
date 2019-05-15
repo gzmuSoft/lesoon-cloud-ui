@@ -24,7 +24,7 @@ for (let i = 0; i < 100; i++) {
           'href': 'http://127.0.0.1:8080/sysRoles/' + id
         },
         'sysRole': {
-          'href': 'http://127.0.0.1:8080/sysRoles/' + id
+          'href': 'http://127.0.0.1:8080/sysRoles/' + (++id)
         }
       }
     },
@@ -43,10 +43,10 @@ for (let i = 0; i < 100; i++) {
       'parentId': 0,
       '_links': {
         'self': {
-          'href': 'http://127.0.0.1:8080/sysRoles/' + (++i)
+          'href': 'http://127.0.0.1:8080/sysRoles/' + id
         },
         'sysRole': {
-          'href': 'http://127.0.0.1:8080/sysRoles/' + i
+          'href': 'http://127.0.0.1:8080/sysRoles/' + (++id)
         }
       }
     },
@@ -65,10 +65,10 @@ for (let i = 0; i < 100; i++) {
       'parentId': 0,
       '_links': {
         'self': {
-          'href': 'http://127.0.0.1:8080/sysRoles/' + (++i)
+          'href': 'http://127.0.0.1:8080/sysRoles/' + id
         },
         'sysRole': {
-          'href': 'http://127.0.0.1:8080/sysRoles/' + i
+          'href': 'http://127.0.0.1:8080/sysRoles/' + (++id)
         }
       }
     },
@@ -87,17 +87,16 @@ for (let i = 0; i < 100; i++) {
       'parentId': 0,
       '_links': {
         'self': {
-          'href': 'http://127.0.0.1:8080/sysRoles/' + (++id)
+          'href': 'http://127.0.0.1:8080/sysRoles/' + id
         },
         'sysRole': {
-          'href': 'http://127.0.0.1:8080/sysRoles/' + id
+          'href': 'http://127.0.0.1:8080/sysRoles/' + (++id)
         }
       }
     }
   )
 }
 
-// get 请求，路径必须为复数！！！
 /**
  * @param req 请求
  * @param res 响应
