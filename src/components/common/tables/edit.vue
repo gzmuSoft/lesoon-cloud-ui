@@ -1,14 +1,16 @@
 <template lang='pug'>
-  span(v-if="!isEditting") {{value}}
+  span(v-if="!isEditing") {{value}}
   div(v-else)
-    InputNumber(v-show="editType==='number'" :value="Number(value)", placeholder="基础学分", clearable  @on-change="handleChange")
-    Input(v-show="editType==='string'", :value="String(value)", placeholder="姓名", clearable  @on-change="handleChange")
-    DatePicker(v-show="editType==='date'", type="date", :value="String(value)", placeholder="请输入生日",
-  format="yyyy-MM-dd"  @on-change="handleChange")
-    DatePicker(v-show="editType==='year'", type="year", :value="String(value)", placeholder="请输入生日",
-  format="yyyy"   @on-change="handleChange")
-    DatePicker(v-show="editType==='month'", type="month", :value="String(value)", placeholder="请输入生日",
-  format="yyyy"  @on-change="handleChange")
+    InputNumber(v-show="editType==='number'", :value="Number(value)",
+      placeholder="基础学分", clearable, @on-change="handleChange")
+    Input(v-show="editType==='string'", :value="String(value)", placeholder="姓名",
+      clearable, @on-change="handleChange")
+    DatePicker(v-show="editType==='date'", type="date", :value="String(value)",
+      placeholder="请输入生日", format="yyyy-MM-dd", @on-change="handleChange")
+    DatePicker(v-show="editType==='year'", type="year", :value="String(value)",
+      placeholder="请输入生日", format="yyyy", @on-change="handleChange")
+    DatePicker(v-show="editType==='month'", type="month", :value="String(value)",
+      placeholder="请输入生日", format="yyyy"  @on-change="handleChange")
 </template>
 
 <script>
@@ -16,13 +18,13 @@ export default {
   name: 'TablesEdit',
   props: {
     value: [String, Number],
-    edittingCellId: Number,
+    editingCellId: Number,
     params: Object,
     editType: String
   },
   computed: {
-    isEditting () {
-      return this.edittingCellId === this.params.index && this.editType !== ''
+    isEditing () {
+      return this.editingCellId === this.params.index && this.editType !== ''
     }
   },
   methods: {
