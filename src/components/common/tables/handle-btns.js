@@ -27,8 +27,8 @@ const btns = {
       },
       on: {
         click: () => {
-          if (vm.edittingCellId !== -1) {
-            if (vm.edittingCellId === params.index) {
+          if (vm.editingCellId !== -1) {
+            if (vm.editingCellId === params.index) {
               vm.edittingCellId = -1
               vm.$emit('on-cancel-edit', params)
             } else {
@@ -41,23 +41,23 @@ const btns = {
           }
         }
       }
-    }, vm.edittingCellId === params.index ? '取消' : '修改'),
+    }, vm.editingCellId === params.index ? '取消' : '修改'),
     h('Button', {
       props: {
         type: 'success',
         size: 'small'
       },
       style: {
-        display: vm.edittingCellId === params.index ? '' : 'none'
+        display: vm.editingCellId === params.index ? '' : 'none'
       },
       on: {
         click: () => {
-          for (const name in vm.editting) {
-            vm.value[params.row.initRowIndex][name] = vm.editting[name]
+          for (const name in vm.editing) {
+            vm.value[params.row.initRowIndex][name] = vm.editing[name]
           }
           // 不知道什么用
           // vm.$emit('input', vm.value)
-          vm.$emit('on-save-edit', Object.assign(params, { value: vm.editting }))
+          vm.$emit('on-save-edit', Object.assign(params, { value: vm.editing }))
           vm.edittingCellId = -1
         }
       }

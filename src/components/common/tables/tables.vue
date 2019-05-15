@@ -8,7 +8,16 @@
     slot(name='header', slot='header')
     slot(name='footer', slot='footer')
     slot(name='loading', slot='loading')
-    Table(ref='tablesMain', :data='insideTableData', :columns='insideColumns', :stripe='stripe', :border='border', :show-header='showHeader', :width='width', :height='height', :loading='loading', :disabled-hover='disabledHover', :highlight-row='highlightRow', :row-class-name='rowClassName', :size='size', :no-data-text='noDataText', :no-filtered-data-text='noFilteredDataText', @on-current-change='onCurrentChange', @on-select='onSelect', @on-select-cancel='onSelectCancel', @on-select-all='onSelectAll', @on-selection-change='onSelectionChange', @on-sort-change='onSortChange', @on-filter-change='onFilterChange', @on-row-click='onRowClick', @on-row-dblclick='onRowDblclick', @on-expand='onExpand')
+    Table(ref='tablesMain', :data='insideTableData', :columns='insideColumns',
+      :stripe='stripe', :border='border', :show-header='showHeader', :width='width',
+      :height='height', :loading='loading', :disabled-hover='disabledHover',
+      :highlight-row='highlightRow', :row-class-name='rowClassName', :size='size',
+      :no-data-text='noDataText', :no-filtered-data-text='noFilteredDataText',
+      @on-current-change='onCurrentChange', @on-select='onSelect',
+      @on-select-cancel='onSelectCancel', @on-select-all='onSelectAll',
+      @on-selection-change='onSelectionChange', @on-sort-change='onSortChange',
+      @on-filter-change='onFilterChange', @on-row-click='onRowClick',
+      @on-row-dblclick='onRowDblclick', @on-expand='onExpand')
     .search-con.search-con-top(v-if="searchable && searchPlace === 'bottom'")
       Select.search-col(v-model='searchKey')
         Option(v-for='item in columns', v-if="item.key !== 'handle'", :value='item.key', :key='`search-col-${item.key}`') {{ item.title }}
@@ -114,33 +123,33 @@ export default {
     return {
       insideColumns: [],
       insideTableData: [],
-      edittingCellId: -1,
-      editting: [],
+      editingCellId: -1,
+      editing: [],
       searchValue: '',
       searchKey: ''
     }
   },
   methods: {
-    suportEdit (item, index) {
+    supportEdit (item, index) {
       item.render = (h, params) => {
         return h(TablesEdit, {
           props: {
             params: params,
             value: this.insideTableData[params.index][params.column.key],
-            edittingCellId: this.edittingCellId,
+            editingCellId: this.editingCellId,
             editType: this.editable ? params.column.editType || '' : ''
           },
           on: {
             'input': val => {
-              this.editting[params.column.key] = val
-              console.log(this.editting)
+              this.editing[params.column.key] = val
+              console.log(this.editing)
             }
           }
         })
       }
       return item
     },
-    surportHandle (item) {
+    supportHandle (item) {
       let options = item.options || []
       let insideBtns = []
       options.forEach(item => {
@@ -156,8 +165,8 @@ export default {
     handleColumns (columns) {
       this.insideColumns = columns.map((item, index) => {
         let res = item
-        if (res.editType) res = this.suportEdit(res, index)
-        if (res.key === 'handle') res = this.surportHandle(res)
+        if (res.editType) res = this.supportEdit(res, index)
+        if (res.key === 'handle') res = this.supportHandle(res)
         return res
       })
     },

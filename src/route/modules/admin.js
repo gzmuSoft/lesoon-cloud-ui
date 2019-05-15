@@ -7,6 +7,7 @@ const TheEssay = () => import('_components/the-admin/the-essay')
 const TheExam = () => import('_components/the-admin/the-exam')
 const ThePaper = () => import('_components/the-admin/the-paper')
 const TheExamRule = () => import('_components/the-admin/the-exam-rule')
+const TheSysUser = () => import('_components/the-admin/the-sys-user')
 
 export default {
   path: '/admin',
@@ -20,6 +21,14 @@ export default {
       component: TheSysLogs,
       meta: {
         title: '日志管理'
+      }
+    },
+    {
+      path: '/sysUser',
+      name: 'sysUser',
+      component: TheSysUser,
+      meta: {
+        title: '系统用户'
       }
     },
     {

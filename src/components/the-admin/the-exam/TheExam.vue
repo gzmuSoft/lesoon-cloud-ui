@@ -43,13 +43,13 @@
             span 课程编号：
             span(v-if="!isEdit") {{ showData.courseId }}
             Select(v-else, v-model="showData.courseId" style="width: auto")
-              Option(v-for="option in courseOptions" v-bind:value="option.value") {{ option.text }}
+              Option(v-for="option in courseOptions" :key="option.value" v-bind:value="option.value") {{ option.text }}
         Row.lesson-table-expand-row
           Col(span="12")
             span 班级编号：
               span(v-if="!isEdit") {{ showData.classIds }}
               Select(v-else, v-model="showData.classIds" style="width: auto")
-                Option(v-for="option in classOptions" v-bind:value="option.value") {{ option.text }}
+                Option(v-for="option in classOptions" :key="option.value" v-bind:value="option.value") {{ option.text }}
           Col(span="12")
             span 考试的次数限制（正数，0代表可以无限次考试）：
             span(v-if="!isEdit") {{ showData.allowTimes }}
@@ -86,6 +86,8 @@ export default {
       okText: '编辑',
       // 当前显示的数据
       showData: {},
+      page: {},
+      editIndex: -1,
       // 是否正在编辑
       isEdit: false,
       // 设置列头

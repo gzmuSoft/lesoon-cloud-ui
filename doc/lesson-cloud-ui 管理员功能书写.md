@@ -218,7 +218,7 @@
 ```javascript
 const TheAdmin = () => import('_views/the-admin')
 const TheSysLogs = () => import('_components/the-admin/the-sys-logs')
-const TheTeacher = () => import("_components/the-admin/the-teacher')
+const TheTeacher = () => import('_components/the-admin/the-teacher')
 
 export default {
   path: '/admin',

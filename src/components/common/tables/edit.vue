@@ -1,5 +1,5 @@
 <template lang='pug'>
-  span(v-if="!isEditting") {{value}}
+  span(v-if="!isEditing") {{value}}
   div(v-else)
     InputNumber(v-show="editType==='number'" :value="Number(value)", placeholder="请输入数字", clearable  @on-change="handleChange")
     Input(v-show="editType==='string'", :value="String(value)", placeholder="请输入字符串", clearable  @on-change="handleChange")
@@ -16,13 +16,13 @@ export default {
   name: 'TablesEdit',
   props: {
     value: [String, Number],
-    edittingCellId: Number,
+    editingCellId: Number,
     params: Object,
     editType: String
   },
   computed: {
-    isEditting () {
-      return this.edittingCellId === this.params.index && this.editType !== ''
+    isEditing () {
+      return this.editingCellId === this.params.index && this.editType !== ''
     }
   },
   methods: {
