@@ -30,7 +30,7 @@ export default {
       // 当前聚焦的输入框的行数
       deleteTip: false,
       loading: true,
-      deleteData: {},
+      deleteIndex: {},
       tableData: [],
       page: {},
       columns: [
@@ -80,7 +80,7 @@ export default {
                 on: {
                   click: () => {
                     this.deleteTip = true
-                    this.deleteData = params.row
+                    this.deleteIndex = params.row
                   }
                 }
               }, '删除')
@@ -117,9 +117,9 @@ export default {
       let _this = this
       // 模拟删除等待时间
       setTimeout(() => {
-        _this.tableData.splice(_this.tableData.indexOf(_this.deleteData), 1)
+        _this.tableData.splice(_this.deleteIndex, 1)
         _this.deleteTip = false
-      }, 2000)
+      }, 1000)
     },
     handleSelect (row, index) {
       this.tableData[index]._checked = !this.tableData[index]._checked

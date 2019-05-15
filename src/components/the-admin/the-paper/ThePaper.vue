@@ -158,11 +158,11 @@ export default {
       this.visible = true
       this.isEdit = true
     },
-    handleDelete (row) {
+    handleDelete (row, index) {
       rest.deleteByLink(row._links.self.href).then(res => {
         this.$Message.success('删除成功')
         // 表格中的数据一并删除
-        this.tableData.splice(this.tableData.indexOf(row), 1)
+        this.tableData.splice(index, 1)
       }).catch(error => {
         this.$Message.error('删除失败')
         console.log(error)

@@ -32,7 +32,7 @@
       template(slot-scope="{ row, index }" slot="action")
         div(v-if='editIndex !== index')
           Button(type="primary", size="small", @click="handleEdit(row, index)") 编辑
-          Poptip.lesson-text-left(confirm, title="你确定删除这条数据吗？", @on-ok="handleDelete(row)",
+          Poptip.lesson-text-left(confirm, title="你确定删除这条数据吗？", @on-ok="handleDelete(row, index)",
             ok-text="确定", placement="left-start")
             Button(type="error", size="small", v-if='editIndex !== index',
               style="margin-left: 0.8rem") 删除
@@ -135,10 +135,10 @@ export default {
        * 删除
        * @param row
        */
-    handleDelete (row) {
+    handleDelete (row, index) {
       let _this = this
       rest.deleteByLink(row._links.self.href).then(res => {
-        _this.tableData.splice(_this.tableData.indexOf(row), 1)
+        _this.tableData.splice(index, 1)
         _this.$Message.success('删除成功')
       }).catch(error => {
         console.log(error)
