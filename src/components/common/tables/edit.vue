@@ -1,13 +1,13 @@
 <template lang='pug'>
   span(v-if="!isEditting") {{value}}
   div(v-else)
-    InputNumber(v-show="editType==='number'" :value="Number(value)", placeholder="基础学分", clearable  @on-change="handleChange")
-    Input(v-show="editType==='string'", :value="String(value)", placeholder="姓名", clearable  @on-change="handleChange")
-    DatePicker(v-show="editType==='date'", type="date", :value="String(value)", placeholder="请输入生日",
+    InputNumber(v-show="editType==='number'" :value="Number(value)", placeholder="请输入数字", clearable  @on-change="handleChange")
+    Input(v-show="editType==='string'", :value="String(value)", placeholder="请输入字符串", clearable  @on-change="handleChange")
+    DatePicker(v-show="editType==='date'", type="date", :value="String(value)", placeholder="请输入日期",
   format="yyyy-MM-dd"  @on-change="handleChange")
-    DatePicker(v-show="editType==='year'", type="year", :value="String(value)", placeholder="请输入生日",
+    DatePicker(v-show="editType==='year'", type="year", :value="String(value)", placeholder="请输入年份",
   format="yyyy"   @on-change="handleChange")
-    DatePicker(v-show="editType==='month'", type="month", :value="String(value)", placeholder="请输入生日",
+    DatePicker(v-show="editType==='month'", type="month", :value="String(value)", placeholder="请输入月份",
   format="yyyy"  @on-change="handleChange")
 </template>
 

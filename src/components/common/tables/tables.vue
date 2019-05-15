@@ -4,8 +4,7 @@
       Select.search-col(v-model='searchKey')
         Option(v-for='item in columns', v-if="item.key !== 'handle'", :value='item.key', :key='`search-col-${item.key}`') {{ item.title }}
       Input.search-input(@on-change='handleClear', clearable='', placeholder='输入关键字搜索', v-model='searchValue')
-      Button.search-btn(@click='handleSearch', type='primary')
-        Icon(type='search') 搜索
+      Button.search-btn(@click='handleSearch', type='primary' icon="ios-search") 搜索
     slot(name='header', slot='header')
     slot(name='footer', slot='footer')
     slot(name='loading', slot='loading')
@@ -13,9 +12,8 @@
     .search-con.search-con-top(v-if="searchable && searchPlace === 'bottom'")
       Select.search-col(v-model='searchKey')
         Option(v-for='item in columns', v-if="item.key !== 'handle'", :value='item.key', :key='`search-col-${item.key}`') {{ item.title }}
-      input.search-input(placeholder='输入关键字搜索', v-model='searchValue')
-      Button.search-btn(type='primary')
-        Icon(type='search') 搜索
+      Input.search-input(placeholder='输入关键字搜索', v-model='searchValue')
+      Button.search-btn(@click='handleSearch', type='primary' icon="ios-search") 搜索
     a#hrefToExportTable(style='display: none;width: 0px;height: 0px;')
 
 </template>

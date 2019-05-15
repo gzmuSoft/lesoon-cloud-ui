@@ -15,10 +15,11 @@ export default {
       columns: [
         { title: 'Name', key: 'name', sortable: true },
         { title: 'Email', key: 'email', editType: 'string' },
-        { title: 'Create-Time', key: 'createTime', editType: 'year' },
+        { title: 'Create-Time', key: 'createTime', editType: 'date' },
         {
           title: 'Handle',
           key: 'handle',
+          fixed: 'right',
           options: ['update', 'delete']
         }
       ],
