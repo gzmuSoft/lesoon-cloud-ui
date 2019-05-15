@@ -34,7 +34,7 @@ app.all('/oauth/*', (req, res, next) => {
 })
 
 app.use('/', require('./routes/index'))
-app.use('/oauth', require('./routes/oatuh'))
+app.use('/oauth', require('./routes/oauth'))
 app.use('/code', require('./routes/code'))
 app.use('/courses', require('./routes/data/courses'))
 app.use('/essays', require('./routes/data/essays'))
