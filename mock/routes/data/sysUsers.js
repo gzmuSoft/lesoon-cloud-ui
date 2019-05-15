@@ -8,20 +8,21 @@ for (let i = 0; i < 100; i++) {
   sysUsers.push({
     'name': '管理员' + i,
     'spell': 'admin' + i,
+    'pwd': 'pwd' + i,
     'sort': 1,
     'createTime': '2019-04-21T01:07:50',
     'createUser': 'admin',
     'modifyTime': '2019-05-14T21:33:27',
     'modifyUser': 'admin',
     'remark': null,
-    'isEnable': true,
+    'isEnable': i % 2 === 0 ? '否' : '是',
     'entityId': 7,
-    'entityType': 0,
-    'status': 1,
+    'entityType': i % 5 === 4 ? '学生' : i % 4 === 3 ? '教师' : i % 3 === 2 ? '课程管理员' : i % 2 === 1 ? '教务管理员' : '系统管理员',
+    'status': i % 3 + 1 === 3 ? '禁用' : i % 2 + 1 === 2 ? '锁定一小时' : '正常',
     'icon': '图标：images/guest.jpg',
     'email': 'lizhongyue248@163.com',
     'phone': '13765308262',
-    'onlineStatus': false,
+    'onlineStatus': i % 2 === 0 ? '离线' : '在线',
     '_links': {
       'self': {
         'href': 'http://127.0.0.1:8080/sysUsers/' + id
@@ -60,7 +61,7 @@ router.get('/', (req, res) => {
           'href': 'http://127.0.0.1:8080/profile/sysUsers'
         },
         'search': {
-          'href': 'http://127.0.0.1:8080/sections/sysUsers'
+          'href': 'http://127.0.0.1:8080/sysUsers/search'
         }
       },
       'page': {
@@ -97,4 +98,8 @@ router.delete('/:id', (req, res) => {
   res.sendStatus(204)
 })
 
+// 更新
+router.put('/', (req, res) => {
+  res.sendStatus(200)
+})
 module.exports = router

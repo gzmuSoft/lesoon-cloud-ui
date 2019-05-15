@@ -37,6 +37,11 @@ export default {
               title: '日志管理',
               name: 'sysLogs',
               icon: 'md-color-filter'
+            },
+            {
+              title: '系统用户',
+              name: 'sysUser',
+              icon: 'md-person'
             }
           ]
         },
