@@ -91,6 +91,11 @@ export default {
               title: '考试管理',
               name: 'exam',
               icon: 'ios-list-box-outline'
+            },
+            {
+              title: '考试试卷历史记录',
+              name: 'examHistories',
+              icon: 'ios-list-box-outline'
             }
           ]
         }
@@ -111,29 +116,29 @@ export default {
 </script>
 
 <style lang="less" scoped>
-  #lesson-admin {
-    #lesson-admin-side-header {
-      color: white;
-      .lesson-text-center;
-      .lesson-full-width;
-      font-size: 34px;
-    }
-    #lesson-admin-header {
-      background: #ffffff;
-      padding: 0 56px 0 24px;
+#lesson-admin {
+  #lesson-admin-side-header {
+    color: white;
+    .lesson-text-center;
+    .lesson-full-width;
+    font-size: 34px;
+  }
+  #lesson-admin-header {
+    background: #ffffff;
+    padding: 0 56px 0 24px;
 
-      .lesson-cursor-pointer {
-        transition: transform .3s ease;
+    .lesson-cursor-pointer {
+      transition: transform 0.3s ease;
 
-        &.rotate {
-          transition: transform .3s ease;
-          transform: rotateZ(-90deg);
-        }
+      &.rotate {
+        transition: transform 0.3s ease;
+        transform: rotateZ(-90deg);
       }
     }
-
-    #lesson-admin-content {
-      padding: 10px;
-    }
   }
+
+  #lesson-admin-content {
+    padding: 10px;
+  }
+}
 </style>

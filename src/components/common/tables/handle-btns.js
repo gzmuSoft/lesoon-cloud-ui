@@ -8,7 +8,6 @@ const btns = {
       on: {
         'on-ok': () => {
           vm.$emit('on-delete', params)
-          vm.$emit('input', params.tableData.filter((item, index) => index !== params.row.initRowIndex))
         }
       }
     }, [h('Button', {
@@ -29,14 +28,17 @@ const btns = {
         click: () => {
           if (vm.editingCellId !== -1) {
             if (vm.editingCellId === params.index) {
-              vm.edittingCellId = -1
+              vm.editingCellId = -1
+              if (vm.editing['add']) {
+                vm.insideTableData.shift()
+              }
               vm.$emit('on-cancel-edit', params)
             } else {
-              console.log('请先保存其他行')
+              vm.$Message.error('请保存后再进行编辑')
             }
           } else {
-            vm.edittingCellId = params.index
-            vm.editting = []
+            vm.editingCellId = params.index
+            vm.editing = { ...params.row }
             vm.$emit('on-start-edit', params)
           }
         }
@@ -52,13 +54,22 @@ const btns = {
       },
       on: {
         click: () => {
-          for (const name in vm.editing) {
-            vm.value[params.row.initRowIndex][name] = vm.editing[name]
-          }
+          // 更新后的逻辑发送到最顶层组件处理 不在此处理
+          // // 新增
+          // if (vm.editing['add']) {
+
+          // }
+          // // 更新
+          // else {
+          //   for (const name in vm.editing) {
+          //     vm.value[params.row.initRowIndex][name] = vm.editing[name]
+          //   }
+          // }
+
           // 不知道什么用
           // vm.$emit('input', vm.value)
           vm.$emit('on-save-edit', Object.assign(params, { value: vm.editing }))
-          vm.edittingCellId = -1
+          vm.editingCellId = -1
         }
       }
     }, '保存')])
