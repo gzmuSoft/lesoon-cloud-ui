@@ -39,6 +39,11 @@ export default {
               icon: 'md-color-filter'
             },
             {
+              title: '角色管理',
+              name: 'sysRole',
+              icon: 'ios-man'
+            },
+            {
               title: '系统用户',
               name: 'sysUser',
               icon: 'md-person'
