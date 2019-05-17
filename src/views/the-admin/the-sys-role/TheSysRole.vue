@@ -64,8 +64,6 @@ export default {
         _this.page = res.data.page
       }).finally(() => {
         _this.loadingFlag = false
-      }).catch(error => {
-        console.log(error)
       })
     },
     handleChange (page) {
@@ -75,20 +73,15 @@ export default {
       let _this = this
       let add = editing['add']
       if (add) {
-        // 删除 editing的add标志
         delete editing['add']
         rest.addOne('sysRoles', editing).then(res => {
           _this.initData(0)
-        }).catch(error => {
-          console.log(error)
         })
       } else {
         rest.putOne('sysRoles', editing).then(res => {
           for (const name in editing) {
             row[name] = editing[name]
           }
-        }).catch(error => {
-          console.log(error)
         })
       }
     },
@@ -96,8 +89,6 @@ export default {
       let _this = this
       rest.deleteByLink(row._links.self.href).then(res => {
         _this.tableData.splice(index, 1)
-      }).catch(error => {
-        console.log(error)
       })
     },
     handleCancel (row, index) {

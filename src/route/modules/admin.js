@@ -3,7 +3,7 @@ const TheSysLogs = () => import('_views/the-admin/the-sys-log')
 const TheTeacher = () => import('_components/the-admin/the-teacher')
 const TheCourse = () => import('_views/the-admin/the-course')
 const TheJudgement = () => import('_components/the-admin/the-judgement')
-const TheEssay = () => import('_components/the-admin/the-essay')
+const TheEssay = () => import('_views/the-admin/the-essay')
 const TheExam = () => import('_components/the-admin/the-exam')
 const ThePaper = () => import('_components/the-admin/the-paper')
 const TheExamRule = () => import('_components/the-admin/the-exam-rule')
@@ -18,7 +18,7 @@ export default {
   redirect: 'sysLogs',
   children: [
     {
-      path: '/sysLogs',
+      path: 'sysLogs',
       name: 'sysLogs',
       component: TheSysLogs,
       meta: {
@@ -26,7 +26,7 @@ export default {
       }
     },
     {
-      path: '/sysUser',
+      path: 'sysUser',
       name: 'sysUser',
       component: TheSysUser,
       meta: {
@@ -34,7 +34,7 @@ export default {
       }
     },
     {
-      path: '/teacher',
+      path: 'teacher',
       name: 'teacher',
       component: TheTeacher,
       meta: {
@@ -42,7 +42,7 @@ export default {
       }
     },
     {
-      path: '/course',
+      path: 'course',
       name: 'course',
       component: TheCourse,
       meta: {
@@ -50,7 +50,7 @@ export default {
       }
     },
     {
-      path: '/essay',
+      path: 'essay',
       name: 'essay',
       component: TheEssay,
       meta: {
@@ -58,7 +58,7 @@ export default {
       }
     },
     {
-      path: '/judgement',
+      path: 'judgement',
       name: 'judgement',
       component: TheJudgement,
       meta: {
@@ -66,7 +66,7 @@ export default {
       }
     },
     {
-      path: '/exam',
+      path: 'exam',
       name: 'exam',
       component: TheExam,
       meta: {
@@ -74,7 +74,7 @@ export default {
       }
     },
     {
-      path: '/paper',
+      path: 'paper',
       name: 'paper',
       component: ThePaper,
       meta: {
@@ -82,7 +82,7 @@ export default {
       }
     },
     {
-      path: '/examRule',
+      path: 'examRule',
       name: 'examRule',
       component: TheExamRule,
       meta: {
@@ -90,7 +90,7 @@ export default {
       }
     },
     {
-      path: '/examHistories',
+      path: 'examHistories',
       name: 'examHistories',
       component: TheExamHistories,
       meta: {
@@ -98,7 +98,7 @@ export default {
       }
     },
     {
-      path: '/sysRole',
+      path: 'sysRole',
       name: 'sysRole',
       component: TheSysRole,
       meta: {

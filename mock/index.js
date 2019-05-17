@@ -2,6 +2,9 @@ const express = require('express')
 const app = express()
 const logger = require('morgan')
 const bodyParser = require('body-parser')
+const fs = require('fs')
+const path = require('path')
+const root = path.join(__dirname)
 
 app.use(bodyParser.json())
 app.use(logger('dev'))
@@ -33,9 +36,7 @@ app.all('/oauth/*', (req, res, next) => {
   }
 })
 app.use('/', require('./routes/index'))
-let fs = require('fs')
-let path = require('path')
-let root = path.join(__dirname)
+
 // 递归把routes目录下的所有文件全部引用
 function readDir (path) {
   fs.readdir(path, function (_err, menu) {

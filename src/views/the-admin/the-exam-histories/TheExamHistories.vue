@@ -60,8 +60,6 @@ export default {
           return item
         })
         _this.page = res.data.page
-      }).catch(error => {
-        console.log(error)
       }).finally(() => {
         _this.loadingFlag = false
       })
@@ -73,8 +71,6 @@ export default {
       let _this = this
       rest.deleteByLink(row._links.self.href).then(res => {
         _this.tableData.splice(index, 1)
-      }).catch(error => {
-        console.log(error)
       })
     }
   },

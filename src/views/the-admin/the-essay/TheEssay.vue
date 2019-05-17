@@ -1,5 +1,5 @@
 <template lang="pug">
-  #lesson-course
+  #lesson-essay
     Tables(ref='tables', editable, addable :loading='loadingFlag' v-model='tableData', :columns='columns',
     @on-delete='handleDelete',
     @on-save-edit='handleSave',
@@ -14,8 +14,9 @@
 import * as rest from '_api/rest'
 import TableExpand from '_components/common/table-expand'
 import Tables from '_components/common/tables'
+
 export default {
-  name: 'TheCourse',
+  name: 'TheEssay',
   components: {
     TableExpand,
     Tables
@@ -39,25 +40,31 @@ export default {
         },
         { type: 'selection', width: 50, align: 'center' },
         { key: 'name', title: '名称', editType: 'string' },
-        { key: 'period', title: '基础学时', editType: 'number' },
-        { key: 'credit', title: '基础学分', editType: 'number' },
-        { key: 'type', title: '课程信息', editType: 'string' },
-        { key: 'remark', title: '备注', editType: 'textarea' },
+        { key: 'answer', title: '答案', editType: 'string' },
+        { key: 'explanation', title: '答案解析', editType: 'textarea' },
+        { key: 'courseId', title: '关联课程', editType: 'string' },
+        { key: 'sectionId', title: '关联章节', editType: 'string' },
+        { key: 'knowledgeId', title: '关联知识点', editType: 'string' },
+        { key: 'difficultRate', title: '难度系数', editType: 'number' },
         {
           title: '操作',
           key: 'handle',
           fixed: 'right',
+          width: 180,
           options: ['update', 'delete']
         }
       ]
     }
   },
+  mounted () {
+    this.initData(0)
+  },
   methods: {
     initData (page) {
       let _this = this
       _this.loadingFlag = true
-      rest.getAll(`courses?page=${page}`).then(res => {
-        _this.tableData = res.data._embedded.courses.map(item => {
+      rest.getAll(`essays?page=${page}`).then(res => {
+        _this.tableData = res.data._embedded.essays.map(item => {
           item._checked = false
           return item
         })
@@ -73,37 +80,33 @@ export default {
       let _this = this
       let add = editing['add']
       if (add) {
-        // 删除 editing的add标志
         delete editing['add']
-        rest.addOne('courses', editing).then(res => {
+        rest.addOne('essays', editing).then(res => {
           _this.initData(0)
         })
       } else {
-        rest.putOne('courses', editing).then(res => {
+        rest.putOne('essays', editing).then(res => {
           for (const name in editing) {
             row[name] = editing[name]
           }
         })
       }
     },
-    handleDelete (row, index) {
+    handleDelete (params) {
       let _this = this
-      rest.deleteByLink(row._links.self.href).then(res => {
-        _this.tableData.splice(index, 1)
+      rest.deleteByLink(params.row._links.self.href).then(res => {
+        _this.tableData.splice(params.index, 1)
       })
     },
-    handleCancel (row, index) {
+    handleCancel (params) {
       // 取消编辑的函数
     },
     handleAdd () {
       // 增加按钮的函数
     },
-    handleEdit (row, index) {
+    handleEdit (params) {
       // 开始编辑的函数
     }
-  },
-  mounted () {
-    this.initData(0)
   }
 }
 </script>
