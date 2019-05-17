@@ -9,10 +9,10 @@
   format="yyyy"   @on-change="handleChange")
     DatePicker(v-if="editType==='month'", type="month", :value="String(value||'')", placeholder="请输入月份",
   format="yyyy"  @on-change="handleChange")
-    Select(v-if="editType==='select'",:value="String(value||'')" placeholder="请单选" @on-change="handleChange")
-      Option(v-for="item in params.column.options" :value="item.value" :key="item.value") {{item.label}}
-    Select(v-if="editType==='multiple'", multiple,  :value="value instanceof Array?value:[]" placeholder="请多选" @on-change="handleChange")
-      Option(v-for="item in params.column.options" :value="item.value" :key="item.value") {{item.label}}
+    Select(v-if="editType==='select'", :value="String(value||'')" placeholder="请单选" @on-change="handleChange")
+      Option(v-for="item in params.column.options", :value="item.value", :key="item.value") {{item.label}}
+    Select(v-if="editType==='multiple'", multiple, :value="value instanceof Array?value:[]" placeholder="请多选" @on-change="handleChange")
+      Option(v-for="item in params.column.options", :value="item.value", :key="item.value") {{item.label}}
     Input(v-if="editType==='textarea'", :value="String(value||'')", type="textarea",placeholder="请输入文本", clearable  @on-change="handleChange")
 </template>
 
