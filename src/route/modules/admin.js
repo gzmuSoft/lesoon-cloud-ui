@@ -1,5 +1,5 @@
 const TheAdmin = () => import('_views/the-admin')
-const TheSysLogs = () => import('_components/the-admin/the-sys-logs')
+const TheSysLogs = () => import('_views/the-admin/the-sys-log')
 const TheTeacher = () => import('_components/the-admin/the-teacher')
 const TheCourse = () => import('_views/the-admin/the-course')
 const TheJudgement = () => import('_components/the-admin/the-judgement')
@@ -9,6 +9,7 @@ const ThePaper = () => import('_components/the-admin/the-paper')
 const TheExamRule = () => import('_components/the-admin/the-exam-rule')
 const TheSysUser = () => import('_components/the-admin/the-sys-user')
 const TheExamHistories = () => import('_views/the-admin/the-exam-histories')
+const TheSysRole = () => import('_views/the-admin/the-sys-role')
 
 export default {
   path: '/admin',
@@ -94,6 +95,14 @@ export default {
       component: TheExamHistories,
       meta: {
         title: '组卷规则管理'
+      }
+    },
+    {
+      path: '/sysRole',
+      name: 'sysRole',
+      component: TheSysRole,
+      meta: {
+        title: '系统角色管理'
       }
     }
   ]

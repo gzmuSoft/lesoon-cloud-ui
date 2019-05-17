@@ -24,24 +24,24 @@ import './index.less'
 export default {
   name: 'Tables',
   props: {
+    size: String,
+    width: [Number, String],
+    height: [Number, String],
+    context: Object,
+    noDataText: String,
+    noFilteredDataText: String,
+    disabledHover: Boolean,
     value: {
       type: Array,
-      default () {
-        return []
-      }
+      default: () => []
     },
     columns: {
       type: Array,
-      default () {
-        return []
-      }
+      default: () => []
     },
-    size: String,
-    width: {
-      type: [Number, String]
-    },
-    height: {
-      type: [Number, String]
+    rowClassName: {
+      type: Function,
+      default: () => ''
     },
     stripe: {
       type: Boolean,
@@ -62,24 +62,6 @@ export default {
     highlightRow: {
       type: Boolean,
       default: false
-    },
-    rowClassName: {
-      type: Function,
-      default () {
-        return ''
-      }
-    },
-    context: {
-      type: Object
-    },
-    noDataText: {
-      type: String
-    },
-    noFilteredDataText: {
-      type: String
-    },
-    disabledHover: {
-      type: Boolean
     },
     loading: {
       type: Boolean,

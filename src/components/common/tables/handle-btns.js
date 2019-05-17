@@ -1,7 +1,8 @@
 const btns = {
-  delete: (h, params, vm) => {
-    return h('Poptip', {
+  delete: (h, params, vm) =>
+    h('Poptip', {
       props: {
+        transfer: true,
         confirm: true,
         title: '你确定要删除吗?'
       },
@@ -11,15 +12,16 @@ const btns = {
         }
       }
     }, [h('Button', {
+      'class': 'lesson-tables-btn',
       props: {
         type: 'error',
         size: 'small'
       }
     }, '删除')
-    ])
-  },
-  update: (h, params, vm) => {
-    return h('RadioGroup', [h('Button', {
+    ]),
+  update: (h, params, vm) =>
+    h('RadioGroup', [h('Button', {
+      'class': 'lesson-tables-btn',
       props: {
         type: 'primary',
         size: 'small'
@@ -45,6 +47,7 @@ const btns = {
       }
     }, vm.editingCellId === params.index ? '取消' : '修改'),
     h('Button', {
+      'class': 'lesson-tables-btn',
       props: {
         type: 'success',
         size: 'small'
@@ -73,7 +76,6 @@ const btns = {
         }
       }
     }, '保存')])
-  }
 }
 
 export default btns
