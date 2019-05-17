@@ -28,20 +28,21 @@ const btns = {
       },
       on: {
         click: () => {
+          let row = vm.value[params.index]
           if (vm.editingCellId !== -1) {
             if (vm.editingCellId === params.index) {
               vm.editingCellId = -1
               if (vm.editing['add']) {
                 vm.insideTableData.shift()
               }
-              vm.$emit('on-cancel-edit', params.row, params.index)
+              vm.$emit('on-cancel-edit', row, params.index)
             } else {
               vm.$Message.error('请保存后再进行编辑')
             }
           } else {
             vm.editingCellId = params.index
             vm.editing = { ...params.row }
-            vm.$emit('on-start-edit', params.row, params.index)
+            vm.$emit('on-start-edit', row, params.index)
           }
         }
       }
@@ -71,7 +72,8 @@ const btns = {
 
           // 不知道什么用
           // vm.$emit('input', vm.value)
-          vm.$emit('on-save-edit', params.row, params.index, { ...vm.editing })
+          let row = vm.value[params.index]
+          vm.$emit('on-save-edit', row, params.index, { ...vm.editing })
           vm.editingCellId = -1
         }
       }

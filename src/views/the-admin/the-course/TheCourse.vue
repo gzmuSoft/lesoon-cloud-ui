@@ -70,13 +70,15 @@ export default {
       this.initData(page - 1)
     },
     handleSave (row, index, editing) {
+      console.log(row)
       let _this = this
       let add = editing['add']
       if (add) {
         // 删除 editing的add标志
         delete editing['add']
         rest.addOne('courses', editing).then(res => {
-          _this.initData(0)
+          _this.tableData.unshift(res.data)
+          _this.tableData.pop()
         })
       } else {
         rest.putOne('courses', editing).then(res => {

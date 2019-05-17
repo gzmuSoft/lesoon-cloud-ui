@@ -1,7 +1,7 @@
 <template lang='pug'>
   span(v-if="!isEditing") {{value}}
   div(v-else)
-    InputNumber(v-if="editType==='number'" :value="Number(value||0)", placeholder="请输入数字", clearable  @on-change="handleChange")
+    InputNumber(v-if="editType==='number'" :value="value instanceof Number?Number(value):null", placeholder="请输入数字", clearable  @on-change="handleChange")
     Input(v-if="editType==='string'", :value="String(value||'')", placeholder="请输入字符串", clearable  @on-change="handleChange")
     DatePicker(v-if="editType==='date'", type="date", :value="String(value||'')", placeholder="请输入日期",
   format="yyyy-MM-dd"  @on-change="handleChange")

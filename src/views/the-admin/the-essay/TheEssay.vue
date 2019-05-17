@@ -82,7 +82,8 @@ export default {
       if (add) {
         delete editing['add']
         rest.addOne('essays', editing).then(res => {
-          _this.initData(0)
+          _this.tableData.unshift(res.data)
+          _this.tableData.pop()
         })
       } else {
         rest.putOne('essays', editing).then(res => {
