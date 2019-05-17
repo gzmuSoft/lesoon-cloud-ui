@@ -43,6 +43,7 @@ app.use('/judgements', require('./routes/data/judgements'))
 app.use('/essays', require('./routes/data/essays'))
 app.use('/papers', require('./routes/data/papers'))
 app.use('/examRules', require('./routes/data/examRules'))
+app.use('/sysDatas', require('./routes/data/sysDatas'))
 
 app.listen(8082, function () {
   console.log('Example app listening on port 8082!')
