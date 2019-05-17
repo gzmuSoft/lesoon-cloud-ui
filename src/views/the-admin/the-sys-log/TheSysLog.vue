@@ -75,7 +75,6 @@ export default {
         _this.page = res.data.page
       }).catch(error => {
         console.log(error)
-        _this.$Message.error('获取数据失败')
       }).finally(() => {
         _this.loadingFlag = false
       })
@@ -83,14 +82,12 @@ export default {
     handleChange (page) {
       this.initData(page - 1)
     },
-    handleDelete (params) {
+    handleDelete (row, index) {
       let _this = this
-      rest.deleteByLink(params.row._links.self.href).then(res => {
-        _this.tableData.splice(params.index, 1)
-        _this.$Message.success('删除成功')
+      rest.deleteByLink(row._links.self.href).then(res => {
+        _this.tableData.splice(index, 1)
       }).catch(error => {
         console.log(error)
-        _this.$Message.error('删除失败')
       })
     }
   }
@@ -98,5 +95,4 @@ export default {
 </script>
 
 <style lang="less" scoped>
-
 </style>

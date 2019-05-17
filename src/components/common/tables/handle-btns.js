@@ -8,7 +8,7 @@ const btns = {
       },
       on: {
         'on-ok': () => {
-          vm.$emit('on-delete', params)
+          vm.$emit('on-delete', params.row, params.index)
         }
       }
     }, [h('Button', {
@@ -34,14 +34,14 @@ const btns = {
               if (vm.editing['add']) {
                 vm.insideTableData.shift()
               }
-              vm.$emit('on-cancel-edit', params)
+              vm.$emit('on-cancel-edit', params.row, params.index)
             } else {
               vm.$Message.error('请保存后再进行编辑')
             }
           } else {
             vm.editingCellId = params.index
             vm.editing = { ...params.row }
-            vm.$emit('on-start-edit', params)
+            vm.$emit('on-start-edit', params.row, params.index)
           }
         }
       }
@@ -71,7 +71,7 @@ const btns = {
 
           // 不知道什么用
           // vm.$emit('input', vm.value)
-          vm.$emit('on-save-edit', Object.assign(params, { value: vm.editing }))
+          vm.$emit('on-save-edit', params.row, params.index, { ...vm.editing })
           vm.editingCellId = -1
         }
       }

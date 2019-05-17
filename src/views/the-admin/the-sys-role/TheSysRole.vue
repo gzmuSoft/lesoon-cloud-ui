@@ -66,58 +66,47 @@ export default {
         _this.loadingFlag = false
       }).catch(error => {
         console.log(error)
-        _this.$Message.error('获取数据失败')
       })
     },
     handleChange (page) {
       this.initData(page - 1)
     },
-    handleSave (params) {
+    handleSave (row, index, editing) {
       let _this = this
-      let editing = params['value']
-      let index = params['index']
       let add = editing['add']
-      console.log(params)
-      let now = _this.tableData[index]
       if (add) {
         // 删除 editing的add标志
         delete editing['add']
         rest.addOne('sysRoles', editing).then(res => {
           _this.initData(0)
-          this.$Message.success('添加成功')
         }).catch(error => {
           console.log(error)
-          this.$Message.error('添加失败')
         })
       } else {
         rest.putOne('sysRoles', editing).then(res => {
           for (const name in editing) {
-            now[name] = editing[name]
+            row[name] = editing[name]
           }
-          this.$Message.success('更新成功')
         }).catch(error => {
           console.log(error)
-          this.$Message.error('更新失败')
         })
       }
     },
-    handleDelete (params) {
+    handleDelete (row, index) {
       let _this = this
-      rest.deleteByLink(params.row._links.self.href).then(res => {
-        _this.tableData.splice(params.index, 1)
-        _this.$Message.success('删除成功')
+      rest.deleteByLink(row._links.self.href).then(res => {
+        _this.tableData.splice(index, 1)
       }).catch(error => {
         console.log(error)
-        _this.$Message.error('删除失败')
       })
     },
-    handleCancel (params) {
+    handleCancel (row, index) {
       // 取消编辑的函数
     },
     handleAdd () {
       // 增加按钮的函数
     },
-    handleEdit (params) {
+    handleEdit (row, index) {
       // 开始编辑的函数
     }
   },
