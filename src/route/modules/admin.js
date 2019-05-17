@@ -1,5 +1,6 @@
 const TheAdmin = () => import('_views/the-admin')
-const TheSysLogs = () => import('_views/the-admin/the-sys-log')
+const TheHome = () => import('_views/the-admin/the-home')
+const TheSysLog = () => import('_views/the-admin/the-sys-log')
 const TheTeacher = () => import('_components/the-admin/the-teacher')
 const TheCourse = () => import('_views/the-admin/the-course')
 const TheJudgement = () => import('_components/the-admin/the-judgement')
@@ -15,19 +16,26 @@ export default {
   path: '/admin',
   name: 'admin',
   component: TheAdmin,
-  redirect: 'sysLogs',
   children: [
     {
-      path: 'sysLogs',
-      name: 'sysLogs',
-      component: TheSysLogs,
+      path: '',
+      name: 'admin-home',
+      component: TheHome,
+      meta: {
+        title: '欢迎'
+      }
+    },
+    {
+      path: 'sysLog',
+      name: 'admin-sysLog',
+      component: TheSysLog,
       meta: {
         title: '日志管理'
       }
     },
     {
       path: 'sysUser',
-      name: 'sysUser',
+      name: 'admin-sysUser',
       component: TheSysUser,
       meta: {
         title: '系统用户'
@@ -35,7 +43,7 @@ export default {
     },
     {
       path: 'teacher',
-      name: 'teacher',
+      name: 'admin-teacher',
       component: TheTeacher,
       meta: {
         title: '教师管理'
@@ -43,7 +51,7 @@ export default {
     },
     {
       path: 'course',
-      name: 'course',
+      name: 'admin-course',
       component: TheCourse,
       meta: {
         title: '课程管理'
@@ -51,7 +59,7 @@ export default {
     },
     {
       path: 'essay',
-      name: 'essay',
+      name: 'admin-essay',
       component: TheEssay,
       meta: {
         title: '问答题管理'
@@ -59,7 +67,7 @@ export default {
     },
     {
       path: 'judgement',
-      name: 'judgement',
+      name: 'admin-judgement',
       component: TheJudgement,
       meta: {
         title: '判断题管理'
@@ -67,7 +75,7 @@ export default {
     },
     {
       path: 'exam',
-      name: 'exam',
+      name: 'admin-exam',
       component: TheExam,
       meta: {
         title: '考试管理'
@@ -75,7 +83,7 @@ export default {
     },
     {
       path: 'paper',
-      name: 'paper',
+      name: 'admin-paper',
       component: ThePaper,
       meta: {
         title: '试卷管理'
@@ -83,7 +91,7 @@ export default {
     },
     {
       path: 'examRule',
-      name: 'examRule',
+      name: 'admin-examRule',
       component: TheExamRule,
       meta: {
         title: '组卷规则管理'
@@ -91,7 +99,7 @@ export default {
     },
     {
       path: 'examHistories',
-      name: 'examHistories',
+      name: 'admin-examHistories',
       component: TheExamHistories,
       meta: {
         title: '组卷规则管理'
@@ -99,7 +107,7 @@ export default {
     },
     {
       path: 'sysRole',
-      name: 'sysRole',
+      name: 'admin-sysRole',
       component: TheSysRole,
       meta: {
         title: '系统角色管理'
