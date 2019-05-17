@@ -1,12 +1,16 @@
 const TheAdmin = () => import('_views/the-admin')
 const TheSysLogs = () => import('_components/the-admin/the-sys-logs')
 const TheTeacher = () => import('_components/the-admin/the-teacher')
-const TheCourse = () => import('_components/the-admin/the-course')
+const TheCourse = () => import('_views/the-admin/the-course')
 const TheJudgement = () => import('_components/the-admin/the-judgement')
 const TheEssay = () => import('_components/the-admin/the-essay')
+const TheExam = () => import('_components/the-admin/the-exam')
 const ThePaper = () => import('_components/the-admin/the-paper')
 const TheExamRule = () => import('_components/the-admin/the-exam-rule')
-const TheSysDatas = () => import('_components/the-admin/the-sys-datas')
+const TheSysUser = () => import('_components/the-admin/the-sys-user')
+const TheExamHistories = () => import('_views/the-admin/the-exam-histories')
+const TheSysRole = () => import('_views/the-admin/the-sys-role')
+const TheSysDatas = () => import('_views/the-admin/the-sys-datas')
 
 export default {
   path: '/admin',
@@ -20,6 +24,14 @@ export default {
       component: TheSysLogs,
       meta: {
         title: '日志管理'
+      }
+    },
+    {
+      path: '/sysUser',
+      name: 'sysUser',
+      component: TheSysUser,
+      meta: {
+        title: '系统用户'
       }
     },
     {
@@ -55,6 +67,14 @@ export default {
       }
     },
     {
+      path: '/exam',
+      name: 'exam',
+      component: TheExam,
+      meta: {
+        title: '考试管理'
+      }
+    },
+    {
       path: '/paper',
       name: 'paper',
       component: ThePaper,
@@ -71,11 +91,27 @@ export default {
       }
     },
     {
+      path: '/examHistories',
+      name: 'examHistories',
+      component: TheExamHistories,
+      meta: {
+        title: '组卷规则管理'
+      }
+    },
+    {
+      path: '/sysRole',
+      name: 'sysRole',
+      component: TheSysRole,
+      meta: {
+        title: '系统角色管理'
+      }
+    },
+    {
       path: '/sysDatas',
       name: 'sysDatas',
       component: TheSysDatas,
       meta: {
-        title: '系统基本数据表'
+        title: '系统基础信息表'
       }
     }
   ]

@@ -4,26 +4,26 @@ const router = express.Router()
 let sysDatas = []
 let id = 1
 
+// 创建十个问答题对象
 for (let i = 0; i < 100; i++) {
   sysDatas.push({
-    'id': i,
-    'name': '表' + i,
-    'spell': 'biao' + i,
-    'parent_id': 0,
-    'brief': null,
-    'type': 0,
+    'name': '系统基本数据表1' + i,
+    'spell': 'jiben1' + i,
     'sort': 1,
-    'create_user': null,
-    'create_time': '2019-04-13T23:03:34',
-    'modify_user': null,
-    'modify_time': '2019-04-13T23:18:52',
-    'remark': null,
-    'is_enable': true,
+    'createTime': '2019-05-14T21:12:40',
+    'createUser': 'admin',
+    'modifyTime': '2019-05-14T21:12:40',
+    'modifyUser': 'admin',
+    'remark': '贵州民族大学',
+    'isEnable': true,
+    'parentId': 0,
+    'brief': '贵州民族大学',
+    'type': 0,
     '_links': {
       'self': {
         'href': 'http://127.0.0.1:8080/sysDatas/' + id
       },
-      'sysDatas': {
+      'sysData': {
         'href': 'http://127.0.0.1:8080/sysDatas/' + id
       }
     }
@@ -31,6 +31,9 @@ for (let i = 0; i < 100; i++) {
   id++
 }
 
+/**
+ * get请求
+ */
 router.get('/', (req, res) => {
   let page = req.query.page
   if (typeof (req.query.page) !== 'undefined') {
@@ -46,18 +49,9 @@ router.get('/', (req, res) => {
         'sysDatas': sysDatas.slice(start, start + 10)
       },
       '_links': {
-        'first': {
-          'href': 'http://127.0.0.1:8080/sysDatas?page=0&size=20'
-        },
         'self': {
           'href': 'http://127.0.0.1:8080/sysDatas{?page,size,sort}',
           'templated': true
-        },
-        'next': {
-          'href': 'http://127.0.0.1:8080/sysDatas?page=1&size=20'
-        },
-        'last': {
-          'href': 'http://127.0.0.1:8080/sysDatas?page=1&size=20'
         },
         'profile': {
           'href': 'http://127.0.0.1:8080/profile/sysDatas'
@@ -75,9 +69,36 @@ router.get('/', (req, res) => {
     })
 })
 
+/**
+ * delete请求
+ */
 router.delete('/:id', (req, res) => {
-  console.log('delete sysDatas id by ', req.params.id)
   res.sendStatus(204)
+})
+
+/**
+ * post请求
+ */
+router.post('/', (req, res) => {
+  req.body._links = {
+    'self': {
+      'href': 'http://127.0.0.1:8080/sysDatas/' + id
+    },
+    'sysData': {
+      'href': 'http://127.0.0.1:8080/sysDatas/' + id
+    }
+  }
+  id++
+  sysDatas.unshift(req.body)
+  res.status(201)
+    .json(req.body)
+})
+
+/**
+ * put请求
+ */
+router.put('/', (req, res) => {
+  res.sendStatus(200)
 })
 
 module.exports = router
