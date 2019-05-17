@@ -1,33 +1,33 @@
 const express = require('express')
 const router = express.Router()
 
-let essays = []
+let exams = []
 let id = 1
-
-// 创建十个问答题对象
+// 创建100个测试对象
 for (let i = 0; i < 100; i++) {
-  essays.push({
-    'name': '女票和老妈该救谁' + i,
-    'spell': 'nvpiaohelaomagaijiushei' + i,
-    'sort': 1,
-    'createTime': '2019-05-12T15:19:49',
+  exams.push({
+    'name': 'web商用项目实战测试第' + (i + 1) + '次考试',
+    'spell': 'Web  ShangYongXiangMuShiZhanCeShiDi' + (i + 1) + 'CiKaoShi',
+    'sort': (i + 1),
+    'createTime': new Date(),
     'createUser': 'admin',
-    'modifyTime': '2019-05-12 07:20:46',
+    'modifyTime': new Date(),
     'modifyUser': 'admin',
-    'remark': null,
+    'remark': '测试考试数据',
     'isEnable': true,
-    'answer': '此题无解',
-    'explanation': '此题无解析',
+    'startTime': '2019-05-15T08:44:00',
+    'endTime': '2019-06-01T08:00:00',
+    'totalUseTime': 90,
+    'totalScore': 100,
     'courseId': 1,
-    'sectionId': 1,
-    'knowledgeId': 1,
-    'difficultRate': '1',
+    'classIds': '1;2;3',
+    'allowTimes': 1,
     '_links': {
       'self': {
-        'href': 'http://127.0.0.1:8080/essays/' + id
+        'href': 'http://127.0.0.1:8080/exams/' + id
       },
-      'course': {
-        'href': 'http://127.0.0.1:8080/essays/' + id
+      'exam': {
+        'href': 'http://127.0.0.1:8080/exams/' + id
       }
     }
   })
@@ -35,9 +35,12 @@ for (let i = 0; i < 100; i++) {
 }
 
 /**
- * get请求
+ * get 请求
+ * @param req 请求
+ * @param res 响应
  */
 router.get('/', (req, res) => {
+  // 请求成功
   let page = req.query.page
   if (typeof (req.query.page) !== 'undefined') {
     if (page > 9) page = 9
@@ -49,18 +52,18 @@ router.get('/', (req, res) => {
   res.status(200)
     .json({
       '_embedded': {
-        'essays': essays.slice(start, start + 10)
+        'exams': exams.slice(start, start + 10)
       },
       '_links': {
         'self': {
-          'href': 'http://127.0.0.1:8080/essays{?page,size,sort}',
+          'href': 'http://127.0.0.1:8080/exams{?page,size,sort}',
           'templated': true
         },
         'profile': {
-          'href': 'http://127.0.0.1:8080/profile/essays'
+          'href': 'http://127.0.0.1:8080/profile/exams'
         },
         'search': {
-          'href': 'http://127.0.0.1:8080/essays/search'
+          'href': 'http://127.0.0.1:8080/exams/search'
         }
       },
       'page': {
@@ -86,14 +89,14 @@ router.post('/', (req, res) => {
   let body = req.body
   body._links = {
     'self': {
-      'href': 'http://127.0.0.1:8080/essays/' + id
+      'href': 'http://127.0.0.1:8080/exams/' + id
     },
-    'course': {
-      'href': 'http://127.0.0.1:8080/essays/' + id
+    'exam': {
+      'href': 'http://127.0.0.1:8080/exams/' + id
     }
   }
   id++
-  essays.unshift(body)
+  exams.unshift(body)
   res.status(201)
     .json(body)
 })

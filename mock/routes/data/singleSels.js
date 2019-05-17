@@ -1,42 +1,38 @@
 const express = require('express')
 const router = express.Router()
 
-let essays = []
+let singleSels = []
 let id = 1
 
-// 创建十个问答题对象
 for (let i = 0; i < 100; i++) {
-  essays.push({
-    'name': '女票和老妈该救谁' + i,
-    'spell': 'nvpiaohelaomagaijiushei' + i,
+  singleSels.push({
+    'name': '题目1' + i,
+    'spell': 'timu1' + i,
     'sort': 1,
-    'createTime': '2019-05-12T15:19:49',
-    'createUser': 'admin',
-    'modifyTime': '2019-05-12 07:20:46',
-    'modifyUser': 'admin',
-    'remark': null,
+    'createTime': new Date(),
+    'createUser': '老师1',
+    'modifyTime': new Date(),
+    'modifyUser': '老师1',
+    'remark': '备注',
     'isEnable': true,
-    'answer': '此题无解',
-    'explanation': '此题无解析',
+    'difficultRate': 0.5,
+    'answer': 3,
+    'explanation': null,
     'courseId': 1,
     'sectionId': 1,
     'knowledgeId': 1,
-    'difficultRate': '1',
     '_links': {
       'self': {
-        'href': 'http://127.0.0.1:8080/essays/' + id
+        'href': 'http://127.0.0.1:8080/singleSels/1' + id
       },
-      'course': {
-        'href': 'http://127.0.0.1:8080/essays/' + id
+      'singleSel': {
+        'href': 'http://127.0.0.1:8080/singleSels/1' + id
       }
     }
   })
   id++
 }
 
-/**
- * get请求
- */
 router.get('/', (req, res) => {
   let page = req.query.page
   if (typeof (req.query.page) !== 'undefined') {
@@ -49,20 +45,21 @@ router.get('/', (req, res) => {
   res.status(200)
     .json({
       '_embedded': {
-        'essays': essays.slice(start, start + 10)
+        'singleSels': singleSels.slice(start, start + 10)
       },
       '_links': {
         'self': {
-          'href': 'http://127.0.0.1:8080/essays{?page,size,sort}',
+          'href': 'http://127.0.0.1:8080/singleSels{?page,size,sort}',
           'templated': true
         },
         'profile': {
-          'href': 'http://127.0.0.1:8080/profile/essays'
+          'href': 'http://127.0.0.1:8080/profile/singleSels'
         },
         'search': {
-          'href': 'http://127.0.0.1:8080/essays/search'
+          'href': 'http://127.0.0.1:8080/singleSels/search'
         }
       },
+
       'page': {
         'size': 10,
         'totalElements': 100,
@@ -72,37 +69,30 @@ router.get('/', (req, res) => {
     })
 })
 
-/**
- * delete请求
- */
-router.delete('/:id', (req, res) => {
-  res.sendStatus(204)
-})
-
-/**
- * post请求
- */
 router.post('/', (req, res) => {
   let body = req.body
   body._links = {
     'self': {
-      'href': 'http://127.0.0.1:8080/essays/' + id
+      'href': 'http://127.0.0.1:8080/singleSels/1' + id
     },
-    'course': {
-      'href': 'http://127.0.0.1:8080/essays/' + id
+    'singleSel': {
+      'href': 'http://127.0.0.1:8080/singleSels/1' + id
     }
   }
+  singleSels.unshift(body)
+  console.log(body)
   id++
-  essays.unshift(body)
   res.status(201)
     .json(body)
 })
 
-/**
- * put请求
- */
 router.put('/', (req, res) => {
   res.sendStatus(200)
+})
+
+router.delete('/:id', (req, res) => {
+  console.log('delete singleSels id by ', req.params.id)
+  res.sendStatus(204)
 })
 
 module.exports = router

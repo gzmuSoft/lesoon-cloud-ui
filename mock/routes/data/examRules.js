@@ -4,7 +4,7 @@ const router = express.Router()
 // 模拟的数据
 let examRules = []
 let id = 1
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 100; i++) {
   examRules.push({
     'name': '组卷规则' + i,
     'spell': '拼写' + i,
@@ -39,10 +39,18 @@ for (let i = 0; i < 10; i++) {
  */
 router.get('/', (req, res) => {
   // 请求成功
+  let page = req.query.page
+  if (typeof (req.query.page) !== 'undefined') {
+    if (page > 9) page = 9
+    else if (page < 0) page = 0
+  } else {
+    page = 0
+  }
+  let start = 10 * page
   res.status(200)
     .json({
       '_embedded': {
-        'examRules': examRules
+        'examRules': examRules.slice(start, start + 10)
       },
       '_links': {
         'self': {
@@ -58,17 +66,17 @@ router.get('/', (req, res) => {
       },
       'page': {
         'size': 10,
-        'totalElements': 1,
-        'totalPages': 1,
-        'number': 0
+        'totalElements': 100,
+        'totalPages': 10,
+        'number': page
       }
     })
 })
 
 // 添加
 router.post('/', (req, res) => {
-  console.log(req.body)
-  req.body._links = {
+  let body = req.body
+  body._links = {
     'self': {
       'href': 'http://127.0.0.1:8080/examRules/' + id
     },
@@ -77,8 +85,9 @@ router.post('/', (req, res) => {
     }
   }
   id++
+  examRules.unshift(body)
   res.status(201)
-    .json(req.body)
+    .json(body)
 })
 
 // 更新

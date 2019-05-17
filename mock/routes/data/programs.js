@@ -1,33 +1,32 @@
 const express = require('express')
 const router = express.Router()
 
-let essays = []
+let programs = []
 let id = 1
 
-// 创建十个问答题对象
 for (let i = 0; i < 100; i++) {
-  essays.push({
-    'name': '女票和老妈该救谁' + i,
-    'spell': 'nvpiaohelaomagaijiushei' + i,
+  programs.push({
+    'name': '编程题' + i,
+    'spell': 'bainchengti' + i,
     'sort': 1,
-    'createTime': '2019-05-12T15:19:49',
+    'createTime': '2019-05-14T21:42:13',
     'createUser': 'admin',
-    'modifyTime': '2019-05-12 07:20:46',
+    'modifyTime': '2019-05-14T21:42:13',
     'modifyUser': 'admin',
-    'remark': null,
+    'remark': '20分',
     'isEnable': true,
-    'answer': '此题无解',
-    'explanation': '此题无解析',
+    'difficultRate': 0.1,
+    'answer': '略',
+    'explanation': '这样这样这样。。。',
     'courseId': 1,
     'sectionId': 1,
     'knowledgeId': 1,
-    'difficultRate': '1',
     '_links': {
       'self': {
-        'href': 'http://127.0.0.1:8080/essays/' + id
+        'href': 'http://127.0.0.1:8080/programs/' + id
       },
-      'course': {
-        'href': 'http://127.0.0.1:8080/essays/' + id
+      'program': {
+        'href': 'http://127.0.0.1:8080/programs/' + id
       }
     }
   })
@@ -49,18 +48,18 @@ router.get('/', (req, res) => {
   res.status(200)
     .json({
       '_embedded': {
-        'essays': essays.slice(start, start + 10)
+        'programs': programs.slice(start, start + 10)
       },
       '_links': {
         'self': {
-          'href': 'http://127.0.0.1:8080/essays{?page,size,sort}',
+          'href': 'http://127.0.0.1:8080/programs{?page,size,sort}',
           'templated': true
         },
         'profile': {
-          'href': 'http://127.0.0.1:8080/profile/essays'
+          'href': 'http://127.0.0.1:8080/profile/programs'
         },
         'search': {
-          'href': 'http://127.0.0.1:8080/essays/search'
+          'href': 'http://127.0.0.1:8080/sections/programs'
         }
       },
       'page': {
@@ -73,36 +72,28 @@ router.get('/', (req, res) => {
 })
 
 /**
+ * post请求
+ */
+router.post('/', (req, res) => {
+  req.body._links = {
+    'self': {
+      'href': 'http://127.0.0.1:8080/programs/' + id
+    },
+    'programs': {
+      'href': 'http://127.0.0.1:8080/programs/' + id
+    }
+  }
+  id++
+  programs.unshift(req.body)
+  res.status(201)
+    .json(req.body)
+})
+
+/**
  * delete请求
  */
 router.delete('/:id', (req, res) => {
   res.sendStatus(204)
-})
-
-/**
- * post请求
- */
-router.post('/', (req, res) => {
-  let body = req.body
-  body._links = {
-    'self': {
-      'href': 'http://127.0.0.1:8080/essays/' + id
-    },
-    'course': {
-      'href': 'http://127.0.0.1:8080/essays/' + id
-    }
-  }
-  id++
-  essays.unshift(body)
-  res.status(201)
-    .json(body)
-})
-
-/**
- * put请求
- */
-router.put('/', (req, res) => {
-  res.sendStatus(200)
 })
 
 module.exports = router

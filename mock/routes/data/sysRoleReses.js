@@ -1,49 +1,28 @@
 const express = require('express')
 const router = express.Router()
 
-let teachers = []
+let sysRoleReses = []
 let id = 1
 // 创建十个教师对象
 for (let i = 0; i < 100; i++) {
-  teachers.push({
-    'name': '教师' + i,
-    'spell': 'teacher' + i,
+  sysRoleReses.push({
+    'name': '角色权限关联1' + i,
+    'spell': 'guanlian1' + i,
     'sort': 1,
-    'createTime': '2019-05-12T15:19:49',
+    'createTime': new Date(),
     'createUser': 'admin',
-    'modifyTime': '2019-05-12 07:20:46',
+    'modifyTime': new Date(),
     'modifyUser': 'admin',
-    'remark': null,
+    'remark': 'juese-quanxina',
     'isEnable': true,
-    'userId': 11,
-    'schoolId': 1,
-    'collegeId': 1,
-    'depId': 1,
-    // 男女
-    'gender': i % 2 === 0 ? '男' : '女',
-    'birthday': '2019-05-30',
-    'nation': '苗',
-    'degree': '1',
-    'academic': '1',
-    'graduationDate': '1970-01-22',
-    'major': '软件工程',
-    'graduateInstitution': 's',
-    'majorResearch': '1',
-    'resume': '1',
-    'workDate': '1970-01-29',
-    'profTitle': '1',
-    'profTitleAssDate': '2019-05-30',
-    'isAcademicLeader': 1,
-    'subjectCategory': '12',
-    'idNumber': '1',
-    'phone': '13112341234',
-    'email': '123@123.com',
+    'roleId': 1,
+    'resId': 1,
     '_links': {
       'self': {
-        'href': 'http://127.0.0.1:8080/teachers/' + id
+        'href': 'http://127.0.0.1:8080/sysRoleReses/' + id
       },
-      'teacher': {
-        'href': 'http://127.0.0.1:8080/teachers/' + id
+      'sysRoleRes': {
+        'href': 'http://127.0.0.1:8080/sysRoleReses/' + id
       }
     }
   })
@@ -67,18 +46,18 @@ router.get('/', (req, res) => {
   res.status(200)
     .json({
       '_embedded': {
-        'teachers': teachers.slice(start, start + 10)
+        'sysRoleReses': sysRoleReses.slice(start, start + 10)
       },
       '_links': {
         'self': {
-          'href': 'http://127.0.0.1:8080/teachers{?page,size,sort}',
+          'href': 'http://127.0.0.1:8080/sysRoleReses{?page,size,sort}',
           'templated': true
         },
         'profile': {
-          'href': 'http://127.0.0.1:8080/profile/teachers'
+          'href': 'http://127.0.0.1:8080/profile/sysRoleReses'
         },
         'search': {
-          'href': 'http://127.0.0.1:8080/teachers/search'
+          'href': 'http://127.0.0.1:8080/sysRoleReses/search'
         }
       },
       'page': {
@@ -99,14 +78,14 @@ router.post('/', (req, res) => {
   let body = req.body
   body._links = {
     'self': {
-      'href': 'http://127.0.0.1:8080/courses/' + id
+      'href': 'http://127.0.0.1:8080/sysRoleReses/' + id
     },
-    'course': {
-      'href': 'http://127.0.0.1:8080/courses/' + id
+    'sysRoleRes': {
+      'href': 'http://127.0.0.1:8080/sysRoleReses/' + id
     }
   }
   id++
-  teachers.unshift(body)
+  sysRoleReses.unshift(body)
   res.status(201)
     .json(body)
 })
