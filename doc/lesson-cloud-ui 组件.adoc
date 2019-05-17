@@ -1,0 +1,510 @@
+= lesson-cloud-ui
+EchoCow <https://echocow.cn>
+v1.0, 2019-5-17
+:toc:
+
+这个文档会记录我们现在依旧书写的组件有哪些，以便查询和使用。
+
+== 社交图标
+____
+用于社交图标的生成，待完善事件处理机制。
+____
+* 组件名称：`social-button`
+* 组件路径：`src/components/common/social-button`
+* 引用路径：`_components/common/social-button`
+* 封装用户： https://echocow.cn[EchoCow]
+* Props：
+
+[cols="1,2,1,1", options="header"]
+.Props
+|===
+|属性
+|说明
+|类型
+|默认值
+
+|social
+|社交图标数组,应该拥有三个属性
+
+* `name` 社交图标名称
+* `styles` 社交图标的样式
+* `icon` 社交图标的图标
+
+|Array
+|[]
+|===
+
+== 表格扩展
+____
+用于表格扩展列，显示不可修改的公共字段(spell/create_user/create_time/modify_user/modify_time)
+____
+
+* 组件名称：`table-expand`
+* 组件路径：`src/components/common/table-expand`
+* 引用路径：`_components/common/table-expand`
+* 封装用户： https://echocow.cn[EchoCow]
+* Props：
+
+[cols="1,2,1,1", options="header"]
+.Props
+|===
+|属性
+|说明
+|类型
+|默认值
+
+|row
+|当前行
+|Object
+|{}
+|===
+
+* Slot：
+
+[cols="1,1", options="header"]
+.Slot
+|===
+|名称
+|说明
+
+|匿名插槽(无)
+|需要显示的其他内容
+|===
+
+== 可编辑表格封装
+____
+用于可编辑表格的扩展，对 iview 的 Table 的封装
+____
+* 组件名称：`tables`
+* 组件路径：`src/components/common/tables`
+* 引用路径：`_components/common/tables`
+* 封装用户： https://github.com/RuiFG[RuiFG]
+* 其他说明： 此组件 部分 为 render 函数渲染
+* Props：
+
+[cols="1,2,1,1", options="header"]
+.Props
+|===
+|属性
+|说明
+|类型
+|默认值
+
+|size
+|表格尺寸，可选值为 `large`、`small`、`default` 或者不填
+|String
+|-
+
+|width
+|表格宽度，单位 px
+|Number / String
+|自动
+
+|height
+|表格高度，单位 px，设置后，如果表格内容大于此值，会固定表头
+|Number / String
+|-
+
+|no-data-text
+|数据为空时显示的提示内容
+|String
+|暂无数据
+
+|no-filtered-data-text
+|筛选数据为空时显示的提示内容
+|String
+|暂无筛选结果
+
+|disabled-hover
+|禁用鼠标悬停时的高亮
+|Boolean
+|false
+
+|value
+|修改后的数据，一般不传
+|Array
+|[]
+
+|columns
+|表格列的配置描述，具体项见后文
+|Array
+|[]
+
+|row-class-name
+|行的 className 的回调方法，传入参数：
+
+* row：当前行数据
+* index：当前行的索引
+|Function
+|-
+
+|stripe
+|是否显示间隔斑马纹
+|Boolean
+|false
+
+|border
+|是否显示纵向边框
+|Boolean
+|false
+
+|addable
+|是否显示添加按钮
+|Boolean
+|false
+
+|show-header
+|是否显示表头
+|Boolean
+|true
+
+|highlight-row
+|是否支持高亮选中的行，即单选
+|Boolean
+|false
+
+|loading
+|表格是否加载中
+|Boolean
+|false
+
+|editable
+|表格是否可编辑
+|Boolean
+|false
+|===
+
+* Events: 同 https://www.iviewui.com/components/table#Table_events[iview events]，除了那些以外，自定义如下：
+
+[cols="1,2,1", options="header"]
+.Events
+|===
+|属性
+|说明
+|返回值
+
+|on-delete
+|表格删除事件
+|`row` 当前行, `index` 当前数据下标
+
+|on-save-edit
+|表格保存事件
+|`row` 当前行, `index` 当前数据下标, `editing` 正在编辑的数据
+
+|on-start-edit
+|开始编辑事件
+|`row` 当前行, `index` 当前数据下标
+
+|on-cancel-edit
+|取消编辑事件
+|`row` 当前行, `index` 当前数据下标
+
+|on-add
+|增加按钮事件
+|-
+|===
+
+- column：除 https://www.iviewui.com/components/table#column[ivew column] 以外，自定义如下：
+
+[cols="1,2,1,1", options="header"]
+.column
+|===
+|属性
+|说明
+|类型
+|默认值
+
+|editType
+|可编辑时，提供的编辑组件
+|date/month/year/select/multiple/number/string
+|-
+|===
+
+> 具体使用请参见 src/views/the-error/TheError.vue 例子
+
+- 其余同 iview Table
+
+== 头部导航栏
+___________
+显示最顶上的导航栏
+___________
+
+* 组件名称：`the-header`
+* 组件路径：`src/components/common/the-header`
+* 引用路径：`_components/common/the-header`
+* 封装用户： https://echocow.cn[EchoCow]
+* Slot：
+
+[cols="1,2", options="header"]
+.Slot
+|===
+|名称
+|说明
+
+|logo
+|logo
+
+|left
+|左侧
+
+|right
+|右侧
+|===
+
+== 用户信息栏
+___________
+用户头像以及信息显示
+___________
+* 组件名称：`user-info`
+* 组件路径：`src/components/common/user-info`
+* 引用路径：`_components/common/user-info`
+* 封装用户： https://echocow.cn[EchoCow]
+
+
+== 管理员侧边栏
+___________
+管理员的侧边栏显示
+___________
+* 组件名称：`side-menu`
+* 组件路径：`src/components/the-admin/side-menu`
+* 引用路径：`_components/the-admin/side-menu`
+* 封装用户： https://echocow.cn[EchoCow]
+* 其他说明： 此组件为递归组件调用
+* Props:
+
+[cols="1,2,1,1", options="header"]
+.Props
+|===
+|属性
+|说明
+|类型
+|默认值
+
+|collapsed
+|是否展开
+|Boolean
+|false
+
+|list
+|菜单数据
+|Array
+|[]
+|===
+
+* Slot:
+
+[cols="1,2", options="header"]
+.Slot
+|===
+|名称
+|说明
+
+|top
+|顶部
+
+|bottom
+|底部
+|===
+
+== 主页面组件
+
+=== 课程
+___________
+主页面课程显示
+___________
+* 组件名称：`home-course`
+* 组件路径：`src/components/the-home/home-course`
+* 引用路径：`_components/the-home/home-course`
+* 封装用户： https://echocow.cn[EchoCow]
+* Props:
+
+[cols="1,2,1,1", options="header"]
+.Props
+|===
+|属性
+|说明
+|类型
+|默认值
+
+
+|courses
+|课程数据
+|Array
+|[]
+|===
+
+=== 功能
+___________
+主页面功能显示
+___________
+* 组件名称：`home-feature`
+* 组件路径：`src/components/the-home/home-feature`
+* 引用路径：`_components/the-home/home-feature`
+* 封装用户： https://echocow.cn[EchoCow]
+* Props:
+
+[cols="1,2,1,1", options="header"]
+.Props
+|===
+|属性
+|说明
+|类型
+|默认值
+
+
+|features
+|功能数据
+|Array
+|[]
+
+|gutter
+|间隔
+|Number
+|72
+
+|sm
+|小屏幕显示
+|Number
+|8
+
+|xs
+|中屏幕显示
+|Number
+|20
+
+|padding
+|内边距
+|Number
+|0
+|===
+
+=== 学校
+___________
+主页面学校显示
+___________
+* 组件名称：`home-school`
+* 组件路径：`src/components/the-home/home-feature/index.js`
+* 引用路径：`_components/the-home/home-feature/index.js`
+* 封装用户： https://echocow.cn[EchoCow]
+* Props:
+
+[cols="1,2,1,1", options="header"]
+.Props
+|===
+|属性
+|说明
+|类型
+|默认值
+
+
+|schools
+|学校数据
+|Array
+|[]
+
+|gutter
+|间隔
+|Number
+|72
+
+|sm
+|小屏幕显示
+|Number
+|8
+
+|xs
+|中屏幕显示
+|Number
+|20
+
+|padding
+|内边距
+|Number
+|0
+|===
+
+
+=== 首页小标题
+___________
+首页小标题
+___________
+* 组件名称：`home-title`
+* 组件路径：`src/components/the-home/home-title`
+* 引用路径：`_components/the-home/home-title`
+* 封装用户： https://echocow.cn[EchoCow]
+* Props:
+
+[cols="1,2,1,1", options="header"]
+.Props
+|===
+|属性
+|说明
+|类型
+|默认值
+
+|content
+|标题内容
+|String
+|''
+
+|mainContent
+|小标题内容
+|String
+|''
+
+|lineStyle
+|线条样式
+|Object
+|{}
+
+|contentStyle
+|标题样式
+|Object
+|{}
+
+|mainContentStyle
+|内容样式
+|Object
+|{'color': '#3d9ddd'}
+
+|width
+|标题宽度, 24 栅格布局
+|Number
+|4
+
+|maxWidth
+|最大标题宽度, 24 栅格布局
+|Number
+|16
+
+|smWidth
+|小屏幕标题宽度, 24 栅格布局
+|Number
+|16
+
+|smMaxWidth
+|小屏幕最大标题宽度, 24 栅格布局
+|Number
+|24
+
+|xsWidth
+|中屏幕标题宽度, 24 栅格布局
+|Number
+|10
+
+|xsMaxWidth
+|中屏幕最大标题宽度, 24 栅格布局
+|Number
+|24
+
+|order
+|显示顺序，flex 布局
+|String
+|'center'
+
+|gutter
+|间隙
+|Number
+|0
+|===
+

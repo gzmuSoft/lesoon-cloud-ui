@@ -2,6 +2,9 @@ const express = require('express')
 const app = express()
 const logger = require('morgan')
 const bodyParser = require('body-parser')
+const fs = require('fs')
+const path = require('path')
+const root = path.join(__dirname)
 
 app.use(bodyParser.json())
 app.use(logger('dev'))
@@ -32,19 +35,47 @@ app.all('/oauth/*', (req, res, next) => {
       })
   }
 })
-
 app.use('/', require('./routes/index'))
-app.use('/oauth', require('./routes/oatuh'))
-app.use('/code', require('./routes/code'))
-app.use('/teachers', require('./routes/data/teachers'))
-app.use('/sysLogs', require('./routes/data/sysLogs'))
-app.use('/courses', require('./routes/data/courses'))
-app.use('/judgements', require('./routes/data/judgements'))
-app.use('/essays', require('./routes/data/essays'))
-app.use('/papers', require('./routes/data/papers'))
-app.use('/examRules', require('./routes/data/examRules'))
-app.use('/sysDatas', require('./routes/data/sysDatas'))
 
-app.listen(8082, function () {
-  console.log('Example app listening on port 8082!')
+// 递归把routes目录下的所有文件全部引用
+function readDir (path) {
+  fs.readdir(path, function (_err, menu) {
+    if (!menu) { return }
+    menu.forEach(function (ele) {
+      fs.stat(path + '/' + ele, function (_err, info) {
+        if (info.isDirectory()) {
+          readDir(path + '/' + ele)
+        } else {
+          let p = ele.substring(0, ele.length - 3)
+          app.use('/' + p, require(path + '/' + ele))
+        }
+      })
+    })
+  })
+}
+
+readDir(path.join(root, 'routes'))
+
+// app.use('/oauth', require('./routes/oauth'))
+// app.use('/code', require('./routes/code'))
+// app.use('/courses', require('./routes/data/courses'))
+// app.use('/essays', require('./routes/data/essays'))
+// app.use('/examRules', require('./routes/data/examRules'))
+// app.use('/exams', require('./routes/data/exams'))
+// app.use('/judgements', require('./routes/data/judgements'))
+// app.use('/knowledges', require('./routes/data/knowledges'))
+// app.use('/papers', require('./routes/data/papers'))
+// app.use('/programs', require('./routes/data/programs'))
+// app.use('/sections', require('./routes/data/sections'))
+// app.use('/sysDatas', require('./routes/data/sysDatas'))
+// app.use('/sysLogs', require('./routes/data/sysLogs'))
+// app.use('/sysReses', require('./routes/data/sysReses'))
+// app.use('/sysRoleReses', require('./routes/data/sysRoleReses'))
+// app.use('/sysRoles', require('./routes/data/sysRoles'))
+// app.use('/sysUserRoles', require('./routes/data/sysUserRoles'))
+// app.use('/sysUsers', require('./routes/data/sysUsers'))
+// app.use('/teachers', require('./routes/data/teachers'))
+
+app.listen(8799, function () {
+  console.log('lesson-cloud-ui mock listening on port 8799!')
 })

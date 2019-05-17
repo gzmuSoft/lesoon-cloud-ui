@@ -1,21 +1,21 @@
 <template lang="pug">
-  #lesson-sysRole
-    Tables(ref='tables', editable, addable, :loading='loadingFlag' v-model='tableData', :columns='columns',
+  #lesson-course
+    Tables(ref='tables', editable, addable :loading='loadingFlag' v-model='tableData', :columns='columns',
     @on-delete='handleDelete',
     @on-save-edit='handleSave',
     @on-start-edit='handleEdit',
     @on-cancel-edit='handleCancel',
     @on-add='handleAdd')
     Page.lesson-text-center.lesson-margin-top(:total="page.totalElements", @on-change="handleChange")
+
 </template>
 
 <script>
 import * as rest from '_api/rest'
 import TableExpand from '_components/common/table-expand'
 import Tables from '_components/common/tables'
-
 export default {
-  name: 'TheSysRole',
+  name: 'TheCourse',
   components: {
     TableExpand,
     Tables
@@ -39,14 +39,14 @@ export default {
         },
         { type: 'selection', width: 50, align: 'center' },
         { key: 'name', title: '名称', editType: 'string' },
-        { key: 'spell', title: '全拼', editType: 'string' },
-        { key: 'sort', title: '排序', editType: 'number' },
+        { key: 'period', title: '基础学时', editType: 'number' },
+        { key: 'credit', title: '基础学分', editType: 'number' },
+        { key: 'type', title: '课程信息', editType: 'string' },
         { key: 'remark', title: '备注', editType: 'textarea' },
         {
           title: '操作',
           key: 'handle',
           fixed: 'right',
-          width: 180,
           options: ['update', 'delete']
         }
       ]
@@ -56,8 +56,8 @@ export default {
     initData (page) {
       let _this = this
       _this.loadingFlag = true
-      rest.getAll(`sysRoles?page=${page}`).then(res => {
-        _this.tableData = res.data._embedded.sysRoles.map(item => {
+      rest.getAll(`courses?page=${page}`).then(res => {
+        _this.tableData = res.data._embedded.courses.map(item => {
           item._checked = false
           return item
         })
@@ -70,16 +70,18 @@ export default {
       this.initData(page - 1)
     },
     handleSave (row, index, editing) {
+      console.log(row)
       let _this = this
       let add = editing['add']
       if (add) {
+        // 删除 editing的add标志
         delete editing['add']
-        rest.addOne('sysRoles', editing).then(res => {
+        rest.addOne('courses', editing).then(res => {
           _this.tableData.unshift(res.data)
           _this.tableData.pop()
         })
       } else {
-        rest.putOne('sysRoles', editing).then(res => {
+        rest.putOne('courses', editing).then(res => {
           for (const name in editing) {
             row[name] = editing[name]
           }

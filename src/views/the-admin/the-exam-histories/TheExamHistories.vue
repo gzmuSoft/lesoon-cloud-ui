@@ -1,21 +1,17 @@
 <template lang="pug">
-  #lesson-sysRole
-    Tables(ref='tables', editable, addable, :loading='loadingFlag' v-model='tableData', :columns='columns',
-    @on-delete='handleDelete',
-    @on-save-edit='handleSave',
-    @on-start-edit='handleEdit',
-    @on-cancel-edit='handleCancel',
-    @on-add='handleAdd')
+  #lesson-course
+    Tables(ref='tables', editable, v-model='tableData', :loading='loadingFlag',
+      :columns='columns', @on-delete='handleDelete')
     Page.lesson-text-center.lesson-margin-top(:total="page.totalElements", @on-change="handleChange")
+
 </template>
 
 <script>
 import * as rest from '_api/rest'
 import TableExpand from '_components/common/table-expand'
 import Tables from '_components/common/tables'
-
 export default {
-  name: 'TheSysRole',
+  name: 'TheExamHistories',
   components: {
     TableExpand,
     Tables
@@ -38,16 +34,18 @@ export default {
           }
         },
         { type: 'selection', width: 50, align: 'center' },
-        { key: 'name', title: '名称', editType: 'string' },
-        { key: 'spell', title: '全拼', editType: 'string' },
-        { key: 'sort', title: '排序', editType: 'number' },
-        { key: 'remark', title: '备注', editType: 'textarea' },
+        { key: 'name', title: '名称' },
+        { key: 'examId', title: '考试试卷编号' },
+        { key: 'max_score', 'title': '最高得分' },
+        { key: 'paper_id', title: '得分最高的试卷编号' },
+        { key: 'exam_time', title: '得分最高的考试的开始时间' },
+        { key: 'times', title: '已考次数' },
+        { key: 'remark', title: '备注' },
         {
           title: '操作',
           key: 'handle',
           fixed: 'right',
-          width: 180,
-          options: ['update', 'delete']
+          options: ['delete']
         }
       ]
     }
@@ -56,8 +54,8 @@ export default {
     initData (page) {
       let _this = this
       _this.loadingFlag = true
-      rest.getAll(`sysRoles?page=${page}`).then(res => {
-        _this.tableData = res.data._embedded.sysRoles.map(item => {
+      rest.getAll(`examHistories?page=${page}`).then(res => {
+        _this.tableData = res.data._embedded.examHistories.map(item => {
           item._checked = false
           return item
         })
@@ -69,37 +67,11 @@ export default {
     handleChange (page) {
       this.initData(page - 1)
     },
-    handleSave (row, index, editing) {
-      let _this = this
-      let add = editing['add']
-      if (add) {
-        delete editing['add']
-        rest.addOne('sysRoles', editing).then(res => {
-          _this.tableData.unshift(res.data)
-          _this.tableData.pop()
-        })
-      } else {
-        rest.putOne('sysRoles', editing).then(res => {
-          for (const name in editing) {
-            row[name] = editing[name]
-          }
-        })
-      }
-    },
     handleDelete (row, index) {
       let _this = this
       rest.deleteByLink(row._links.self.href).then(res => {
         _this.tableData.splice(index, 1)
       })
-    },
-    handleCancel (row, index) {
-      // 取消编辑的函数
-    },
-    handleAdd () {
-      // 增加按钮的函数
-    },
-    handleEdit (row, index) {
-      // 开始编辑的函数
     }
   },
   mounted () {

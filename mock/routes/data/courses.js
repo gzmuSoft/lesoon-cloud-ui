@@ -76,7 +76,6 @@ router.post('/', (req, res) => {
     }
   }
   courses.unshift(body)
-  console.log(body)
   id++
   res.status(201)
     .json(body)
