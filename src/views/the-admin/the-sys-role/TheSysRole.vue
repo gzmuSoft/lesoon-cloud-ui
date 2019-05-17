@@ -1,6 +1,6 @@
 <template lang="pug">
   #lesson-sysRole
-    Tables(ref='tables', editable, addable :loading='loadingFlag' v-model='tableData', :columns='columns',
+    Tables(ref='tables', editable, addable, :loading='loadingFlag' v-model='tableData', :columns='columns',
     @on-delete='handleDelete',
     @on-save-edit='handleSave',
     @on-start-edit='handleEdit',
@@ -46,6 +46,7 @@ export default {
           title: '操作',
           key: 'handle',
           fixed: 'right',
+          width: 180,
           options: ['update', 'delete']
         }
       ]

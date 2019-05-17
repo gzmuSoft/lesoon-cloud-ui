@@ -68,8 +68,8 @@ export default {
           ]
         },
         {
-          title: '试卷管理',
-          name: '试卷管理',
+          title: '题库管理',
+          name: '题库管理',
           icon: 'ios-create-outline',
           children: [
             {

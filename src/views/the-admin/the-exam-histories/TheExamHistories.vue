@@ -1,6 +1,7 @@
 <template lang="pug">
   #lesson-course
-    Tables(ref='tables', editable, v-model='tableData', :loading='loadingFlag',:columns='columns', @on-delete='handleDelete')
+    Tables(ref='tables', editable, v-model='tableData', :loading='loadingFlag',
+      :columns='columns', @on-delete='handleDelete')
     Page.lesson-text-center.lesson-margin-top(:total="page.totalElements", @on-change="handleChange")
 
 </template>
@@ -9,7 +10,7 @@
 import * as rest from '_api/rest'
 import TableExpand from '_components/common/table-expand'
 import Tables from '_components/common/tables'
-import { truncate } from 'fs'
+
 export default {
   name: 'TheExamHistories',
   components: {
