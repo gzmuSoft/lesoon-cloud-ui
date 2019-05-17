@@ -1,5 +1,5 @@
 const TheAdmin = () => import('_views/the-admin')
-const TheSysLogs = () => import('_components/the-admin/the-sys-logs')
+const TheSysLogs = () => import('_views/the-admin/the-sys-log')
 const TheTeacher = () => import('_components/the-admin/the-teacher')
 const TheCourse = () => import('_views/the-admin/the-course')
 const TheJudgement = () => import('_components/the-admin/the-judgement')

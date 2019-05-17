@@ -12,7 +12,7 @@ import TableExpand from '_components/common/table-expand'
 import Tables from '_components/common/tables'
 
 export default {
-  name: 'TheExamHistories',
+  name: 'TheSysLog',
   components: {
     TableExpand,
     Tables
@@ -36,27 +36,39 @@ export default {
         },
         { type: 'selection', width: 50, align: 'center' },
         { key: 'name', title: '名称' },
-        { key: 'examId', title: '考试试卷编号' },
-        { key: 'max_score', 'title': '最高得分' },
-        { key: 'paper_id', title: '得分最高的试卷编号' },
-        { key: 'exam_time', title: '得分最高的考试的开始时间' },
-        { key: 'times', title: '已考次数' },
-        { key: 'remark', title: '备注' },
+        { key: 'browser', title: '浏览器' },
+        { key: 'operation', title: '操作' },
+        { key: 'from_url', title: '来源' },
         {
-          title: '操作',
+          key: 'ip',
+          title: 'ip',
+          render: (h, params) => (
+            // reach jsx
+            <div>
+              <i-tag color="red">{params.row.ip}</i-tag>
+            </div>
+          )
+        },
+        { key: 'url', title: '地址' },
+        { key: 'sort', title: '排序', width: '60', align: 'center' },
+        {
+          title: 'Action',
           key: 'handle',
-          fixed: 'right',
+          width: 100,
           options: ['delete']
         }
       ]
     }
   },
+  mounted () {
+    this.initData(0)
+  },
   methods: {
     initData (page) {
       let _this = this
       _this.loadingFlag = true
-      rest.getAll(`examHistories?page=${page}`).then(res => {
-        _this.tableData = res.data._embedded.examHistories.map(item => {
+      rest.getAll(`sysLogs?page=${page}`).then(res => {
+        _this.tableData = res.data._embedded.sysLogs.map(item => {
           item._checked = false
           return item
         })
@@ -81,12 +93,10 @@ export default {
         _this.$Message.error('删除失败')
       })
     }
-  },
-  mounted () {
-    this.initData(0)
   }
 }
 </script>
 
 <style lang="less" scoped>
+
 </style>
