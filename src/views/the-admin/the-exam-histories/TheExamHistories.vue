@@ -9,7 +9,6 @@
 import * as rest from '_api/rest'
 import TableExpand from '_components/common/table-expand'
 import Tables from '_components/common/tables'
-import { truncate } from 'fs'
 export default {
   name: 'TheExamHistories',
   components: {
