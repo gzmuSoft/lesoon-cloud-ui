@@ -39,7 +39,6 @@ export default {
         },
         { type: 'selection', width: 50, align: 'center' },
         { key: 'name', title: '名称', editType: 'string' },
-        { key: 'spell', title: '全拼', editType: 'string' },
         { key: 'sort', title: '排序', editType: 'number' },
         { key: 'remark', title: '备注', editType: 'textarea' },
         {

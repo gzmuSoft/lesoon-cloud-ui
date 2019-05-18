@@ -2,7 +2,6 @@ const TheAdmin = () => import('_views/the-admin')
 const TheHome = () => import('_views/the-admin/the-home')
 const TheSysLog = () => import('_views/the-admin/the-sys-log')
 const TheSysUserRole = () => import('_views/the-admin/the-sys-user-role')
-const TheSysRoleRes = () => import('_views/the-admin/the-sys-role-res')
 const TheTeacher = () => import('_components/the-admin/the-teacher')
 const TheCourse = () => import('_views/the-admin/the-course')
 const TheJudgement = () => import('_components/the-admin/the-judgement')
@@ -15,6 +14,9 @@ const TheSysUser = () => import('_components/the-admin/the-sys-user')
 const TheExamHistories = () => import('_views/the-admin/the-exam-histories')
 const TheSysRole = () => import('_views/the-admin/the-sys-role')
 const TheSysDatas = () => import('_views/the-admin/the-sys-datas')
+const ThePaperDetail = () => import('_views/the-admin/the-paper-detail')
+const TheSelOptions = () => import('_views/the-admin/the-sel-options')
+const TheSysRes = () => import('_views/the-admin/the-sys-res')
 
 export default {
   path: '/admin',
@@ -35,6 +37,14 @@ export default {
       component: TheSysLog,
       meta: {
         title: '日志管理'
+      }
+    },
+    {
+      path: 'sysRes',
+      name: 'admin-sysRes',
+      component: TheSysRes,
+      meta: {
+        title: '权限资源管理'
       }
     },
     {
@@ -127,27 +137,35 @@ export default {
       }
     },
     {
-      path: '/sysRoleRes',
-      name: 'sysRoleRes',
-      component: TheSysRoleRes,
-      meta: {
-        title: '角色权限关联'
-      }
-    },
-    {
-      path: '/sysUserRole',
-      name: 'sysUserRole',
+      path: 'sysUserRole',
+      name: 'admin-sysUserRole',
       component: TheSysUserRole,
       meta: {
         title: '用户角色关联管理'
       }
     },
     {
-      path: '/sysDatas',
-      name: 'sysDatas',
+      path: 'sysDatas',
+      name: 'admin-sysDatas',
       component: TheSysDatas,
       meta: {
         title: '系统基础信息表'
+      }
+    },
+    {
+      path: 'paperDetail',
+      name: 'admin-paperDetail',
+      component: ThePaperDetail,
+      meta: {
+        title: '试卷详情及阅卷信息'
+      }
+    },
+    {
+      path: 'selOptions',
+      name: 'admin-selOptions',
+      component: TheSelOptions,
+      meta: {
+        title: '单/多项选择题/填空题的选项信息表'
       }
     }
   ]
