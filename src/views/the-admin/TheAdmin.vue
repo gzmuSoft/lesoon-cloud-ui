@@ -35,13 +35,28 @@ export default {
           children: [
             {
               title: '日志管理',
-              name: 'sysLogs',
+              name: 'admin-sysLogs',
               icon: 'md-color-filter'
             },
             {
-              title: '角色权限关联',
-              name: 'sysroleres',
-              icon: 'ios-ionitron'
+              title: '角色管理',
+              name: 'admin-sysRole',
+              icon: 'ios-man'
+            },
+            {
+              title: '系统用户',
+              name: 'admin-sysUser',
+              icon: 'md-person'
+            },
+            {
+              title: '系统基础信息表',
+              name: 'sysDatas',
+              icon: 'md-albums'
+            },
+            {
+              title: '用户角色关联管理',
+              name: 'sysUserRole',
+              icon: 'ios-people'
             }
           ]
         },
@@ -52,44 +67,49 @@ export default {
           children: [
             {
               title: '教师管理',
-              name: 'teacher',
+              name: 'admin-teacher',
               icon: 'ios-man'
             },
             {
               title: '课程管理',
-              name: 'course',
+              name: 'admin-course',
               icon: 'ios-briefcase'
             }
           ]
         },
         {
-          title: '试卷管理',
-          name: '试卷管理',
+          title: '题库管理',
+          name: '题库管理',
           icon: 'ios-create-outline',
           children: [
             {
               title: '试卷管理',
-              name: 'paper',
+              name: 'admin-paper',
               icon: 'logo-buffer'
             },
             {
               title: '问答题',
-              name: 'essay',
+              name: 'admin-essay',
               icon: 'ios-chatboxes-outline'
             },
             {
               title: '组卷规则管理',
-              name: 'examRule',
+              name: 'admin-examRule',
               icon: 'ios-browsers-outline'
             },
             {
               title: '判断题管理',
-              name: 'judgement',
+              name: 'admin-judgement',
               icon: 'md-checkmark-circle'
             },
             {
               title: '考试管理',
-              name: 'exam',
+              name: 'admin-exam',
+              icon: 'ios-list-box-outline'
+            },
+            {
+              title: '考试试卷历史记录',
+              name: 'admin-examHistories',
               icon: 'ios-list-box-outline'
             }
           ]
@@ -111,29 +131,29 @@ export default {
 </script>
 
 <style lang="less" scoped>
-  #lesson-admin {
-    #lesson-admin-side-header {
-      color: white;
-      .lesson-text-center;
-      .lesson-full-width;
-      font-size: 34px;
-    }
-    #lesson-admin-header {
-      background: #ffffff;
-      padding: 0 56px 0 24px;
+#lesson-admin {
+  #lesson-admin-side-header {
+    color: white;
+    .lesson-text-center;
+    .lesson-full-width;
+    font-size: 34px;
+  }
+  #lesson-admin-header {
+    background: #ffffff;
+    padding: 0 56px 0 24px;
 
-      .lesson-cursor-pointer {
-        transition: transform .3s ease;
+    .lesson-cursor-pointer {
+      transition: transform 0.2s ease;
 
-        &.rotate {
-          transition: transform .3s ease;
-          transform: rotateZ(-90deg);
-        }
+      &.rotate {
+        transition: transform 0.2s ease;
+        transform: rotateZ(-90deg);
       }
     }
-
-    #lesson-admin-content {
-      padding: 10px;
-    }
   }
+
+  #lesson-admin-content {
+    padding: 10px;
+  }
+}
 </style>

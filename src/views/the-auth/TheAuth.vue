@@ -1,19 +1,5 @@
 <template lang="pug">
   #lesson-auth
-    vue-particles(
-      color="#797981"
-      shapeType="star"
-      :particleOpacity="0.4"
-      :particleSize="4"
-      linesColor="#b0b4b9"
-      :linesWidth="1"
-      :lineLinked="true"
-      :lineOpacity="0.4"
-      :linesDistance="150"
-      :moveSpeed="3"
-      :hoverEffect="true"
-      hoverMode="grab"
-      clickMode="remove")
     the-header
       Menu.lesson-auth-routes(slot="right", mode="horizontal", :active-name="$route.name")
         MenuItem(name="login", :to="{name:'login'}") 登录

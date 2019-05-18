@@ -1,4 +1,5 @@
 import axios from './index'
+import iView from 'iview'
 import { getUrl } from '_utils/util'
 
 /**
@@ -8,9 +9,17 @@ import { getUrl } from '_utils/util'
  * @returns 响应
  */
 export const getAll = (resource) => {
-  return axios.request({
-    url: `/${resource}`,
-    method: 'get'
+  return new Promise((resolve, reject) => {
+    axios.request({
+      url: `/${resource}`,
+      method: 'get'
+    }).then(res => {
+      resolve(res)
+    }).catch(error => {
+      iView.Message.error('数据初始化失败')
+      console.log(error)
+      reject(error)
+    })
   })
 }
 
@@ -21,9 +30,18 @@ export const getAll = (resource) => {
  * @returns 响应
  */
 export const deleteByLink = (link) => {
-  return axios.request({
-    url: getUrl(link),
-    method: 'delete'
+  return new Promise((resolve, reject) => {
+    axios.request({
+      url: getUrl(link),
+      method: 'delete'
+    }).then(res => {
+      iView.Message.success('数据删除成功！')
+      resolve(res)
+    }).catch(error => {
+      iView.Message.error('数据删除失败！')
+      console.log(error)
+      reject(error)
+    })
   })
 }
 
@@ -35,10 +53,19 @@ export const deleteByLink = (link) => {
  * @returns {*} 结果
  */
 export const addOne = (resource, data) => {
-  return axios.request({
-    url: `/${resource}`,
-    method: 'post',
-    data: data
+  return new Promise((resolve, reject) => {
+    axios.request({
+      url: `/${resource}`,
+      method: 'post',
+      data: data
+    }).then(res => {
+      iView.Message.success('数据添加成功！')
+      resolve(res)
+    }).catch(error => {
+      iView.Message.error('数据添加失败！')
+      console.log(error)
+      reject(error)
+    })
   })
 }
 
@@ -50,9 +77,18 @@ export const addOne = (resource, data) => {
  * @returns {*} 请求结果
  */
 export const putOne = (resource, data) => {
-  return axios.request({
-    url: `/${resource}`,
-    method: 'put',
-    data: data
+  return new Promise((resolve, reject) => {
+    axios.request({
+      url: `/${resource}`,
+      method: 'put',
+      data: data
+    }).then(res => {
+      iView.Message.success('数据更新成功！')
+      resolve(res)
+    }).catch(error => {
+      iView.Message.error('数据更新失败！')
+      console.log(error)
+      reject(error)
+    })
   })
 }

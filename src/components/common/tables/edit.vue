@@ -1,23 +1,26 @@
 <template lang='pug'>
   span(v-if="!isEditing") {{value}}
   div(v-else)
-    InputNumber(v-show="editType==='number'", :value="Number(value)",
-      placeholder="基础学分", clearable, @on-change="handleChange")
-    Input(v-show="editType==='string'", :value="String(value)", placeholder="姓名",
-      clearable, @on-change="handleChange")
-    DatePicker(v-show="editType==='date'", type="date", :value="String(value)",
-      placeholder="请输入生日", format="yyyy-MM-dd", @on-change="handleChange")
-    DatePicker(v-show="editType==='year'", type="year", :value="String(value)",
-      placeholder="请输入生日", format="yyyy", @on-change="handleChange")
-    DatePicker(v-show="editType==='month'", type="month", :value="String(value)",
-      placeholder="请输入生日", format="yyyy"  @on-change="handleChange")
+    InputNumber(v-if="editType==='number'" :value="value instanceof Number?Number(value):null", placeholder="请输入数字", clearable  @on-change="handleChange")
+    Input(v-if="editType==='string'", :value="String(value||'')", placeholder="请输入字符串", clearable  @on-change="handleChange")
+    DatePicker(v-if="editType==='date'", type="date", :value="String(value||'')", placeholder="请输入日期",
+  format="yyyy-MM-dd"  @on-change="handleChange")
+    DatePicker(v-if="editType==='year'", type="year", :value="String(value||'')", placeholder="请输入年份",
+  format="yyyy"   @on-change="handleChange")
+    DatePicker(v-if="editType==='month'", type="month", :value="String(value||'')", placeholder="请输入月份",
+  format="yyyy"  @on-change="handleChange")
+    Select(v-if="editType==='select'", :value="String(value||'')" placeholder="请单选" @on-change="handleChange")
+      Option(v-for="item in params.column.options", :value="item.value", :key="item.value") {{item.label}}
+    Select(v-if="editType==='multiple'", multiple, :value="value instanceof Array?value:[]" placeholder="请多选" @on-change="handleChange")
+      Option(v-for="item in params.column.options", :value="item.value", :key="item.value") {{item.label}}
+    Input(v-if="editType==='textarea'", :value="String(value||'')", type="textarea",placeholder="请输入文本", clearable  @on-change="handleChange")
 </template>
 
 <script>
 export default {
   name: 'TablesEdit',
   props: {
-    value: [String, Number],
+    value: [String, Number, Array],
     editingCellId: Number,
     params: Object,
     editType: String
@@ -29,8 +32,11 @@ export default {
   },
   methods: {
     handleChange (val) {
+      console.log(val)
       let v
-      if (this.editType === 'date' || this.editType === 'month' || this.editType === 'year' || this.editType === 'select') {
+      if (this.editType === 'date' || this.editType === 'month' ||
+        this.editType === 'year' || this.editType === 'select' || this.editType === 'multiple' ||
+        this.editType === 'number') {
         v = val
       } else {
         v = val.target.value
@@ -42,30 +48,4 @@ export default {
 </script>
 
 <style lang="less">
-.tables-edit-outer {
-  height: 100%;
-  .tables-edit-con {
-    position: relative;
-    height: 100%;
-    .value-con {
-      vertical-align: middle;
-    }
-    .tables-edit-btn {
-      position: absolute;
-      right: 10px;
-      top: 0;
-      display: none;
-    }
-    &:hover {
-      .tables-edit-btn {
-        display: inline-block;
-      }
-    }
-  }
-  .tables-editting-con {
-    .tables-edit-input {
-      width: ~"calc(100% - 60px)";
-    }
-  }
-}
 </style>

@@ -2,13 +2,13 @@
   #lesson-auth-con
     Content#lesson-auth-content
       Card#lesson-login-main-content
-        #lesson-login-main-title(slot='title') 登陆
+        #lesson-login-main-title(slot='title') 登录
         Form(ref='formUser', :model='formUser', :rules='ruleUser', label-position="top")
           FormItem.lesson-login-main-item(prop='username', label='账号')
             Input(prefix='ios-contact', type='text', placeholder='请输入账号', v-model='formUser.username')
           FormItem.lesson-login-main-item(prop='password', label="密码")
             Input(prefix='ios-lock-outline' :type="isShow?'text':'password'", v-model='formUser.password', placeholder='请输入密码' :icon="isShow?'ios-eye':'ios-eye-off'" @on-click='switcher(this)')
-          Button.lesson-login-main-item(type='success', @click="handleLogin('formUser')", long, :loading="waitLogin") 登陆
+          Button.lesson-login-main-item(type='success', @click="handleLogin('formUser')", long, :loading="waitLogin") 登录
         Button.lesson-login-main-item(type='primary', @click="handleFind", long) 忘记密码
         .lesson-login-social
           social-button(:social="social")
@@ -17,7 +17,7 @@
 
 </template>
 <script>
-import SocialButton from '../common/social-button'
+import SocialButton from '../../../components/common/social-button'
 import TheFind from './the-find'
 import { routeHome } from '_utils/util'
 
@@ -61,7 +61,7 @@ export default {
     switcher () {
       this.isShow = !this.isShow
     },
-    // 登陆的方法
+    // 登录的方法
     handleLogin (formLogin) {
       const _this = this
       console.log(formLogin)
@@ -93,7 +93,8 @@ export default {
 <style lang="less" scoped>
 #lesson-login-main-content {
   text-align: left;
-  padding: 0 16px;
+  padding: 20px 16px;
+  margin-top: 50px;
 }
 #lesson-login-main-title {
   font-weight: bolder;

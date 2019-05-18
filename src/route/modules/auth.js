@@ -1,6 +1,6 @@
 const TheAuth = () => import('_views/the-auth')
-const TheLogin = () => import('_components/the-login')
-const TheRegister = () => import('_components/the-register')
+const TheLogin = () => import('_views/the-auth/the-login')
+const TheRegister = () => import('_views/the-auth/the-register')
 export default {
   path: '/auth',
   name: 'auth',

@@ -1,29 +1,28 @@
 const express = require('express')
 const router = express.Router()
 
-let courses = []
+let selOptionses = []
 let id = 1
 
 for (let i = 0; i < 100; i++) {
-  courses.push({
-    'name': '课程' + i,
-    'spell': 'kecheng' + i,
+  selOptionses.push({
+    'name': '选项值1' + i,
+    'spell': 'zhi1' + i,
     'sort': 1,
-    'createTime': '2019-05-13T14:32:53',
-    'createUser': 'admin',
-    'modifyTime': '2019-05-13 06:32:57',
-    'modifyUser': 'admin',
-    'remark': null,
+    'createTime': new Date(),
+    'createUser': '老师1',
+    'modifyTime': new Date(),
+    'modifyUser': '老师1',
+    'remark': '备注',
     'isEnable': true,
-    'period': 123,
-    'credit': 321,
-    'type': '1',
+    'questionId': 10,
+    'type': 3,
     '_links': {
       'self': {
-        'href': 'http://127.0.0.1:8080/courses/' + id
+        'href': 'http://127.0.0.1:8080/selOptionses/1' + id
       },
-      'course': {
-        'href': 'http://127.0.0.1:8080/courses/' + id
+      'selOptions': {
+        'href': 'http://127.0.0.1:8080/selOptionses/1' + id
       }
     }
   })
@@ -42,18 +41,18 @@ router.get('/', (req, res) => {
   res.status(200)
     .json({
       '_embedded': {
-        'courses': courses.slice(start, start + 10)
+        'selOptionses': selOptionses.slice(start, start + 10)
       },
       '_links': {
         'self': {
-          'href': 'http://127.0.0.1:8080/courses{?page,size,sort}',
+          'href': 'http://127.0.0.1:8080/selOptionses{?page,size,sort}',
           'templated': true
         },
         'profile': {
-          'href': 'http://127.0.0.1:8080/profile/courses'
+          'href': 'http://127.0.0.1:8080/profile/selOptionses'
         },
         'search': {
-          'href': 'http://127.0.0.1:8080/courses/search'
+          'href': 'http://127.0.0.1:8080/selOptionses/search'
         }
       },
       'page': {
@@ -69,13 +68,14 @@ router.post('/', (req, res) => {
   let body = req.body
   body._links = {
     'self': {
-      'href': 'http://127.0.0.1:8080/courses/' + id
+      'href': 'http://127.0.0.1:8080/selOptionses/1' + id
     },
-    'course': {
-      'href': 'http://127.0.0.1:8080/courses/' + id
+    'selOptions': {
+      'href': 'http://127.0.0.1:8080/selOptionses/1' + id
     }
   }
-  courses.unshift(body)
+  selOptionses.unshift(body)
+  console.log(body)
   id++
   res.status(201)
     .json(body)
@@ -86,7 +86,7 @@ router.put('/', (req, res) => {
 })
 
 router.delete('/:id', (req, res) => {
-  console.log('delete course id by ', req.params.id)
+  console.log('delete selOptionses id by ', req.params.id)
   res.sendStatus(204)
 })
 

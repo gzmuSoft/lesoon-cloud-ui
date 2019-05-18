@@ -1,39 +1,38 @@
 const express = require('express')
 const router = express.Router()
 
-let sysUserRoles = []
+let examHistories = []
 let id = 1
-// 创建十个教师对象
+
 for (let i = 0; i < 100; i++) {
-  sysUserRoles.push({
-    'name': '管理员权限赋予管理员' + i,
-    'spell': 'admin' + i,
+  examHistories.push({
+    'name': '考试试卷历史记录1' + i,
+    'spell': 'exam_history' + i,
     'sort': 2,
     'createTime': new Date(),
-    'createUser': 'admin',
+    'createUser': '监考1',
     'modifyTime': new Date(),
-    'modifyUser': 'admin',
-    'remark': null,
+    'modifyUser': '老师1',
+    'remark': '备注',
     'isEnable': true,
-    'userId': 1,
-    'roleId': 1,
+    'examId': 2017,
+    'studentId': 2017420,
+    'maxScore': 99,
+    'paperId': 7,
+    'examTime': new Date(),
+    'times': 2,
     '_links': {
       'self': {
-        'href': 'http://127.0.0.1:8080/sysUserRoles/' + id
+        'href': 'http://127.0.0.1:8080/examHistories/1' + id
       },
-      'sysUserRole': {
-        'href': 'http://127.0.0.1:8080/sysUserRoles/' + id
+      'examHistory': {
+        'href': 'http://127.0.0.1:8080/examHistories/1' + id
       }
     }
   })
   id++
 }
 
-// get 请求，路径必须为复数！！！
-/**
- * @param req 请求
- * @param res 响应
- */
 router.get('/', (req, res) => {
   let page = req.query.page
   if (typeof (req.query.page) !== 'undefined') {
@@ -46,20 +45,21 @@ router.get('/', (req, res) => {
   res.status(200)
     .json({
       '_embedded': {
-        'sysUserRoles': sysUserRoles.slice(start, start + 10)
+        'examHistories': examHistories.slice(start, start + 10)
       },
       '_links': {
         'self': {
-          'href': 'http://127.0.0.1:8080/sysUserRoles{?page,size,sort}',
+          'href': 'http://127.0.0.1:8080/examHistories{?page,size,sort}',
           'templated': true
         },
         'profile': {
-          'href': 'http://127.0.0.1:8080/profile/sysUserRoles'
+          'href': 'http://127.0.0.1:8080/profile/examHistories'
         },
         'search': {
-          'href': 'http://127.0.0.1:8080/sysUserRoles/search'
+          'href': 'http://127.0.0.1:8080/examHistories/search'
         }
       },
+
       'page': {
         'size': 10,
         'totalElements': 100,
@@ -69,29 +69,30 @@ router.get('/', (req, res) => {
     })
 })
 
-router.delete('/:id', (req, res) => {
-  console.log('delete rest id by ', req.params.id)
-  res.sendStatus(204)
-})
-
 router.post('/', (req, res) => {
   let body = req.body
   body._links = {
     'self': {
-      'href': 'http://127.0.0.1:8080/sysUserRoles/' + id
+      'href': 'http://127.0.0.1:8080/examHistories/1' + id
     },
-    'sysUserRole': {
-      'href': 'http://127.0.0.1:8080/sysUserRoles/' + id
+    'examHistory': {
+      'href': 'http://127.0.0.1:8080/examHistories/1' + id
     }
   }
+  examHistories.unshift(body)
+  console.log(body)
   id++
-  sysUserRoles.unshift(body)
   res.status(201)
     .json(body)
 })
 
 router.put('/', (req, res) => {
   res.sendStatus(200)
+})
+
+router.delete('/:id', (req, res) => {
+  console.log('delete examHistories id by ', req.params.id)
+  res.sendStatus(204)
 })
 
 module.exports = router

@@ -1,11 +1,6 @@
 <template lang='pug'>
   div
-    .search-con.search-con-top(v-if="searchable && searchPlace === 'top'")
-      Select.search-col(v-model='searchKey')
-        Option(v-for='item in columns', v-if="item.key !== 'handle'", :value='item.key', :key='`search-col-${item.key}`') {{ item.title }}
-      Input.search-input(@on-change='handleClear', clearable='', placeholder='输入关键字搜索', v-model='searchValue')
-      Button.search-btn(@click='handleSearch', type='primary')
-        Icon(type='search') 搜索
+    Button.lesson-table-add(v-if="addable" size="large", icon="md-add", shape="circle", type="success", @click="handleAdd")
     slot(name='header', slot='header')
     slot(name='footer', slot='footer')
     slot(name='loading', slot='loading')
@@ -19,13 +14,6 @@
       @on-selection-change='onSelectionChange', @on-sort-change='onSortChange',
       @on-filter-change='onFilterChange', @on-row-click='onRowClick',
       @on-row-dblclick='onRowDblclick', @on-expand='onExpand')
-    .search-con.search-con-top(v-if="searchable && searchPlace === 'bottom'")
-      Select.search-col(v-model='searchKey')
-        Option(v-for='item in columns', v-if="item.key !== 'handle'", :value='item.key', :key='`search-col-${item.key}`') {{ item.title }}
-      input.search-input(placeholder='输入关键字搜索', v-model='searchValue')
-      Button.search-btn(type='primary')
-        Icon(type='search') 搜索
-    a#hrefToExportTable(style='display: none;width: 0px;height: 0px;')
 
 </template>
 
@@ -36,30 +24,34 @@ import './index.less'
 export default {
   name: 'Tables',
   props: {
+    size: String,
+    width: [Number, String],
+    height: [Number, String],
+    context: Object,
+    noDataText: String,
+    noFilteredDataText: String,
+    disabledHover: Boolean,
     value: {
       type: Array,
-      default () {
-        return []
-      }
+      default: () => []
     },
     columns: {
       type: Array,
-      default () {
-        return []
-      }
+      default: () => []
     },
-    size: String,
-    width: {
-      type: [Number, String]
-    },
-    height: {
-      type: [Number, String]
+    rowClassName: {
+      type: Function,
+      default: () => ''
     },
     stripe: {
       type: Boolean,
       default: false
     },
     border: {
+      type: Boolean,
+      default: false
+    },
+    addable: {
       type: Boolean,
       default: false
     },
@@ -71,24 +63,6 @@ export default {
       type: Boolean,
       default: false
     },
-    rowClassName: {
-      type: Function,
-      default () {
-        return ''
-      }
-    },
-    context: {
-      type: Object
-    },
-    noDataText: {
-      type: String
-    },
-    noFilteredDataText: {
-      type: String
-    },
-    disabledHover: {
-      type: Boolean
-    },
     loading: {
       type: Boolean,
       default: false
@@ -99,20 +73,6 @@ export default {
     editable: {
       type: Boolean,
       default: false
-    },
-    /**
-     * @description 是否可搜索
-     */
-    searchable: {
-      type: Boolean,
-      default: false
-    },
-    /**
-     * @description 搜索控件所在位置，'top' / 'bottom'
-     */
-    searchPlace: {
-      type: String,
-      default: 'top'
     }
   },
   /**
@@ -126,9 +86,7 @@ export default {
       insideColumns: [],
       insideTableData: [],
       editingCellId: -1,
-      editing: [],
-      searchValue: '',
-      searchKey: ''
+      editing: []
     }
   },
   methods: {
@@ -144,7 +102,6 @@ export default {
           on: {
             'input': val => {
               this.editing[params.column.key] = val
-              console.log(this.editing)
             }
           }
         })
@@ -172,14 +129,16 @@ export default {
         return res
       })
     },
-    setDefaultSearchKey () {
-      this.searchKey = this.columns[0].key !== 'handle' ? this.columns[0].key : (this.columns.length > 1 ? this.columns[1].key : '')
-    },
-    handleClear (e) {
-      if (e.target.value === '') this.insideTableData = this.value
-    },
-    handleSearch () {
-      this.insideTableData = this.value.filter(item => item[this.searchKey].indexOf(this.searchValue) > -1)
+    handleAdd () {
+      if (this.editingCellId === -1) {
+        this.editing = []
+        this.insideTableData.unshift({})
+        this.editingCellId = 0
+        this.editing['add'] = true
+        this.$emit('on-add')
+      } else {
+        this.$Message.error('请保存后再进行编辑')
+      }
     },
     handleTableData () {
       this.insideTableData = this.value.map((item, index) => {
@@ -228,16 +187,13 @@ export default {
   watch: {
     columns (columns) {
       this.handleColumns(columns)
-      this.setDefaultSearchKey()
     },
     value (val) {
       this.handleTableData()
-      if (this.searchable) this.handleSearch()
     }
   },
   mounted () {
     this.handleColumns(this.columns)
-    this.setDefaultSearchKey()
     this.handleTableData()
   }
 }

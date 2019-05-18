@@ -1,12 +1,12 @@
 const express = require('express')
 const router = express.Router()
 
-let sysData = []
+let sysDatas = []
 let id = 1
 
 // 创建十个问答题对象
 for (let i = 0; i < 100; i++) {
-  sysData.push({
+  sysDatas.push({
     'name': '系统基本数据表1' + i,
     'spell': 'jiben1' + i,
     'sort': 1,
@@ -46,7 +46,7 @@ router.get('/', (req, res) => {
   res.status(200)
     .json({
       '_embedded': {
-        'sysData': sysData.slice(start, start + 10)
+        'sysDatas': sysDatas.slice(start, start + 10)
       },
       '_links': {
         'self': {
@@ -89,7 +89,7 @@ router.post('/', (req, res) => {
     }
   }
   id++
-  sysData.unshift(req.body)
+  sysDatas.unshift(req.body)
   res.status(201)
     .json(req.body)
 })
