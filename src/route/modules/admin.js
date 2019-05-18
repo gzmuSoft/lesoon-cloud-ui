@@ -13,7 +13,7 @@ const TheExamRule = () => import('_components/the-admin/the-exam-rule')
 const TheSysUser = () => import('_views/the-admin/the-sys-user')
 const TheExamHistories = () => import('_views/the-admin/the-exam-histories')
 const TheSysRole = () => import('_views/the-admin/the-sys-role')
-const TheSysDatas = () => import('_views/the-admin/the-sys-datas')
+const TheSysData = () => import('_views/the-admin/the-sys-data')
 const ThePaperDetail = () => import('_views/the-admin/the-paper-detail')
 const TheSelOptions = () => import('_views/the-admin/the-sel-options')
 const TheSysRes = () => import('_views/the-admin/the-sys-res')
@@ -157,7 +157,7 @@ export default {
     {
       path: 'sysData',
       name: 'admin-sysData',
-      component: TheSysDatas,
+      component: TheSysData,
       meta: {
         title: '系统基础信息表'
       }
