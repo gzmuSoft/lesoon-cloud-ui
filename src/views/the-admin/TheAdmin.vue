@@ -39,6 +39,11 @@ export default {
               icon: 'md-color-filter'
             },
             {
+              title: '角色权限关联',
+              name: 'admin-sysRoleRes',
+              icon: 'ios-locate'
+            },
+            {
               title: '权限资源管理',
               name: 'admin-sysRes',
               icon: 'md-aperture'

@@ -17,6 +17,7 @@ const TheSysDatas = () => import('_views/the-admin/the-sys-datas')
 const ThePaperDetail = () => import('_views/the-admin/the-paper-detail')
 const TheSelOptions = () => import('_views/the-admin/the-sel-options')
 const TheSysRes = () => import('_views/the-admin/the-sys-res')
+const TheSysRoleRes = () => import('_views/the-admin/the-sys-role-res')
 
 export default {
   path: '/admin',
@@ -134,6 +135,14 @@ export default {
       component: TheSysRole,
       meta: {
         title: '系统角色管理'
+      }
+    },
+    {
+      path: 'sysRoleRes',
+      name: 'admin-sysRoleRes',
+      component: TheSysRoleRes,
+      meta: {
+        title: '角色权限关联'
       }
     },
     {
