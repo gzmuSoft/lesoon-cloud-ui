@@ -15,7 +15,7 @@ import TableExpand from '_components/common/table-expand'
 import Tables from '_components/common/tables'
 
 export default {
-  name: 'TheSysDatas',
+  name: 'TheSysData',
   components: {
     TableExpand,
     Tables

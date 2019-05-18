@@ -60,7 +60,7 @@ export default {
             },
             {
               title: '系统基础信息表',
-              name: 'admin-sysDatas',
+              name: 'admin-sysData',
               icon: 'md-albums'
             },
             {

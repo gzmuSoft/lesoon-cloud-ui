@@ -155,8 +155,8 @@ export default {
       }
     },
     {
-      path: 'sysDatas',
-      name: 'admin-sysDatas',
+      path: 'sysData',
+      name: 'admin-sysData',
       component: TheSysDatas,
       meta: {
         title: '系统基础信息表'
