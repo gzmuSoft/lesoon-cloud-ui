@@ -39,6 +39,11 @@ export default {
               icon: 'md-color-filter'
             },
             {
+              title: '权限资源管理',
+              name: 'admin-sysRes',
+              icon: 'md-aperture'
+            },
+            {
               title: '角色管理',
               name: 'admin-sysRole',
               icon: 'ios-man'
