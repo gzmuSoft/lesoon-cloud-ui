@@ -93,6 +93,11 @@ export default {
               icon: 'ios-chatboxes-outline'
             },
             {
+              title: '编程题',
+              name: 'admin-program',
+              icon: 'logo-codepen'
+            },
+            {
               title: '组卷规则管理',
               name: 'admin-examRule',
               icon: 'ios-browsers-outline'
