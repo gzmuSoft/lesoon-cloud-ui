@@ -6,11 +6,12 @@ const TheSysRoleRes = () => import('_views/the-admin/the-sys-role-res')
 const TheTeacher = () => import('_components/the-admin/the-teacher')
 const TheCourse = () => import('_views/the-admin/the-course')
 const TheJudgement = () => import('_components/the-admin/the-judgement')
+const TheProgram = () => import('_views/the-admin/the-program')
 const TheEssay = () => import('_views/the-admin/the-essay')
 const TheExam = () => import('_components/the-admin/the-exam')
 const ThePaper = () => import('_components/the-admin/the-paper')
 const TheExamRule = () => import('_components/the-admin/the-exam-rule')
-const TheSysUser = () => import('_views/the-admin/the-sys-user')
+const TheSysUser = () => import('_components/the-admin/the-sys-user')
 const TheExamHistories = () => import('_views/the-admin/the-exam-histories')
 const TheSysRole = () => import('_views/the-admin/the-sys-role')
 const TheSysDatas = () => import('_views/the-admin/the-sys-datas')
@@ -41,7 +42,7 @@ export default {
       name: 'admin-sysUser',
       component: TheSysUser,
       meta: {
-        title: '系统用户'
+        title: '用户管理'
       }
     },
     {
@@ -69,6 +70,14 @@ export default {
       }
     },
     {
+      path: 'program',
+      name: 'admin-program',
+      component: TheProgram,
+      meta: {
+        title: '编程题管理'
+      }
+    },
+    {
       path: 'judgement',
       name: 'admin-judgement',
       component: TheJudgement,
@@ -76,6 +85,7 @@ export default {
         title: '判断题管理'
       }
     },
+
     {
       path: 'exam',
       name: 'admin-exam',

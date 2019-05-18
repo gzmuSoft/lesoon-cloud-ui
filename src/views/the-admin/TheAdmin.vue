@@ -39,12 +39,17 @@ export default {
               icon: 'md-color-filter'
             },
             {
+              title: '权限资源管理',
+              name: 'admin-sysRes',
+              icon: 'md-aperture'
+            },
+            {
               title: '角色管理',
               name: 'admin-sysRole',
               icon: 'ios-man'
             },
             {
-              title: '系统用户',
+              title: '用户管理',
               name: 'admin-sysUser',
               icon: 'md-person'
             },
@@ -96,6 +101,11 @@ export default {
               title: '问答题',
               name: 'admin-essay',
               icon: 'ios-chatboxes-outline'
+            },
+            {
+              title: '编程题',
+              name: 'admin-program',
+              icon: 'logo-codepen'
             },
             {
               title: '组卷规则管理',
