@@ -39,6 +39,7 @@ for (let i = 0; i < 100; i++) {
   })
   id++
 }
+
 // get 请求，路径必须为复数！！！
 /**
  * @param req 请求
@@ -79,11 +80,17 @@ router.get('/', (req, res) => {
     })
 })
 
+/**
+ * delete请求
+ */
 router.delete('/:id', (req, res) => {
   console.log('delete papers id by ', req.params.id)
   res.sendStatus(204)
 })
 
+/**
+ * post请求
+ */
 router.post('/', (req, res) => {
   let body = req.body
   body._links = {
@@ -100,6 +107,9 @@ router.post('/', (req, res) => {
     .json(req.body)
 })
 
+/**
+ * put请求
+ */
 router.put('/', (req, res) => {
   res.sendStatus(200)
 })

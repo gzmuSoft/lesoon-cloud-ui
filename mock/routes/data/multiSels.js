@@ -33,6 +33,9 @@ for (let i = 0; i < 100; i++) {
   id++
 }
 
+/**
+ * get请求
+ */
 router.get('/', (req, res) => {
   let page = req.query.page
   if (typeof (req.query.page) !== 'undefined') {
@@ -68,6 +71,9 @@ router.get('/', (req, res) => {
     })
 })
 
+/**
+ * post请求
+ */
 router.post('/', (req, res) => {
   let body = req.body
   body._links = {
@@ -85,10 +91,16 @@ router.post('/', (req, res) => {
     .json(body)
 })
 
+/**
+ * put请求
+ */
 router.put('/', (req, res) => {
   res.sendStatus(200)
 })
 
+/**
+ * delete请求
+ */
 router.delete('/:id', (req, res) => {
   console.log('delete multiSels id by ', req.params.id)
   res.sendStatus(204)

@@ -12,6 +12,7 @@ const TheSysUser = () => import('_views/the-admin/the-sys-user')
 const TheExamHistories = () => import('_views/the-admin/the-exam-histories')
 const TheSysRole = () => import('_views/the-admin/the-sys-role')
 const TheSysDatas = () => import('_views/the-admin/the-sys-datas')
+const TheStudent = () => import('_views/the-admin/the-student')
 
 export default {
   path: '/admin',
@@ -120,6 +121,14 @@ export default {
       component: TheSysDatas,
       meta: {
         title: '系统基础信息表'
+      }
+    },
+    {
+      path: 'student',
+      name: 'admin-student',
+      component: TheStudent,
+      meta: {
+        title: '学生信息表'
       }
     }
   ]

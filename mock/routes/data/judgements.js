@@ -32,7 +32,10 @@ for (let i = 0; i < 100; i++) {
   })
   id++
 }
-// 分页
+
+/**
+ * get请求
+ */
 router.get('/', (req, res) => {
   let page = req.query.page
   if (typeof (req.query.page) !== 'undefined') {
@@ -67,7 +70,10 @@ router.get('/', (req, res) => {
       }
     })
 })
-// 提交路径
+
+/**
+ * post请求
+ */
 router.post('/', (req, res) => {
   let body = req.body
   body._links = {
@@ -84,10 +90,16 @@ router.post('/', (req, res) => {
     .json(req.body)
 })
 
+/**
+ * put请求
+ */
 router.put('/', (req, res) => {
   res.sendStatus(200)
 })
-//  删除方法
+
+/**
+ * delete请求
+ */
 router.delete('/:id', (req, res) => {
   console.log('delete judgement id by ', req.params.id)
   res.sendStatus(204)

@@ -69,11 +69,17 @@ router.get('/', (req, res) => {
     })
 })
 
+/**
+ * delete请求
+ */
 router.delete('/:id', (req, res) => {
   console.log('delete rest id by ', req.params.id)
   res.sendStatus(204)
 })
 
+/**
+ * post请求
+ */
 router.post('/', (req, res) => {
   let body = req.body
   body._links = {
@@ -90,6 +96,9 @@ router.post('/', (req, res) => {
     .json(body)
 })
 
+/**
+ * put请求
+ */
 router.put('/', (req, res) => {
   res.sendStatus(200)
 })

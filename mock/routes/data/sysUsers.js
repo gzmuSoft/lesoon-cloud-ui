@@ -98,7 +98,9 @@ router.delete('/:id', (req, res) => {
   res.sendStatus(204)
 })
 
-// 更新
+/**
+ * put请求
+ */
 router.put('/', (req, res) => {
   res.sendStatus(200)
 })
