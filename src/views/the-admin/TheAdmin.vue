@@ -54,6 +54,11 @@ export default {
               icon: 'md-albums'
             },
             {
+              title: '角色权限关联',
+              name: 'sysRoleRes',
+              icon: 'ios-locate'
+            },
+            {
               title: '用户角色关联管理',
               name: 'sysUserRole',
               icon: 'ios-people'
