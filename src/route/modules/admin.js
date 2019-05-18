@@ -40,7 +40,7 @@ export default {
       name: 'admin-sysUser',
       component: TheSysUser,
       meta: {
-        title: '系统用户'
+        title: '用户管理'
       }
     },
     {

@@ -68,8 +68,8 @@ export default {
         { key: 'isEnable',
           title: '是否可用',
           editType: 'select',
-          options: [{ label: '可用', value: '1' },
-            { label: '不可用', value: '0' }] },
+          options: [{ label: '可用', value: 'true' },
+            { label: '不可用', value: 'false' }] },
         {
           title: '操作',
           key: 'handle',

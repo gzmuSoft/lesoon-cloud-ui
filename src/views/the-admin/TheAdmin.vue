@@ -44,7 +44,7 @@ export default {
               icon: 'ios-man'
             },
             {
-              title: '系统用户',
+              title: '用户管理',
               name: 'admin-sysUser',
               icon: 'md-person'
             },
