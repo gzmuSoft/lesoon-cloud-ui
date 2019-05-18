@@ -2,7 +2,7 @@
   Layout#lesson-admin.lesson-full-height.lesson-text-left
     Sider(collapsible, hide-trigger, v-model="collapsed", breakpoint="md")
       side-menu(:collapsed="collapsed", :list="menuList")
-        #lesson-admin-side-header(slot="top") LESSON
+        #lesson-admin-side-header(slot="top")
     Layout
       Header#lesson-admin-header.lesson-card-2
         Icon.lesson-cursor-pointer(:class="triggerClasses",
@@ -35,8 +35,18 @@ export default {
           children: [
             {
               title: '日志管理',
-              name: 'admin-sysLogs',
+              name: 'admin-sysLog',
               icon: 'md-color-filter'
+            },
+            {
+              title: '角色权限关联',
+              name: 'admin-sysRoleRes',
+              icon: 'ios-locate'
+            },
+            {
+              title: '权限资源管理',
+              name: 'admin-sysRes',
+              icon: 'md-aperture'
             },
             {
               title: '角色管理',
@@ -44,14 +54,19 @@ export default {
               icon: 'ios-man'
             },
             {
-              title: '系统用户',
+              title: '用户管理',
               name: 'admin-sysUser',
               icon: 'md-person'
             },
             {
               title: '系统基础信息表',
-              name: 'sysDatas',
+              name: 'admin-sysDatas',
               icon: 'md-albums'
+            },
+            {
+              title: '用户角色关联管理',
+              name: 'admin-sysUserRole',
+              icon: 'ios-people'
             }
           ]
         },
@@ -88,6 +103,11 @@ export default {
               icon: 'ios-chatboxes-outline'
             },
             {
+              title: '编程题',
+              name: 'admin-program',
+              icon: 'logo-codepen'
+            },
+            {
               title: '组卷规则管理',
               name: 'admin-examRule',
               icon: 'ios-browsers-outline'
@@ -105,6 +125,16 @@ export default {
             {
               title: '考试试卷历史记录',
               name: 'admin-examHistories',
+              icon: 'ios-list-box-outline'
+            },
+            {
+              title: '试卷详情及阅卷信息',
+              name: 'admin-paperDetail',
+              icon: 'ios-list-box-outline'
+            },
+            {
+              title: '单/多项选择题/填空题的选项信息表',
+              name: 'admin-selOptions',
               icon: 'ios-list-box-outline'
             }
           ]

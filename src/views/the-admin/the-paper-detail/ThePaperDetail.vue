@@ -1,9 +1,8 @@
 <template lang="pug">
   #lesson-course
     Tables(ref='tables', editable, v-model='tableData', :loading='loadingFlag',
-      :columns='columns', @on-delete='handleDelete')
+    :columns='columns', @on-delete='handleDelete')
     Page.lesson-text-center.lesson-margin-top(:total="page.totalElements", @on-change="handleChange")
-
 </template>
 
 <script>
@@ -11,7 +10,7 @@ import * as rest from '_api/rest'
 import TableExpand from '_components/common/table-expand'
 import Tables from '_components/common/tables'
 export default {
-  name: 'TheExamHistories',
+  name: 'ThePaperDetail',
   components: {
     TableExpand,
     Tables
@@ -34,12 +33,15 @@ export default {
           }
         },
         { type: 'selection', width: 50, align: 'center' },
-        { key: 'name', title: '名称' },
-        { key: 'examId', title: '考试试卷编号' },
-        { key: 'maxScore', 'title': '最高得分' },
-        { key: 'paperId', title: '得分最高的试卷编号' },
-        { key: 'examTime', title: '得分最高的考试的开始时间' },
-        { key: 'times', title: '已考次数' },
+        { key: 'name', title: '名称', editType: 'string' },
+        { key: 'paperId', title: '得分最高的试卷编号', editType: 'number' },
+        { key: 'questionType', title: '问题类型', editType: 'number' },
+        { key: 'questionId', title: '问题编号', editType: 'number' },
+        { key: 'refAnswer', title: '参考答案', editType: 'string' },
+        { key: 'userAnswer', title: '用户答案', editType: 'string' },
+        { key: 'orgValue', title: '总分', editType: 'number' },
+        { key: 'obtainValue', title: '获得分数', editType: 'number' },
+        { key: 'orgValue', title: '问题编号', editType: 'number' },
         { key: 'remark', title: '备注' },
         {
           title: '操作',
@@ -54,8 +56,8 @@ export default {
     initData (page) {
       let _this = this
       _this.loadingFlag = true
-      rest.getAll(`examHistories?page=${page}`).then(res => {
-        _this.tableData = res.data._embedded.examHistories.map(item => {
+      rest.getAll(`paperDetails?page=${page}`).then(res => {
+        _this.tableData = res.data._embedded.paperDetails.map(item => {
           item._checked = false
           return item
         })

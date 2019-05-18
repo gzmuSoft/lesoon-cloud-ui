@@ -15,7 +15,7 @@ for (let i = 0; i < 100; i++) {
     'modifyTime': '2019-05-14T21:33:27',
     'modifyUser': 'admin',
     'remark': null,
-    'isEnable': i % 2 === 0 ? '否' : '是',
+    'isEnable': i % 2 === 0 ? 'false' : 'true',
     'entityId': 7,
     'entityType': i % 5 === 4 ? '学生' : i % 4 === 3 ? '教师' : i % 3 === 2 ? '课程管理员' : i % 2 === 1 ? '教务管理员' : '系统管理员',
     'status': i % 3 + 1 === 3 ? '禁用' : i % 2 + 1 === 2 ? '锁定一小时' : '正常',

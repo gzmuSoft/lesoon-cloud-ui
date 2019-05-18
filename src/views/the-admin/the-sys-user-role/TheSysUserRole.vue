@@ -1,6 +1,6 @@
 <template lang="pug">
-  #lesson-sysDatas
-    Tables(ref='tables', editable, addable, :loading='loadingFlag' v-model='tableData', :columns='columns',
+  #lesson-user-role
+    Tables(ref='tables', editable, addable :loading='loadingFlag' v-model='tableData', :columns='columns',
     @on-delete='handleDelete',
     @on-save-edit='handleSave',
     @on-start-edit='handleEdit',
@@ -15,7 +15,7 @@ import TableExpand from '_components/common/table-expand'
 import Tables from '_components/common/tables'
 
 export default {
-  name: 'TheSysDatas',
+  name: 'TheSysUserRole',
   components: {
     TableExpand,
     Tables
@@ -39,13 +39,15 @@ export default {
         },
         { type: 'selection', width: 50, align: 'center' },
         { key: 'name', title: '名称', editType: 'string' },
+        { key: 'userId', title: '关联用户', editType: 'number' },
+        { key: 'roleId', title: '关联角色', editType: 'number' },
         { key: 'sort', title: '排序', editType: 'number' },
+        { key: 'isEnable', title: '是否可用', editType: 'string' },
         { key: 'remark', title: '备注', editType: 'textarea' },
         {
           title: '操作',
           key: 'handle',
           fixed: 'right',
-          width: 180,
           options: ['update', 'delete']
         }
       ]
@@ -55,8 +57,8 @@ export default {
     initData (page) {
       let _this = this
       _this.loadingFlag = true
-      rest.getAll(`sysDatas?page=${page}`).then(res => {
-        _this.tableData = res.data._embedded.sysDatas.map(item => {
+      rest.getAll(`sysUserRoles?page=${page}`).then(res => {
+        _this.tableData = res.data._embedded.sysUserRoles.map(item => {
           item._checked = false
           return item
         })
@@ -69,16 +71,18 @@ export default {
       this.initData(page - 1)
     },
     handleSave (row, index, editing) {
+      console.log(row)
       let _this = this
       let add = editing['add']
       if (add) {
+        // 删除 editing的add标志
         delete editing['add']
-        rest.addOne('sysDatas', editing).then(res => {
+        rest.addOne('sysUserRoles', editing).then(res => {
           _this.tableData.unshift(res.data)
           _this.tableData.pop()
         })
       } else {
-        rest.putOne('sysDatas', editing).then(res => {
+        rest.putOne('sysUserRoles', editing).then(res => {
           for (const name in editing) {
             row[name] = editing[name]
           }
