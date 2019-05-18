@@ -1,6 +1,7 @@
 const TheAdmin = () => import('_views/the-admin')
 const TheHome = () => import('_views/the-admin/the-home')
 const TheSysLog = () => import('_views/the-admin/the-sys-log')
+const TheSysUserRole = () => import('_views/the-admin/the-sys-user-role')
 const TheTeacher = () => import('_components/the-admin/the-teacher')
 const TheCourse = () => import('_views/the-admin/the-course')
 const TheJudgement = () => import('_components/the-admin/the-judgement')
@@ -112,6 +113,14 @@ export default {
       component: TheSysRole,
       meta: {
         title: '系统角色管理'
+      }
+    },
+    {
+      path: '/sysUserRole',
+      name: 'sysUserRole',
+      component: TheSysUserRole,
+      meta: {
+        title: '用户角色关联管理'
       }
     },
     {

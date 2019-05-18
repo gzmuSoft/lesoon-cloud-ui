@@ -13,7 +13,7 @@ for (let i = 0; i < 100; i++) {
     'createUser': 'admin',
     'modifyTime': new Date(),
     'modifyUser': 'admin',
-    'remark': '备注',
+    'remark': null,
     'isEnable': true,
     'userId': 1,
     'roleId': 1,

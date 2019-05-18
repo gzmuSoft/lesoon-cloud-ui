@@ -52,6 +52,11 @@ export default {
               title: '系统基础信息表',
               name: 'sysDatas',
               icon: 'md-albums'
+            },
+            {
+              title: '用户角色关联管理',
+              name: 'sysUserRole',
+              icon: 'ios-people'
             }
           ]
         },
