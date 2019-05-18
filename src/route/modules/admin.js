@@ -1,9 +1,11 @@
 const TheAdmin = () => import('_views/the-admin')
 const TheHome = () => import('_views/the-admin/the-home')
 const TheSysLog = () => import('_views/the-admin/the-sys-log')
+const TheSysUserRole = () => import('_views/the-admin/the-sys-user-role')
 const TheTeacher = () => import('_components/the-admin/the-teacher')
 const TheCourse = () => import('_views/the-admin/the-course')
 const TheJudgement = () => import('_components/the-admin/the-judgement')
+const TheProgram = () => import('_views/the-admin/the-program')
 const TheEssay = () => import('_views/the-admin/the-essay')
 const TheExam = () => import('_components/the-admin/the-exam')
 const ThePaper = () => import('_components/the-admin/the-paper')
@@ -12,6 +14,11 @@ const TheSysUser = () => import('_views/the-admin/the-sys-user')
 const TheExamHistories = () => import('_views/the-admin/the-exam-histories')
 const TheSysRole = () => import('_views/the-admin/the-sys-role')
 const TheSysDatas = () => import('_views/the-admin/the-sys-datas')
+const ThePaperDetail = () => import('_views/the-admin/the-paper-detail')
+const TheSelOptions = () => import('_views/the-admin/the-sel-options')
+const TheSysRes = () => import('_views/the-admin/the-sys-res')
+const TheSysRoleRes = () => import('_views/the-admin/the-sys-role-res')
+const TheStudent = () => import('_views/the-admin/the-student')
 
 export default {
   path: '/admin',
@@ -35,11 +42,19 @@ export default {
       }
     },
     {
+      path: 'sysRes',
+      name: 'admin-sysRes',
+      component: TheSysRes,
+      meta: {
+        title: '权限资源管理'
+      }
+    },
+    {
       path: 'sysUser',
       name: 'admin-sysUser',
       component: TheSysUser,
       meta: {
-        title: '系统用户'
+        title: '用户管理'
       }
     },
     {
@@ -67,6 +82,14 @@ export default {
       }
     },
     {
+      path: 'program',
+      name: 'admin-program',
+      component: TheProgram,
+      meta: {
+        title: '编程题管理'
+      }
+    },
+    {
       path: 'judgement',
       name: 'admin-judgement',
       component: TheJudgement,
@@ -74,6 +97,7 @@ export default {
         title: '判断题管理'
       }
     },
+
     {
       path: 'exam',
       name: 'admin-exam',
@@ -115,11 +139,51 @@ export default {
       }
     },
     {
-      path: '/sysDatas',
-      name: 'sysDatas',
+      path: 'sysRoleRes',
+      name: 'admin-sysRoleRes',
+      component: TheSysRoleRes,
+      meta: {
+        title: '角色权限关联'
+      }
+    },
+    {
+      path: 'sysUserRole',
+      name: 'admin-sysUserRole',
+      component: TheSysUserRole,
+      meta: {
+        title: '用户角色关联管理'
+      }
+    },
+    {
+      path: 'sysDatas',
+      name: 'admin-sysDatas',
       component: TheSysDatas,
       meta: {
         title: '系统基础信息表'
+      }
+    },
+    {
+      path: 'paperDetail',
+      name: 'admin-paperDetail',
+      component: ThePaperDetail,
+      meta: {
+        title: '试卷详情及阅卷信息'
+      }
+    },
+    {
+      path: 'selOptions',
+      name: 'admin-selOptions',
+      component: TheSelOptions,
+      meta: {
+        title: '单/多项选择题/填空题的选项信息表'
+      }
+    },
+    {
+      path: 'student',
+      name: 'admin-student',
+      component: TheStudent,
+      meta: {
+        title: '学生信息表'
       }
     }
   ]
