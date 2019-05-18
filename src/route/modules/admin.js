@@ -4,9 +4,7 @@ const TheTeacher = () => import('_components/the-admin/the-teacher')
 const TheCourse = () => import('_components/the-admin/the-course')
 const TheJudgement = () => import('_components/the-admin/the-judgement')
 const TheEssay = () => import('_components/the-admin/the-essay')
-const TheExam = () => import('_components/the-admin/the-exam')
-const ThePaper = () => import('_components/the-admin/the-paper')
-const TheExamRule = () => import('_components/the-admin/the-exam-rule')
+const TheSysRoleRes = () => import('_components/the-admin/the-sys-role-res')
 
 export default {
   path: '/admin',
@@ -20,6 +18,14 @@ export default {
       component: TheSysLogs,
       meta: {
         title: '日志管理'
+      }
+    },
+    {
+      path: '/sysroleres',
+      name: 'sysroleres',
+      component: TheSysRoleRes,
+      meta: {
+        title: '角色权限关联'
       }
     },
     {
@@ -52,30 +58,6 @@ export default {
       component: TheJudgement,
       meta: {
         title: '判断题管理'
-      }
-    },
-    {
-      path: '/exam',
-      name: 'exam',
-      component: TheExam,
-      meta: {
-        title: '考试管理'
-      }
-    },
-    {
-      path: '/paper',
-      name: 'paper',
-      component: ThePaper,
-      meta: {
-        title: '试卷管理'
-      }
-    },
-    {
-      path: '/examRule',
-      name: 'examRule',
-      component: TheExamRule,
-      meta: {
-        title: '组卷规则管理'
       }
     }
   ]

@@ -37,6 +37,11 @@ export default {
               title: '日志管理',
               name: 'sysLogs',
               icon: 'md-color-filter'
+            },
+            {
+              title: '角色权限关联',
+              name: 'sysroleres',
+              icon: 'ios-ionitron'
             }
           ]
         },
