@@ -4,11 +4,11 @@ const TheSysLog = () => import('_views/the-admin/the-sys-log')
 const TheSysUserRole = () => import('_views/the-admin/the-sys-user-role')
 const TheTeacher = () => import('_views/the-admin/the-teacher')
 const TheCourse = () => import('_views/the-admin/the-course')
-const TheJudgement = () => import('_components/the-admin/the-judgement')
+const TheJudgement = () => import('_views/the-admin/the-judgement')
 const TheProgram = () => import('_views/the-admin/the-program')
 const TheEssay = () => import('_views/the-admin/the-essay')
 const TheExam = () => import('_components/the-admin/the-exam')
-const ThePaper = () => import('_components/the-admin/the-paper')
+const ThePaper = () => import('_views/the-admin/the-paper')
 const TheExamRule = () => import('_views/the-admin/the-exam-rule')
 const TheSysUser = () => import('_views/the-admin/the-sys-user')
 const TheExamHistories = () => import('_views/the-admin/the-exam-histories')
@@ -22,7 +22,7 @@ const TheMultiSel = () => import('_views/the-admin/the-multi-sel')
 const TheSection = () => import('_views/the-admin/the-section')
 const TheStudent = () => import('_views/the-admin/the-student')
 const TheSemester = () => import('_views/the-admin/the-semester')
-const TheSingleSel = () => import('_views/the-admin/the-single-sel')
+
 export default {
   path: '/admin',
   name: 'admin',
@@ -210,14 +210,6 @@ export default {
       component: TheSemester,
       meta: {
         title: '多选题'
-      }
-    },
-    {
-      path: 'singleSel',
-      name: 'admin-singleSel',
-      component: TheSingleSel,
-      meta: {
-        title: '单选题'
       }
     }
   ]

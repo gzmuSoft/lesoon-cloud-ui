@@ -4,7 +4,7 @@ const router = express.Router()
 let judgements = []
 let id = 1
 // 增加99个判断题
-for (let i = 0; i < 100; i++) {
+for (let i = 0; i < 20; i++) {
   judgements.push({
     'name': '问题' + i + '：1+1=？',
     'spell': 'panduanti' + i,
