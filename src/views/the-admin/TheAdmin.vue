@@ -104,6 +104,11 @@ export default {
               icon: 'ios-chatboxes-outline'
             },
             {
+              title: '知识点',
+              name: 'admin-knowledge',
+              icon: 'md-information'
+            },
+            {
               title: '编程题',
               name: 'admin-program',
               icon: 'logo-codepen'

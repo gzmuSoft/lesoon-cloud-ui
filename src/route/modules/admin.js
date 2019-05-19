@@ -19,6 +19,7 @@ const TheSelOptions = () => import('_views/the-admin/the-sel-options')
 const TheSysRes = () => import('_views/the-admin/the-sys-res')
 const TheSysRoleRes = () => import('_views/the-admin/the-sys-role-res')
 const TheStudent = () => import('_views/the-admin/the-student')
+const TheKnowledge = () => import('_views/the-admin/the-knowledges')
 
 export default {
   path: '/admin',
@@ -184,6 +185,14 @@ export default {
       component: TheStudent,
       meta: {
         title: '学生信息表'
+      }
+    },
+    {
+      path: 'knowledge',
+      name: 'admin-knowledge',
+      component: TheKnowledge,
+      meta: {
+        title: '知识点'
       }
     }
   ]
