@@ -36,8 +36,6 @@ for (let i = 0; i < 100; i++) {
     'isAcademicLeader': 1,
     'subjectCategory': '12',
     'idNumber': '1',
-    'phone': '13112341234',
-    'email': '123@123.com',
     '_links': {
       'self': {
         'href': 'http://127.0.0.1:8080/teachers/' + id
