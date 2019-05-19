@@ -3,7 +3,7 @@ const TheAdmin = () => import('_views/the-admin')
 const TheHome = () => import('_views/the-admin/the-home')
 const TheSysLog = () => import('_views/the-admin/the-sys-log')
 const TheSysUserRole = () => import('_views/the-admin/the-sys-user-role')
-const TheTeacher = () => import('_components/the-admin/the-teacher')
+const TheTeacher = () => import('_views/the-admin/the-teacher')
 const TheCourse = () => import('_views/the-admin/the-course')
 const TheJudgement = () => import('_components/the-admin/the-judgement')
 const TheProgram = () => import('_views/the-admin/the-program')
@@ -14,13 +14,14 @@ const TheExamRule = () => import('_components/the-admin/the-exam-rule')
 const TheSysUser = () => import('_views/the-admin/the-sys-user')
 const TheExamHistories = () => import('_views/the-admin/the-exam-histories')
 const TheSysRole = () => import('_views/the-admin/the-sys-role')
-const TheSysDatas = () => import('_views/the-admin/the-sys-data')
+const TheSysData = () => import('_views/the-admin/the-sys-data')
 const ThePaperDetail = () => import('_views/the-admin/the-paper-detail')
 const TheSelOptions = () => import('_views/the-admin/the-sel-options')
 const TheSysRes = () => import('_views/the-admin/the-sys-res')
 const TheSysRoleRes = () => import('_views/the-admin/the-sys-role-res')
 const TheMultiSel = () => import('_views/the-admin/the-multi-sel')
 const TheSection = () => import('_views/the-admin/the-section')
+const TheStudent = () => import('_views/the-admin/the-student')
 const TheSemester = () => import('_views/the-admin/the-semester')
 
 export default {
@@ -64,6 +65,14 @@ export default {
       path: 'teacher',
       name: 'admin-teacher',
       component: TheTeacher,
+      meta: {
+        title: '教师管理'
+      }
+    },
+    {
+      path: 'teacher',
+      name: 'admin-teacher',
+      component: TheStudent,
       meta: {
         title: '教师管理'
       }
@@ -173,9 +182,9 @@ export default {
       }
     },
     {
-      path: 'sysDatas',
-      name: 'admin-sysDatas',
-      component: TheSysDatas,
+      path: 'sysData',
+      name: 'admin-sysData',
+      component: TheSysData,
       meta: {
         title: '系统基础信息表'
       }

@@ -81,6 +81,11 @@ export default {
               icon: 'ios-man'
             },
             {
+              title: '学生管理',
+              name: 'admin-student',
+              icon: 'ios-man'
+            },
+            {
               title: '课程管理',
               name: 'admin-course',
               icon: 'ios-briefcase'
