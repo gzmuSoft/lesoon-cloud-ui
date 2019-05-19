@@ -156,6 +156,11 @@ export default {
               title: '多选题',
               name: 'admin-multiSel',
               icon: 'ios-list-box-outline'
+            },
+            {
+              title: '单选题',
+              name: 'admin-singleSel',
+              icon: 'ios-list-box-outline'
             }
           ]
         }
