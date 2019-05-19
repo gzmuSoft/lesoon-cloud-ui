@@ -2,7 +2,7 @@ const TheAdmin = () => import('_views/the-admin')
 const TheHome = () => import('_views/the-admin/the-home')
 const TheSysLog = () => import('_views/the-admin/the-sys-log')
 const TheSysUserRole = () => import('_views/the-admin/the-sys-user-role')
-const TheTeacher = () => import('_components/the-admin/the-teacher')
+const TheTeacher = () => import('_views/the-admin/the-teacher')
 const TheCourse = () => import('_views/the-admin/the-course')
 const TheJudgement = () => import('_components/the-admin/the-judgement')
 const TheProgram = () => import('_views/the-admin/the-program')
@@ -63,6 +63,14 @@ export default {
       component: TheTeacher,
       meta: {
         title: '教师管理'
+      }
+    },
+    {
+      path: 'student',
+      name: 'admin-student',
+      component: TheStudent,
+      meta: {
+        title: '学生管理'
       }
     },
     {
@@ -176,14 +184,6 @@ export default {
       component: TheSelOptions,
       meta: {
         title: '单/多项选择题/填空题的选项信息表'
-      }
-    },
-    {
-      path: 'student',
-      name: 'admin-student',
-      component: TheStudent,
-      meta: {
-        title: '学生信息表'
       }
     }
   ]
