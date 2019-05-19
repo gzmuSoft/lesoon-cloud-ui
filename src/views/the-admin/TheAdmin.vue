@@ -189,7 +189,6 @@ export default {
 
     .lesson-cursor-pointer {
       transition: transform 0.2s ease;
-
       &.rotate {
         transition: transform 0.2s ease;
         transform: rotateZ(-90deg);
