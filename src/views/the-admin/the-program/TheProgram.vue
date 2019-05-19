@@ -93,10 +93,10 @@ export default {
         })
       }
     },
-    handleDelete (params) {
+    handleDelete (row, index) {
       let _this = this
-      rest.deleteByLink(params.row._links.self.href).then(res => {
-        _this.tableData.splice(params.index, 1)
+      rest.deleteByLink(row._links.self.href).then(res => {
+        _this.tableData.splice(index, 1)
       })
     },
     handleCancel (params) {
