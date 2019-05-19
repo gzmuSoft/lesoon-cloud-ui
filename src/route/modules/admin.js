@@ -69,8 +69,8 @@ export default {
       }
     },
     {
-      path: 'teacher',
-      name: 'admin-teacher',
+      path: 'student',
+      name: 'admin-student',
       component: TheStudent,
       meta: {
         title: '教师管理'
