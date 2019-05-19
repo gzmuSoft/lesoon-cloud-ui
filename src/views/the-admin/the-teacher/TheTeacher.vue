@@ -74,8 +74,8 @@ export default {
           title: '是否学术学科带头人',
           editType: 'select',
           options: [
-            { label: '是', value: true },
-            { label: '否', value: false }
+            { label: '是', value: 'true' },
+            { label: '否', value: 'false' }
           ]
         },
         { key: 'subjectCategory', title: '所属学科门类', editType: 'string' },
