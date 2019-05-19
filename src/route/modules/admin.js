@@ -1,5 +1,3 @@
-// 管理员路由表123
-// 123
 const TheAdmin = () => import('_views/the-admin')
 const TheHome = () => import('_views/the-admin/the-home')
 const TheSysLog = () => import('_views/the-admin/the-sys-log')
