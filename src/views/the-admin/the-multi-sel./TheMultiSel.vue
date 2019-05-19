@@ -1,12 +1,12 @@
 <template lang="pug">
-  #lesson-essay
-    Tables(ref='tables', editable, addable :loading='loadingFlag' v-model='tableData', :columns='columns',
-    @on-delete='handleDelete',
-    @on-save-edit='handleSave',
-    @on-start-edit='handleEdit',
-    @on-cancel-edit='handleCancel',
-    @on-add='handleAdd')
-    Page.lesson-text-center.lesson-margin-top(:total="page.totalElements", @on-change="handleChange")
+#lesson-multiSel
+  Tables(ref='tables', editable, addable :loading='loadingFlag' v-model='tableData', :columns='columns',
+  @on-delete='handleDelete',
+  @on-save-edit='handleSave',
+  @on-start-edit='handleEdit',
+  @on-cancel-edit='handleCancel',
+  @on-add='handleAdd')
+  Page.lesson-text-center.lesson-margin-top(:total="page.totalElements", @on-change="handleChange")
 
 </template>
 
@@ -16,7 +16,7 @@ import TableExpand from '_components/common/table-expand'
 import Tables from '_components/common/tables'
 
 export default {
-  name: 'TheKnowledge',
+  name: 'TheMultiSel',
   components: {
     TableExpand,
     Tables
@@ -39,13 +39,13 @@ export default {
           }
         },
         { type: 'selection', width: 50, align: 'center' },
-        { key: 'name', title: '知识点', editType: 'string' },
-        { key: 'sort', title: '排序', editType: 'number' },
-        { key: 'intro', title: '简介', editType: 'string' },
-        { key: 'parentId', title: '父级编号', editType: 'string' },
+        { key: 'name', title: '名称', editType: 'string' },
+        { key: 'answer', title: '答案', editType: 'string' },
+        { key: 'explanation', title: '答案解析', editType: 'textarea' },
         { key: 'courseId', title: '关联课程', editType: 'string' },
         { key: 'sectionId', title: '关联章节', editType: 'string' },
-        { key: 'remark', title: '备注', editType: 'string' },
+        { key: 'knowledgeId', title: '关联知识点', editType: 'string' },
+        { key: 'difficultRate', title: '难度系数', editType: 'number' },
         {
           title: '操作',
           key: 'handle',
@@ -56,15 +56,12 @@ export default {
       ]
     }
   },
-  mounted () {
-    this.initData(0)
-  },
   methods: {
     initData (page) {
       let _this = this
       _this.loadingFlag = true
-      rest.getAll(`knowledges?page=${page}`).then(res => {
-        _this.tableData = res.data._embedded.knowledges.map(item => {
+      rest.getAll(`multiSels?page=${page}`).then(res => {
+        _this.tableData = res.data._embedded.multiSels.map(item => {
           item._checked = false
           return item
         })
@@ -77,37 +74,42 @@ export default {
       this.initData(page - 1)
     },
     handleSave (row, index, editing) {
+      console.log(row)
       let _this = this
       let add = editing['add']
       if (add) {
+        // 删除 editing的add标志
         delete editing['add']
-        rest.addOne('knowledges', editing).then(res => {
+        rest.addOne('multiSels', editing).then(res => {
           _this.tableData.unshift(res.data)
           _this.tableData.pop()
         })
       } else {
-        rest.putOne('knowledges', editing).then(res => {
+        rest.putOne('multiSels', editing).then(res => {
           for (const name in editing) {
             row[name] = editing[name]
           }
         })
       }
     },
-    handleDelete (params) {
+    handleDelete (row, index) {
       let _this = this
-      rest.deleteByLink(params.row._links.self.href).then(res => {
-        _this.tableData.splice(params.index, 1)
+      rest.deleteByLink(row._links.self.href).then(res => {
+        _this.tableData.splice(index, 1)
       })
     },
-    handleCancel (params) {
+    handleCancel (row, index) {
       // 取消编辑的函数
     },
     handleAdd () {
       // 增加按钮的函数
     },
-    handleEdit (params) {
+    handleEdit (row, index) {
       // 开始编辑的函数
     }
+  },
+  mounted () {
+    this.initData(0)
   }
 }
 </script>

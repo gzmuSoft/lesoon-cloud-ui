@@ -3,15 +3,15 @@
     Card#lesson-register-main-content
       #lesson-register-main-title(slot='title') 注册
       Form(ref='formRegister', :model='formRegister', type='email', :rules='ruleRegister', label-position="top")
-        FormItem.lesson-register-main-item(prop='username', label='用户名')
-          Input(prefix='ios-contact', type='text', placeholder='请输入用户名' v-model='formRegister.username')
+        FormItem.lesson-register-main-item(prop='email', label='电子邮箱')
+            AutoComplete(icon='ios-mail' placeholder='请输入邮箱' v-model='formRegister.email' @on-search="handleEmail")
+              Option(v-for='item in emailList', :value='item', :key='item' class="optionEmail") {{ item }}
+        FormItem.lesson-register-main-item(prop='username', label='账号')
+          Input(prefix='ios-contact', type='text', placeholder='请输入账号' v-model='formRegister.username')
         FormItem.lesson-register-main-item(prop='password', label="密码")
           Input(prefix='ios-lock-outline', :type="isShow?'text':'password'", v-model='formRegister.password', placeholder='请输入密码' :icon="isShow?'ios-eye':'ios-eye-off'" @on-click='switcher()')
         FormItem.lesson-register-main-item(prop='repeatPassword', label="重复密码")
           Input(prefix='ios-lock-outline', type="password", placeholder='请再次输入密码', v-model='formRegister.repeatPassword')
-        FormItem.lesson-register-main-item(prop='email', label='电子邮箱')
-            AutoComplete(icon='ios-mail' placeholder='请输入邮箱' v-model='formRegister.email' @on-search="handleEmail")
-              Option(v-for='item in emailList', :value='item', :key='item' class="optionEmail") {{ item }}
         Button.lesson-register-main-item(type='success', @click="handleRegister('formRegister')" long) 注册
         Button.lesson-register-main-item(type='primary', :to="{name:'login'}" long) 已有账号？立即登录
         .lesson-login-social

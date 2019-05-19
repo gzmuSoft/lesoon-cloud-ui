@@ -1,8 +1,9 @@
+
 const TheAdmin = () => import('_views/the-admin')
 const TheHome = () => import('_views/the-admin/the-home')
 const TheSysLog = () => import('_views/the-admin/the-sys-log')
 const TheSysUserRole = () => import('_views/the-admin/the-sys-user-role')
-const TheTeacher = () => import('_views/the-admin/the-teacher')
+const TheTeacher = () => import('_components/the-admin/the-teacher')
 const TheCourse = () => import('_views/the-admin/the-course')
 const TheJudgement = () => import('_components/the-admin/the-judgement')
 const TheProgram = () => import('_views/the-admin/the-program')
@@ -13,13 +14,14 @@ const TheExamRule = () => import('_components/the-admin/the-exam-rule')
 const TheSysUser = () => import('_views/the-admin/the-sys-user')
 const TheExamHistories = () => import('_views/the-admin/the-exam-histories')
 const TheSysRole = () => import('_views/the-admin/the-sys-role')
-const TheSysData = () => import('_views/the-admin/the-sys-data')
+const TheSysDatas = () => import('_views/the-admin/the-sys-data')
 const ThePaperDetail = () => import('_views/the-admin/the-paper-detail')
 const TheSelOptions = () => import('_views/the-admin/the-sel-options')
 const TheSysRes = () => import('_views/the-admin/the-sys-res')
 const TheSysRoleRes = () => import('_views/the-admin/the-sys-role-res')
-const TheStudent = () => import('_views/the-admin/the-student')
-const TheKnowledge = () => import('_views/the-admin/the-knowledges')
+const TheMultiSel = () => import('_views/the-admin/the-multi-sel')
+const TheSection = () => import('_views/the-admin/the-section')
+const TheSemester = () => import('_views/the-admin/the-semester')
 
 export default {
   path: '/admin',
@@ -67,19 +69,19 @@ export default {
       }
     },
     {
-      path: 'student',
-      name: 'admin-student',
-      component: TheStudent,
-      meta: {
-        title: '学生管理'
-      }
-    },
-    {
       path: 'course',
       name: 'admin-course',
       component: TheCourse,
       meta: {
         title: '课程管理'
+      }
+    },
+    {
+      path: 'section',
+      name: 'admin-section',
+      component: TheSection,
+      meta: {
+        title: '章节'
       }
     },
     {
@@ -106,7 +108,6 @@ export default {
         title: '判断题管理'
       }
     },
-
     {
       path: 'exam',
       name: 'admin-exam',
@@ -121,6 +122,14 @@ export default {
       component: ThePaper,
       meta: {
         title: '试卷管理'
+      }
+    },
+    {
+      path: 'multiSel',
+      name: 'admin-multiSel',
+      component: TheMultiSel,
+      meta: {
+        title: '多选题'
       }
     },
     {
@@ -164,9 +173,9 @@ export default {
       }
     },
     {
-      path: 'sysData',
-      name: 'admin-sysData',
-      component: TheSysData,
+      path: 'sysDatas',
+      name: 'admin-sysDatas',
+      component: TheSysDatas,
       meta: {
         title: '系统基础信息表'
       }
@@ -188,11 +197,11 @@ export default {
       }
     },
     {
-      path: 'knowledge',
-      name: 'admin-knowledge',
-      component: TheKnowledge,
+      path: '/semester',
+      name: 'admin-semester',
+      component: TheSemester,
       meta: {
-        title: '知识点'
+        title: '多选题'
       }
     }
   ]

@@ -16,6 +16,7 @@
       the-find(@find="handleFind")
 
 </template>
+
 <script>
 import SocialButton from '../../../components/common/social-button'
 import TheFind from './the-find'

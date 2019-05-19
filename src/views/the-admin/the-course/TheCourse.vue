@@ -14,6 +14,7 @@
 import * as rest from '_api/rest'
 import TableExpand from '_components/common/table-expand'
 import Tables from '_components/common/tables'
+
 export default {
   name: 'TheCourse',
   components: {

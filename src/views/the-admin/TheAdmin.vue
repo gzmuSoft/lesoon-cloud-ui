@@ -3,7 +3,6 @@
     Sider(collapsible, hide-trigger, v-model="collapsed", breakpoint="md")
       side-menu(:collapsed="collapsed", :list="menuList")
         #lesson-admin-side-header(slot="top")
-          img(src="../../assets/logo/logo-deep.png")
     Layout
       Header#lesson-admin-header.lesson-card-2
         Icon.lesson-cursor-pointer(:class="triggerClasses",
@@ -82,13 +81,13 @@ export default {
               icon: 'ios-man'
             },
             {
-              title: '学生管理',
-              name: 'admin-student',
-              icon: 'ios-man'
-            },
-            {
               title: '课程管理',
               name: 'admin-course',
+              icon: 'ios-briefcase'
+            },
+            {
+              title: '学期',
+              name: 'admin-semester',
               icon: 'ios-briefcase'
             }
           ]
@@ -104,14 +103,14 @@ export default {
               icon: 'logo-buffer'
             },
             {
+              title: '章节',
+              name: 'admin-section',
+              icon: 'ios-book-outline'
+            },
+            {
               title: '问答题',
               name: 'admin-essay',
               icon: 'ios-chatboxes-outline'
-            },
-            {
-              title: '知识点',
-              name: 'admin-knowledge',
-              icon: 'md-information'
             },
             {
               title: '编程题',
@@ -147,6 +146,11 @@ export default {
               title: '单/多项选择题/填空题的选项信息表',
               name: 'admin-selOptions',
               icon: 'ios-list-box-outline'
+            },
+            {
+              title: '多选题',
+              name: 'admin-multiSel',
+              icon: 'ios-list-box-outline'
             }
           ]
         }
@@ -173,10 +177,6 @@ export default {
     .lesson-text-center;
     .lesson-full-width;
     font-size: 34px;
-    img {
-      width: 130px;
-      margin-top: 10px;
-    }
   }
   #lesson-admin-header {
     background: #ffffff;
