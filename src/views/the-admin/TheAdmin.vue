@@ -3,6 +3,7 @@
     Sider(collapsible, hide-trigger, v-model="collapsed", breakpoint="md")
       side-menu(:collapsed="collapsed", :list="menuList")
         #lesson-admin-side-header(slot="top")
+          img(src="../../assets/logo/logo-deep.png")
     Layout
       Header#lesson-admin-header.lesson-card-2
         Icon.lesson-cursor-pointer(:class="triggerClasses",
@@ -162,6 +163,10 @@ export default {
     .lesson-text-center;
     .lesson-full-width;
     font-size: 34px;
+    img {
+      width: 130px;
+      margin-top: 10px;
+    }
   }
   #lesson-admin-header {
     background: #ffffff;
