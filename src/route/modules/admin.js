@@ -22,7 +22,7 @@ const TheMultiSel = () => import('_views/the-admin/the-multi-sel')
 const TheSection = () => import('_views/the-admin/the-section')
 const TheStudent = () => import('_views/the-admin/the-student')
 const TheSemester = () => import('_views/the-admin/the-semester')
-
+const TheSingleSel = () => import('_views/the-admin/the-single-sel')
 export default {
   path: '/admin',
   name: 'admin',
@@ -210,6 +210,14 @@ export default {
       component: TheSemester,
       meta: {
         title: '多选题'
+      }
+    },
+    {
+      path: 'singleSel',
+      name: 'admin-singleSel',
+      component: TheSingleSel,
+      meta: {
+        title: '单选题'
       }
     }
   ]
