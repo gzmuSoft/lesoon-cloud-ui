@@ -43,14 +43,79 @@ export default {
         { key: 'startTime', title: '开始时间', editType: 'date' },
         { key: 'submitTime', title: '结束时间', editType: 'date' },
         { key: 'score', title: '得分', editType: 'number' },
-        { key: 'singleSelIds', title: '无序单项选择题', editType: 'multiple' },
+        { key: 'singleSelIds',
+          title: '无序单项选择题',
+          editType: 'multiple',
+          options: [
+            { label: '题1', value: '1' },
+            { label: '题2', value: '2' },
+            { label: '题3', value: '3' },
+            { label: '题4', value: '4' },
+            { label: '题5', value: '5' },
+            { label: '题6', value: '6' },
+            { label: '题7', value: '7' },
+            { label: '题8', value: '8' }
+          ]
+        },
         { key: 'singleSelOpts', title: '有序单项选择题', editType: 'multiple' },
-        { key: 'multiSelIds', title: '无序多项选择题', editType: 'multiple' },
+        { key: 'multiSelIds',
+          title: '无序多项选择题',
+          editType: 'multiple',
+          options: [
+            { label: '题1', value: '1' },
+            { label: '题2', value: '2' },
+            { label: '题3', value: '3' },
+            { label: '题4', value: '4' },
+            { label: '题5', value: '5' },
+            { label: '题6', value: '6' },
+            { label: '题7', value: '7' },
+            { label: '题8', value: '8' }
+          ]
+        },
         { key: 'multiSelOpts', title: '有序多项选择题', editType: 'multiple' },
-        { key: 'judgementIds', title: '无序判断题', editType: 'multiple' },
+        { key: 'judgementIds',
+          title: '无序判断题',
+          editType: 'multiple',
+          options: [
+            { label: '题1', value: '1' },
+            { label: '题2', value: '2' },
+            { label: '题3', value: '3' },
+            { label: '题4', value: '4' },
+            { label: '题5', value: '5' },
+            { label: '题6', value: '6' },
+            { label: '题7', value: '7' },
+            { label: '题8', value: '8' }
+          ]
+        },
         { key: 'judgementOpts', title: '有序判断题', editType: 'multiple' },
-        { key: 'essayIds', title: '问答题', editType: 'multiple' },
-        { key: 'programIds', title: '编程题', editType: 'multiple' },
+        { key: 'essayIds',
+          title: '问答题',
+          editType: 'multiple',
+          options: [
+            { label: '题1', value: '1' },
+            { label: '题2', value: '2' },
+            { label: '题3', value: '3' },
+            { label: '题4', value: '4' },
+            { label: '题5', value: '5' },
+            { label: '题6', value: '6' },
+            { label: '题7', value: '7' },
+            { label: '题8', value: '8' }
+          ]
+        },
+        { key: 'programIds',
+          title: '编程题',
+          editType: 'multiple',
+          options: [
+            { label: '题1', value: '1' },
+            { label: '题2', value: '2' },
+            { label: '题3', value: '3' },
+            { label: '题4', value: '4' },
+            { label: '题5', value: '5' },
+            { label: '题6', value: '6' },
+            { label: '题7', value: '7' },
+            { label: '题8', value: '8' }
+          ]
+        },
         { key: 'remark', title: '备注', editType: 'string' },
         { key: 'sort', title: '排序', editType: 'number' },
         {
