@@ -15,12 +15,12 @@
             #lesson-student-info-control
               Button 编辑个人资料
         Row#lesson-student-main(type="flex")
-          Col#lesson-student-left(span="17")
+          Col#lesson-student-left(span="24")
             Tabs(@on-click="handleChange")
               template(v-for="route in routes")
                 TabPane(:label="route.meta.title")
                   router-view
-          Col#lesson-student-right(span="7") 其他的列表信息
+          <!--Col#lesson-student-right(span="7") 其他的列表信息-->
 </template>
 
 <script>

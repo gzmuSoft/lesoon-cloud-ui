@@ -1,18 +1,51 @@
 <template lang="pug">
   .lesson-course
     Row.lesson-text-left(:gutter="32")
-      Col(span="12")
+      Col(span="8")
         Card
-          img.lesson-full-width(src="http://image.zhihuishu.com/zhs/createcourse/course/201805/62c7b3605a7940e299ccca0654a78daa_s2.png")
-          br
-          span.lesson-course-tip.lesson-course-success 已完成
-          span.lesson-course-title 智能时代下的创新创业实战
-      Col(span="12")
+          p(slot="title") c语言程序设计
+            span.lesson-course-tip.lesson-course-success 已结课
+          Row
+            Col(span="12")
+              //div.lesson-course-left
+              img.lesson-course-img(src="http://image.zhihuishu.com/zhs/createcourse/course/201805/62c7b3605a7940e299ccca0654a78daa_s2.png")
+            Col(span="12")
+              br
+              p 指导老师：Mos
+              br
+              p 课程学时：32+32
+              br
+              Button(type="primary" ghost) 进入练习
+      Col(span="8")
         Card
-          img.lesson-full-width(src="http://image.zhihuishu.com/zhs/createcourse/course/201805/62c7b3605a7940e299ccca0654a78daa_s2.png")
-          br
-          span.lesson-course-tip.lesson-course-error 正在进行
-          span.lesson-course-title 智能时代下的创新创业实战
+          p(slot="title") c语言程序设计
+            span.lesson-course-tip.lesson-course-error 未结课
+          Row
+            Col(span="12")
+              //div.lesson-course-left
+              img.lesson-course-img(src="http://image.zhihuishu.com/zhs/createcourse/course/201805/62c7b3605a7940e299ccca0654a78daa_s2.png")
+            Col(span="12")
+              br
+              p 指导老师：Mos
+              br
+              p 课程学时：32+32
+              br
+              Button(type="primary" ghost) 进入练习
+      Col(span="8")
+        Card
+          p(slot="title") c语言程序设计
+            span.lesson-course-tip.lesson-course-error 未结课
+          Row
+            Col(span="12")
+              //div.lesson-course-left
+              img.lesson-course-img(src="http://image.zhihuishu.com/zhs/createcourse/course/201805/62c7b3605a7940e299ccca0654a78daa_s2.png")
+            Col(span="12")
+              br
+              p 指导老师：Mos
+              br
+              p 课程学时：32+32
+              br
+              Button(type="primary" ghost) 进入练习
 
 </template>
 
@@ -24,25 +57,35 @@ export default {
 
 <style lang="less" scoped>
 .lesson-course {
-  background: white;
   .lesson-course-title {
     font-size: 18px;
   }
   .lesson-course-tip {
-    border-radius: 32px;
-    padding: 1px 10px;
+    font-weight: normal;
+    border-radius: 5px;
+    padding: 5px 10px;
     float: right;
   }
-  .lesson-course-success {
-    color: white;
-    background-color: @success-color;
+  .lesson-course-img{
+    width: 120px;
+    height: 150px;
+  }
+  .lesson-course-success{
+    color: lightseagreen;
+    background: rgba(255,255,255,0.2);
   }
   .lesson-course-error{
-    background-color: @primary-color;
-    color: white;
+    background-color: rgba(255,255,255,0.2);
+    color: dodgerblue;
   }
   .lesson-course-icon {
     font-size: 22px;
+  }
+  .lesson-course-left {
+    text-align: left;
+  }
+  .lesson-course-right{
+    text-align: right;
   }
 }
 </style>
