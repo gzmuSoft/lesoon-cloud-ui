@@ -16,7 +16,6 @@
               p 基础学时：{{ item.period }}
               br
               Button(type="primary" ghost) 进入练习
-              Button(type="success" ghost) 进入考试
 
 </template>
 
