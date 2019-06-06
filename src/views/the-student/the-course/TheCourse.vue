@@ -61,7 +61,7 @@ export default {
     font-weight: normal;
     border-radius: 5px;
     padding: 5px 10px;
-    float: right;
+    .lesson-float-right;
   }
   .lesson-course-img{
     .lesson-full-width;
