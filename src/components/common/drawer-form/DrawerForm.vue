@@ -2,20 +2,31 @@
   .lesson-drawer
     Drawer(v-model="visible", :title="title", :width="width", :closable="closable", :mask-closable="maskClosable",
       :mask="mask", :mask-style="maskStyle", :styles="styles", :scrollable="scrollable", :placement="placement",
-      :transfer="transfer", :class-name="className", :inner="inner", :draggable="draggable", :before-close="beforeClose",
+      :transfer="transfer", :class-name="className", :inner="inner", :draggable="draggable",
+      :before-close="beforeClose",
       @on-close="onClose", @on-visible-change="onVisibleChange", @on-resize-width="onResizeWidth")
       slot(name='header', slot='header')
       slot(name='close', slot='close')
       slot(name='trigger', slot='trigger')
+      slot
+      dynamic-form(ref="form", :formItems="formItems", :formData="formData", @on-ok="handleOk")
+        slot(name="form", slot="footer")
+      slot(name="footer")
 
 </template>
 
 <script>
+import DynamicForm from '_components/common/dynamic-form'
+
 export default {
   name: 'DrawerForm',
+  components: {
+    DynamicForm
+  },
   data () {
     return {
-      visible: this.value
+      visible: this.value,
+      currentFormItems: []
     }
   },
   watch: {
@@ -28,11 +39,24 @@ export default {
     }
   },
   props: {
+    formItems: {
+      type: Array,
+      default: () => [],
+      validator: (value) => {
+        return value.every(value =>
+          value.hasOwnProperty('name') &&
+            value.hasOwnProperty('label')
+        )
+      }
+    },
+    formData: {
+      type: Object,
+      default: () => {}
+    },
     value: {
       type: Boolean,
-      default: false
+      required: true
     },
-    beforeClose: Function,
     title: {
       type: String,
       default: ''
@@ -47,7 +71,7 @@ export default {
     },
     width: {
       type: [Number, String],
-      default: 256
+      default: 720
     },
     closable: {
       type: Boolean,
@@ -83,7 +107,14 @@ export default {
     },
     styles: {
       type: Object,
-      default: () => {}
+      default: () => {
+        return {
+          height: 'calc(100% - 55px)',
+          overflow: 'auto',
+          paddingBottom: '53px',
+          position: 'static'
+        }
+      }
     }
   },
   methods: {
@@ -95,6 +126,25 @@ export default {
     },
     onResizeWidth (width) {
       this.$emit('on-resize-width', width)
+    },
+    handleOk (status, currentFormData) {
+      this.$emit('on-ok', status, currentFormData)
+    },
+    beforeClose () {
+      let _this = this
+      if (_this.$refs.form.status()) {
+        _this.$refs.form.handleReset()
+        return
+      }
+      _this.$Modal.confirm({
+        title: '确定关闭吗？',
+        content: '你还有内容尚未保存，确定关闭吗？',
+        onOk: () => {
+          _this.visible = false
+          _this.$refs.form.handleReset()
+        }
+      })
+      return new Promise(() => {})
     }
   }
 }

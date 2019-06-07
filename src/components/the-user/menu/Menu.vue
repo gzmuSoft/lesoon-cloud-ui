@@ -2,7 +2,7 @@
   #lesson-teacher-menu
     #lesson-head-portrait
     Menu(active-key='1')
-      Menu-group(:title='item.name' v-for="(item, index) in menu")
+      Menu-group(:title='item.name' v-for="(item, index) in menu" :key='`${index}_`')
         Menu-item(:key='index' :name="index" v-for="(sub, index) in item.submenu")
           Icon(:type="sub.icon")
           | {{sub.name}}

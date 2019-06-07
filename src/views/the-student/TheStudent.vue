@@ -1,6 +1,7 @@
 <template lang="pug">
   #lesson-student
-    drawer-form(v-model="modify")
+    drawer-form(v-model="modify", title="用户信息", :formItems="formItems", :formData="formData",
+      @on-ok="handleModify")
     the-header
       UserInfo
     Row(type="flex")
@@ -27,6 +28,7 @@
 import TheHeader from '_components/common/the-header'
 import UserInfo from '_components/common/user-info'
 import DrawerForm from '_components/common/drawer-form'
+import DynamicForm from '_components/common/dynamic-form'
 import studentRoute from '_route/modules/student'
 
 export default {
@@ -34,17 +36,64 @@ export default {
   components: {
     TheHeader,
     UserInfo,
-    DrawerForm
+    DrawerForm,
+    DynamicForm
   },
   data () {
     return {
       routes: studentRoute.children,
-      modify: false
+      modify: false,
+      formItems: [
+        {
+          label: '用户名',
+          name: 'name',
+          placeholder: '请输入您的用户名'
+        },
+        {
+          label: '邮箱',
+          name: 'email',
+          placeholder: '请输入邮箱',
+          type: 'email'
+        },
+        {
+          label: '学生姓名',
+          name: 'name',
+          readonly: true
+        },
+        {
+          label: '手机号',
+          name: 'phone',
+          placeholder: '请输入手机号'
+        },
+        {
+          label: '所属班级',
+          span: 24,
+          name: 'class',
+          labelPosition: 'left',
+          component: 'p'
+        }
+      ],
+      formData: {
+        name: 'admin',
+        email: '123456@163.com',
+        phone: '13712341234',
+        class: '贵州民族大学 数据科学与信息工程学院 2016级 软件工程二班 软件工程二班软件工程二班'
+      }
     }
   },
   methods: {
     handleChange (name) {
       this.$router.push(this.routes[name])
+    },
+    handleModify (status, formDate) {
+      // 未修改的情况
+      if (status) {
+        this.$Message.success('啥都没做')
+        return
+      }
+      // 已修改的情况
+      this.$Message.success('保存了修改')
+      this.formData = this._.cloneDeep(formDate)
     }
   }
 }
