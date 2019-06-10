@@ -5,6 +5,245 @@ v1.0, 2019-5-17
 
 这个文档会记录我们现在依旧书写的组件有哪些，以便查询和使用。
 
+== 动态表单
+____
+通过传递过来的数据进行表单的动态生成
+____
+* 组件名称：`dynamic-form`
+* 组件路径：`src/components/common/dynamic-form`
+* 引用路径：`_components/common/dynamic-form`
+* 封装用户： https://echocow.cn[EchoCow]
+* 可生成的表单组件如下：
+
+[cols="1,1", options="header"]
+.表单组件
+|===
+|组件
+|组件名称
+|输入框 默认
+|i-input
+|评分
+|rate
+|日期
+|datepicker
+|时间
+|time-picker
+|下拉选择
+|父组件 i-select 子组件 i-option
+|多选框
+|父组件 checkbox-group 子组件 checkbox
+|单选框
+|父组件 radio-group 子组件 radio
+|级联选择
+|cascader
+|数字输入
+|input-number
+|===
+
+* Props: 对于输入框组件使用上和使用某个的组件没有区别，需要哪个组件就去查 api
+
+
+[cols="1,2,1,1", options="header"]
+.Props
+|===
+|属性
+|说明
+|类型
+|默认值
+
+|value
+|是否只读
+|Boolean
+|false
+
+|formItems
+|生成的表单，数组中的每个对象必须含有 `name` 和 `label`
+|Array
+|[]
+
+|formData
+|表单数据
+|Object
+|{}
+
+|labelWidth
+|标签宽度，某些时刻下无效
+|Number
+|-
+
+|labelPosition
+|标签位置，某些时刻下无效
+|String
+|top
+
+|rowGutter
+|行元素间隔距离
+|Number
+|32
+|===
+
+* 使用实例：
+
+[[app-listing]]
+[source,javascript]
+.example
+....
+formItems: [
+    {
+      label: '默认输入框',
+      name: 'name',
+      placeholder: 'name'
+    },
+    {
+      label: '评分',
+      name: 'rate',
+      component: 'rate',
+      allowHalf: true
+    },
+    {
+      label: '时间',
+      name: 'time',
+      component: 'time-picker'
+    },
+    {
+      label: '选择',
+      name: 'select',
+      component: 'i-select',
+      children: {
+        component: 'i-option',
+        list: [
+          {
+            label: 'nan',
+            value: 1,
+            title: 'nan'
+          },
+          {
+            label: 'nv',
+            value: 2,
+            title: 'nv'
+          }
+        ]
+      }
+    },
+    {
+      label: '多选',
+      name: 'checks',
+      component: 'checkbox-group',
+      children: {
+        component: 'checkbox',
+        list: [
+          {
+            label: '1',
+            value: 1,
+            title: '11'
+          },
+          {
+            label: '2',
+            value: 2,
+            title: '22'
+          },
+          {
+            label: '3',
+            value: 3,
+            title: '33'
+          }
+        ]
+      }
+    },
+    {
+      label: '单选',
+      name: 'sex',
+      component: 'radio-group',
+      children: {
+        component: 'radio',
+        list: [
+          {
+            label: 'nan',
+            value: 1,
+            title: 'nan'
+          },
+          {
+            label: 'nv',
+            value: 2,
+            title: 'nv'
+          }
+        ]
+      }
+    },
+    {
+      label: '级联选择',
+      name: 'all',
+      component: 'cascader',
+      data: [{
+        value: 'beijing',
+        label: '北京',
+        children: [
+          {
+            value: 'gugong',
+            label: '故宫'
+          },
+          {
+            value: 'tiantan',
+            label: '天坛'
+          },
+          {
+            value: 'wangfujing',
+            label: '王府井'
+          }
+        ]
+      }, {
+        value: 'jiangsu',
+        label: '江苏',
+        children: [
+          {
+            value: 'nanjing',
+            label: '南京',
+            children: [
+              {
+                value: 'fuzimiao',
+                label: '夫子庙'
+              }
+            ]
+          },
+          {
+            value: 'suzhou',
+            label: '苏州',
+            children: [
+              {
+                value: 'zhuozhengyuan',
+                label: '拙政园'
+              },
+              {
+                value: 'shizilin',
+                label: '狮子林'
+              }
+            ]
+          }
+        ]
+      }]
+    },
+    {
+      label: '数字',
+      name: 'number',
+      component: 'input-number',
+      placeholder: 'number',
+      styles: {
+        width: '100%'
+      }
+    }
+],
+formData: {
+    name: '',
+    number: 0,
+    color: null,
+    rate: 1,
+    all: ['jiangsu', 'suzhou', 'zhuozhengyuan'],
+    time: '',
+    sex: 1,
+    checks: []
+}
+....
+
 == 社交图标
 ____
 用于社交图标的生成，待完善事件处理机制。

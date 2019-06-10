@@ -7,10 +7,12 @@ import store from './store'
 import 'babel-polyfill'
 import '_plugins/iview.js'
 import 'animate.css'
+import _ from 'lodash'
+
 // import { WOW } from 'wowjs'
 //
 // new WOW({ live: false }).init()
-
+Vue.prototype._ = _
 Vue.use(VueParticles)
 Vue.use(VueScrollTo)
 Vue.config.productionTip = false
