@@ -1,5 +1,13 @@
 <template lang='pug'>
-  span(v-if="!isEditing") {{value}}
+  div(v-if="!isEditing")
+    template(v-if="editType==='select'")
+      Tag {{selectFind()}}
+    //- template(v-else-if="editType==='multiple'")
+    //-   Poptip(trigger="hover" title="测试" ,content="content")
+    //-     Button(icon="ios-paw")
+    template(v-else)
+      span {{value}}
+
   div(v-else)
     InputNumber(v-if="editType==='number'" :value="value instanceof Number?Number(value):null", placeholder="请输入数字", clearable  @on-change="handleChange")
     Input(v-if="editType==='string'", :value="String(value||'')", placeholder="请输入字符串", clearable  @on-change="handleChange")
@@ -42,6 +50,11 @@ export default {
         v = val.target.value
       }
       this.$emit('input', v)
+    },
+    selectFind () {
+      for (const item of this.params.column.options) {
+        if (item.value === this.value) { return item.label }
+      }
     }
   }
 }
