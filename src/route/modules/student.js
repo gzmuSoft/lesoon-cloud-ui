@@ -1,8 +1,18 @@
 const TheStudent = () => import('_views/the-student')
 const TheCourse = () => import('_views/the-student/the-course')
 const TheExam = () => import('_views/the-student/the-exam')
+const TheExamination = () => import('_views/the-student/the-examination')
 
-export default {
+export const examination = {
+  path: '/examination',
+  name: 'examination',
+  component: TheExamination,
+  meta: {
+    title: '考试'
+  }
+}
+
+export const student = {
   path: '/student',
   name: 'student',
   component: TheStudent,
