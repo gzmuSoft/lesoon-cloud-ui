@@ -64,8 +64,9 @@ export default {
     .lesson-float-right;
   }
   .lesson-course-img{
-    .lesson-full-width;
-    padding-right: 10px;
+    float: left;
+    margin-top: 5px;
+    width: 120px;
     height: 150px;
   }
   .lesson-course-finished{

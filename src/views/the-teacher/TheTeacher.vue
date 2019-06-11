@@ -22,48 +22,28 @@ export default {
           icon: '',
           submenu: [
             {
-              name: '课程',
+              name: '我的课程',
               icon: 'md-albums',
               route: '/student'
             },
             {
-              name: '教程',
-              icon: 'md-albums',
-              route: '/student'
-            },
-            {
-              name: '教师',
-              icon: 'md-albums',
-              route: '/student'
-            },
-            {
-              name: '学生',
+              name: '教学计划',
               icon: 'md-albums',
               route: '/student'
             }
           ]
         },
         {
-          name: '学生管理',
+          name: '考试管理',
           icon: '',
           submenu: [
             {
-              name: '哈哈哈',
+              name: '发布考试',
               icon: 'md-albums',
               route: '/student'
             },
             {
-              name: '嘻嘻嘻',
-              icon: 'md-albums',
-              route: '/student'
-            },
-            {
-              name: '略略略',
-              icon: 'md-albums',
-              route: '/student'
-            },
-            {
-              name: '哦吼吼',
+              name: '考试统计',
               icon: 'md-albums',
               route: '/student'
             }
