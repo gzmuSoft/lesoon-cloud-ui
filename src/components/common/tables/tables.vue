@@ -193,6 +193,14 @@ export default {
     }
   },
   mounted () {
+    for (const item of this.columns) {
+      if (item['align'] === undefined) {
+        item['align'] = 'center'
+      }
+      if (item['minWidth'] === undefined) {
+        item['minWidth'] = 100
+      }
+    }
     this.handleColumns(this.columns)
     this.handleTableData()
   }

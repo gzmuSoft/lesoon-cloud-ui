@@ -29,7 +29,7 @@ import TheHeader from '_components/common/the-header'
 import UserInfo from '_components/common/user-info'
 import DrawerForm from '_components/common/drawer-form'
 import DynamicForm from '_components/common/dynamic-form'
-import studentRoute from '_route/modules/student'
+import { student } from '_route/modules/student'
 
 export default {
   name: 'the-student',
@@ -41,7 +41,7 @@ export default {
   },
   data () {
     return {
-      routes: studentRoute.children,
+      routes: student.children,
       modify: false,
       formItems: [
         {

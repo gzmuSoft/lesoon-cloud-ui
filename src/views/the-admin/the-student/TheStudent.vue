@@ -37,7 +37,7 @@ export default {
             })
           }
         },
-        { type: 'selection', width: 50, align: 'center' },
+        { type: 'selection', align: 'center' },
         { key: 'name', title: '名称', editType: 'string' },
         { key: 'user_id', title: '用户编号', editType: 'number' },
         { key: 'school_id', title: '学校编号', editType: 'number' },
@@ -45,22 +45,25 @@ export default {
         { key: 'dep_id', title: '系部编号', editType: 'number' },
         { key: 'specialty_id', title: '专业编号', editType: 'number' },
         { key: 'class_id', title: '班级编号', editType: 'number' },
-        { key: 'gender', title: '性别', editType: 'string' },
+        { key: 'gender',
+          title: '性别',
+          editType: 'select',
+          options: [
+            { label: '男', value: '男' },
+            { label: '女', value: '女' }
+          ] },
         { key: 'birthday', title: '出生日期', editType: 'date' },
         { key: 'enter_date', title: '入校时间', editType: 'date' },
         { key: 'academic', title: '最后学历', editType: 'string' },
         { key: 'graduation_date', title: '最后学历毕业时间', editType: 'date' },
         { key: 'graduate_institution', title: '最后学历毕业院校', editType: 'string' },
-        { key: 'original_major', title: '最后学历所学专业（若最后学历是高中，则不需要填写\r\n若最后学历是大专，则需要填写）', editType: 'string' },
+        { key: 'original_major', title: '最后学历所学专业', editType: 'string' },
         { key: 'resume', title: '个人简历', editType: 'textarea' },
-        { key: 'create_user', title: '创建用户名称', editType: 'string' },
-        { key: 'create_time', title: '创建日期', editType: 'date' },
         { key: 'remark', title: '备注', editType: 'textarea' },
         {
           title: '操作',
           key: 'handle',
           fixed: 'right',
-          width: 180,
           options: ['update', 'delete']
         }
       ]
