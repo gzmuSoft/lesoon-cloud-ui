@@ -8,7 +8,7 @@
         Alert(type="error" show-icon) 注意事项
           template(slot="desc")
             p 考试时间为：两小时，逾期将会自动提交试卷
-      Col#lesson-examination-main.lesson-text-left(offset="3", span="18")
+      Col#lesson-examination-main.lesson-text-left(offset="5", span="14")
         MultipleChoice(:multipleChoice="singleSel")
         MultipleChoice(:multipleChoice="multiSel")
         MultipleChoice(:multipleChoice="judgement")
