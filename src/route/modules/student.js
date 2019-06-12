@@ -5,7 +5,6 @@ const TheExamination = () => import('_views/the-student/the-examination')
 
 export const examination = {
   path: '/examination',
-  name: 'examination',
   component: TheExamination,
   meta: {
     title: '考试'
@@ -14,7 +13,6 @@ export const examination = {
 
 export const student = {
   path: '/student',
-  name: 'student',
   component: TheStudent,
   children: [
     {
