@@ -1,5 +1,5 @@
 <template lang="pug">
-  #lesson-teacher-course  course
+  #lesson-teacher-course  course1
 </template>
 
 <script>
