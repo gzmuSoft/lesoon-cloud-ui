@@ -115,7 +115,7 @@ export default {
             {
               name: '单选题管理',
               icon: 'md-albums',
-              route: '/teacher'
+              route: '/teacher/singleSel'
             },
             {
               name: '多选题管理',
