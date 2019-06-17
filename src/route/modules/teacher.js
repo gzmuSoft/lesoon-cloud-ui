@@ -3,8 +3,10 @@ const TheCourse = () => import('_views/the-teacher/the-course')
 const TheSection = () => import('_views/the-teacher/the-section')
 const TheSingleSel = () => import('_views/the-teacher/the-single-sel')
 const TheAnalysis = () => import('_views/the-teacher/the-analysis')
+const TheAll = () => import('_views/the-teacher/the-single-sel/the-all')
+const TheFinish = () => import('_views/the-teacher/the-single-sel/the-finish')
 
-export default {
+export const teacher = {
   path: '/teacher',
   component: TheTeacher,
   children: [
@@ -38,7 +40,25 @@ export default {
       component: TheSingleSel,
       meta: {
         title: '单选题管理'
-      }
+      },
+      children: [
+        {
+          path: '',
+          name: 'singleSel-all',
+          component: TheAll,
+          meta: {
+            title: '全部单选题'
+          }
+        },
+        {
+          path: 'finish',
+          name: 'singleSel-finish',
+          component: TheFinish,
+          meta: {
+            title: '已完成的单选题'
+          }
+        }
+      ]
     }
   ]
 }
