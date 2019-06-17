@@ -104,7 +104,7 @@ export default {
             {
               name: '统计分析',
               icon: 'md-albums',
-              route: '/teacher'
+              route: '/teacher/analysis'
             }
           ]
         },

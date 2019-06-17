@@ -4,6 +4,7 @@ const router = express.Router()
 let courses = []
 let id = 1
 
+
 for (let i = 0; i < 100; i++) {
   courses.push({
     'name': '课程' + i,

@@ -2,6 +2,7 @@ const TheTeacher = () => import('_views/the-teacher')
 const TheCourse = () => import('_views/the-teacher/the-course')
 const TheSection = () => import('_views/the-teacher/the-section')
 const TheSingleSel = () => import('_views/the-teacher/the-single-sel')
+const TheAnalysis = () => import('_views/the-teacher/the-analysis')
 
 export default {
   path: '/teacher',
@@ -21,6 +22,14 @@ export default {
       component: TheSection,
       meta: {
         title: '章节管理'
+      }
+    },
+    {
+      path: 'analysis',
+      name: 'teacher-analysis',
+      component: TheAnalysis,
+      meta: {
+        title: '统计分析'
       }
     },
     {
