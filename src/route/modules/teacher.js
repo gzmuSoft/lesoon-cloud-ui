@@ -6,7 +6,7 @@ const TheAnalysis = () => import('_views/the-teacher/the-analysis')
 const TheAll = () => import('_views/the-teacher/the-single-sel/the-all')
 const TheFinish = () => import('_views/the-teacher/the-single-sel/the-finish')
 
-export const teacher = {
+export default {
   path: '/teacher',
   component: TheTeacher,
   children: [
