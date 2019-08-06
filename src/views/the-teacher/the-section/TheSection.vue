@@ -151,7 +151,7 @@
           p 考试次数：5次
       Col(span="5" offset="2")
       .lesson-teacher-course-circle
-          i-circle.lesson-teacher-course-scord(percent="80" stroke-width="5")
+          i-circle.lesson-teacher-course-scord(:percent="80" :stroke-width="5")
             span.lesson-teacher-course-circle-inner 80
           br
       Col(span="12" offset="2")

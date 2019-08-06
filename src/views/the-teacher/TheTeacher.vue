@@ -97,45 +97,9 @@ export default {
           icon: '',
           submenu: [
             {
-              name: '创建考试',
-              icon: 'md-albums',
-              route: '/teacher'
-            },
-            {
               name: '统计分析',
               icon: 'md-albums',
               route: '/teacher/analysis'
-            }
-          ]
-        },
-        {
-          name: '题库管理',
-          icon: '',
-          submenu: [
-            {
-              name: '单选题管理',
-              icon: 'md-albums',
-              route: '/teacher/singleSel'
-            },
-            {
-              name: '多选题管理',
-              icon: 'md-albums',
-              route: '/student'
-            },
-            {
-              name: '判断题管理',
-              icon: 'md-albums',
-              route: '/teacher'
-            },
-            {
-              name: '简答题管理',
-              icon: 'md-albums',
-              route: '/teacher'
-            },
-            {
-              name: '编程题管理',
-              icon: 'md-albums',
-              route: '/teacher'
             }
           ]
         }
