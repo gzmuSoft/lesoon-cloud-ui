@@ -67,7 +67,7 @@
               br
               Button(type="primary" ghost) 查看详情
         Col(span="6" offset="3")
-          i-circle.lesson-exam-scord(percent="80" stroke-width="5")
+          i-circle.lesson-exam-scord(:percent="80" :stroke-width="5")
             span.demo-Circle-inner 80
           br
           span.lesson-exam-success 已完成

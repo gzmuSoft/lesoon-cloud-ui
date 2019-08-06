@@ -112,6 +112,16 @@ export default {
               route: '/teacher/analysis'
             }
           ]
+        }, {
+          name: '题库管理',
+          icon: '',
+          submenu: [
+            {
+              name: '单选题',
+              icon: 'md-albums',
+              route: '/teacher/singleSel'
+            }
+          ]
         }
       ]
     }
