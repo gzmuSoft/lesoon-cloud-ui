@@ -6,24 +6,16 @@
           Row(:gutter="13")
             Col(span="5")
               FormItem.lesson-teacher-analysis-academic-year(label="学年：")
-                Select
-                  Option 2019-2020学年
-                  Option 2018-2019学年
-                  Option 2017-2018学年
-                  Option 2016-2017学年
+                Select.lesson-select
+                  Option(v-for="item in years" :value="item.id" :key="item.id") {{ item.name }}
             Col(span="5")
               FormItem.lesson-teacher-analysis-semester(label="学期：")
-                Select
-                  Option 第一学期
-                  Option 第二学期
-                  Option 第三学期
+                Select.lesson-select
+                  Option(v-for="item in semesters" :value="item.id" :key="item.id") {{ item.name }}
             Col(span="5")
               FormItem.lesson-teacher-analysis-class(label="班级：")
-                Select
-                  Option 16级软工（1）班
-                  Option 16级软工（2）班
-                  Option 16级软工（3）班
-                  Option 16级软工（4）班
+                Select.lesson-select
+                  Option(v-for="item in classes" :value="item.id" :key="item.id") {{ item.name }}
             Col(span="5")
               Button(type="primary") 查询
         .lesson-teacher-analysis-course
@@ -166,7 +158,51 @@ export default {
   },
   data () {
     return {
-      //
+      years: [
+        {
+          id: 1,
+          name: '2019-2020学年'
+        }, {
+          id: 2,
+          name: '2018-2019学年'
+        }, {
+          id: 3,
+          name: '2017-2018学年'
+        }, {
+          id: 4,
+          name: '2016-2017学年'
+        }
+      ],
+      semesters: [
+        {
+          id: 1,
+          name: '第一学期'
+        }, {
+          id: 2,
+          name: '第二学期'
+        }, {
+          id: 3,
+          name: '第三学期'
+        }
+      ],
+      classes: [
+        {
+          id: 1,
+          name: '16级软工（1）班'
+        },
+        {
+          id: 2,
+          name: '16级软工（2）班'
+        },
+        {
+          id: 3,
+          name: '16级软工（3）班'
+        },
+        {
+          id: 4,
+          name: '16级软工（4）班'
+        }
+      ]
     }
   }
 }

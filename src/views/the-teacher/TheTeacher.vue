@@ -97,6 +97,16 @@ export default {
           icon: '',
           submenu: [
             {
+              name: '创建考试',
+              icon: 'md-albums',
+              route: '/teacher/examCreate'
+            },
+            {
+              name: '组卷规则',
+              icon: 'md-albums',
+              route: '/teacher/examRule'
+            },
+            {
               name: '统计分析',
               icon: 'md-albums',
               route: '/teacher/analysis'
